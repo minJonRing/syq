@@ -1,0 +1,80 @@
+html,
+body,
+#app {
+    height: 100%;
+    overflow: hidden;
+}
+
+.head {
+    height: 50px;
+    border-bottom: 1px darkseagreen solid;
+}
+
+.main {
+    display: flex;
+    height: calc(100% - 50px);
+    overflow: hidden;
+}
+
+.left {
+    width: 260px;
+    height: 100%;
+    border-right: 1px darkseagreen solid;
+}
+
+.right {
+    position: relative;
+    width: calc(100% - 260px);
+    height: 100%;
+}
+
+
+/* left nav */
+
+.nav-father-li {
+    border-bottom: 1px #000 solid;
+}
+
+.nav-father-a {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 24px;
+    color: #333;
+    transition-duration: 600ms;
+}
+
+.nav-child-ul {
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition-duration: 600ms;
+}
+
+.nav-child-li {
+    border-top: 1px darkkhaki solid;
+}
+
+.nav-child-a {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0 10px 48px;
+    color: #333;
+    transition-duration: 600ms;
+}
+
+.nav-child-show {
+    opacity: 1;
+}
+
+.nav-father-a:hover,
+.nav-father-a-active {
+    background-color: rgba(240, 240, 240, 1);
+    ;
+    color: deepskyblue;
+}
+
+.nav-child-a:hover,
+.nav-child-a-active {
+    color: darkorange;
+    background-color: rgba(230, 230, 230, 1);
+}

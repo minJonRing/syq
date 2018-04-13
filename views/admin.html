@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>admin</title>
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <!-- <script src="/javascripts/canvas.js"></script> -->
+    <!-- <script src="/javascripts/admin-login.js"></script> -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/admin-login.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="admin-login">
+        <div class="login-box glass" data-img="#000">
+            <p>登录</p>
+            <div class="input-box">
+                <span>用户名</span>
+                <input type="text" name="username">
+            </div>
+            <div class="input-box">
+                <span>密码</span>
+                <input type="password" name="password">
+            </div>
+            <div class="submit-box">
+                <a href="javascript:">登录</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let img = Math.ceil(Math.random() * 3);
+    document.querySelector(".admin-login").style.backgroundImage = `url(/images/admin/login/${img}.jpg)`;
+
+    let style = document.createElement("style");
+    style.innerHTML = `.login-box::after\{background-image:url(/images/admin/login/${img}.jpg)\}`;
+    document.getElementsByTagName('HEAD').item(0).appendChild(style);
+
+    // 登录
+    $(".submit-box a").on("click", function() {
+        $.ajax({
+            url: "/app/admin",
+            type: "POST",
+            data: {
+                username: $("input[name='username']").val(),
+                password: $("input[name='password']").val()
+            },
+            success: function(res) {
+                console.log(res)
+                if (res.code == 200) {
+                    // window.location.href = "/app/main";
+                }
+            }
+        })
+    })
+</script>
+
+</html>

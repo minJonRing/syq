@@ -1,0 +1,71 @@
+html,
+body {
+    height: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.admin-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-size: cover;
+    background-position: center top;
+}
+
+.login-box {
+    position: relative;
+    top: -50px;
+    padding: 12px 24px;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+}
+
+.login-box p {
+    display: inline-block;
+    font-size: 16px;
+    color: #333;
+    padding: 0 6px 10px 6px;
+    border-bottom: 2px #fff solid;
+}
+
+.input-box {
+    display: flex;
+    align-items: flex-end;
+    margin: 18px 0;
+    background-color: transparent;
+}
+
+.input-box span {
+    width: 50px;
+    color: #ddd;
+}
+
+.input-box input {
+    padding: 6px 12px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px deepskyblue solid;
+    transition-duration: 600ms;
+}
+
+.input-box input:focus {
+    border-color: darkorange;
+}
+
+.submit-box {
+    text-align: center;
+    padding: 10px 0 6px 0;
+}
+
+.submit-box a {
+    display: inline-block;
+    padding: 6px 24px;
+    background-color: #62b900;
+    color: #fff;
+}
