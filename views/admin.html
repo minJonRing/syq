@@ -36,6 +36,7 @@
 </body>
 
 <script>
+    let tqr = Date.now();
     let img = Math.ceil(Math.random() * 3);
     document.querySelector(".admin-login").style.backgroundImage = `url(/images/admin/login/${img}.jpg)`;
 
@@ -45,21 +46,28 @@
 
     // 登录
     $(".submit-box a").on("click", function() {
-        $.ajax({
-            url: "/app/admin",
-            type: "POST",
-            data: {
-                username: $("input[name='username']").val(),
-                password: $("input[name='password']").val()
-            },
-            success: function(res) {
-                console.log(res)
-                if (res.code == 200) {
-                    // window.location.href = "/app/main";
+            $.ajax({
+                url: "/app/admin",
+                type: "POST",
+                data: {
+                    username: $("input[name='username']").val(),
+                    password: $("input[name='password']").val()
+                },
+                success: function(res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        // window.location.href = "/app/main";
+                    }
                 }
-            }
+            })
         })
-    })
+        // 浏览 传输数据
+    window.onbeforeunload = function() {
+        let time = (Date.now() - tqr) / 1000;
+        $.get('/getData', {
+            a: time
+        });
+    }
 </script>
 
 </html>

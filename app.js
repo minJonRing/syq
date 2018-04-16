@@ -10,7 +10,8 @@ const path = require("path")
 const ejs = require('ejs')
 const mongoose = require("mongoose")
 const session = require("koa-session2");
-const MongooseStore = require("koa-session-mongoose");
+// const MongooseStore = require("koa-session-mongoose");
+
 
 let db = mongoose.connect("mongodb://localhost:27017/syq");
 mongoose.connection.on("open",function(){
@@ -23,9 +24,11 @@ const index = require('./routes/index')
 onerror(app)
 
 // middlewares
-app.use(session({
-  store:new MongooseStore(),
-},app))
+// app.use(session({
+//   store:new MongooseStore(),
+// },app))
+
+
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))

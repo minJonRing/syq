@@ -35,7 +35,6 @@
 <body>
     <div id="app">
         <div class="head">
-
         </div>
         <div class="main">
             <div class="left">
@@ -87,7 +86,7 @@
             activeClass: 0,
             activeChild: 0,
             // ifram
-            iframUrl: "1_1.html"
+            iframUrl: "0_0.html"
         },
         computed: {
 
@@ -95,7 +94,7 @@
         mounted() {
             this.activeClass = localStorage.getItem("n1")
             this.activeChild = localStorage.getItem("n2")
-            this.iframUrl = localStorage.getItem("url")
+            this.iframUrl = localStorage.getItem("url") || "0_0.html"
             if (this.activeClass != -1) {
                 this.nav[this.activeClass].isShow = JSON.parse(localStorage.getItem("show"))
             }

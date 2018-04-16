@@ -1,13 +1,19 @@
 const router = require('koa-router')()
 const crypto = require("crypto")
+const Redis = require("ioredis")
 
 const model  = require('../schema/user.js')
+const redis = new Redis({
+  host : '127.0.0.1',//安装好的redis服务器地址
+  port : 6379,　//端口
+  ttl : 60 * 60 * 24,//过期时间
+  db: 0
+})
 
 let user = [];
 
 // 前段页面
 router.get('/', async (ctx, next) => {
-  console.log(ctx.cookies.get("angel"))
   await ctx.render('index', {
     title: 'Hello Koa 2!'
   })
@@ -15,24 +21,29 @@ router.get('/', async (ctx, next) => {
 // admin 后端接口
 // 后端登录界面
 router.get("/app/admin",async (ctx,next) => {
-  console.log(ctx.cookies.get("angel"))
-  console.log(user)
-  if(ctx.cookies.get("angel")){
-    for(let i in user){
-      if(user[i] && user[i] == ctx.cookies.get("angel")){
-        await ctx.redirect('/app/main')
-        return ;
-      }
+  let isUid;
+  try {
+    let uid = JSON.parse(ctx.cookies.get("angel")).a;
+    await new Promise((resolve,reject)=>{
+      redis.get(uid).then((db,err)=>{
+        if(!err && db){
+          resolve(isUid = true)
+        }else{
+          resolve(isUid = false)
+        }
+      })
+    })
+    if(isUid){
+      await ctx.redirect("/app/main")
+    }else{
+      await ctx.render("admin")
     }
-    await ctx.render("admin")
-  }else{
+  } catch (error) {
     await ctx.render("admin")
   }
 })
 // 后端登录接口
 router.post("/app/admin",async (ctx,next)=>{
-  console.log(ctx.cookies.get("angel"))
-  const {session} = ctx;
   let username = ctx.request.body.username;
   let password = ctx.request.body.password;
   let body = {};
@@ -40,7 +51,7 @@ router.post("/app/admin",async (ctx,next)=>{
     model.user.findOne({username:username},(err,db)=>{
       if(!err && db &&  hash(password) === db.password){
         user.push(db._id);
-        ctx.cookies.set("angel",db._id,{
+        ctx.cookies.set("angel",JSON.stringify({a:username,b:db._id}),{
           domain:"localhost",
           path:"/",
           maxAge:30*24*60*60*1000,
@@ -48,6 +59,7 @@ router.post("/app/admin",async (ctx,next)=>{
           httpOnly:false,
           overwrite:false
         })
+        redis.set(username,db._id)
         body = {code:200,msg:"登入成功",data:ctx.session}
         resolve()
       }else{
@@ -56,17 +68,22 @@ router.post("/app/admin",async (ctx,next)=>{
       }
     })
   })
-
   ctx.body = body;
-
-
 })
 // 后端主界面 
 router.get("/app/main",async(ctx,next)=>{
-  console.log(ctx.cookies.get("angel"))
+
   await ctx.render("main")
 })
 
+router.get("/getData",async (ctx,next)=>{
+  await new Promise((resolve,reject)=>{
+    new model.db({
+      data:ctx.query.a
+    }).save()
+    resolve()
+  })
+})
 
 // 加密密码
 function hash(data){

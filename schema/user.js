@@ -5,5 +5,10 @@ let user = new Schema({
     username:{type:String,unique:true,required:true},
     password:{type:String,required:true}
 })
+
+let db = new Schema({
+    data:{type:Number}
+})
 let userModel = mongoose.model('User', user);
-module.exports = {user:userModel};
+let dbModel = mongoose.model('Db', db);
+module.exports = {user:userModel,db:dbModel};
