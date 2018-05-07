@@ -6,7 +6,7 @@ const model  = require('../schema/user.js')
 const redis = new Redis({
   host : '127.0.0.1',//安装好的redis服务器地址
   port : 6379,　//端口
-  ttl : 60 * 60 * 24,//过期时间
+  ttl : 10,//过期时间
   db: 0
 })
 
@@ -50,7 +50,6 @@ router.post("/app/admin",async (ctx,next)=>{
   await new Promise((resolve,reject)=>{
     model.user.findOne({username:username},(err,db)=>{
       if(!err && db &&  hash(password) === db.password){
-        user.push(db._id);
         ctx.cookies.set("angel",JSON.stringify({a:username,b:db._id}),{
           domain:"localhost",
           path:"/",
@@ -71,11 +70,24 @@ router.post("/app/admin",async (ctx,next)=>{
   ctx.body = body;
 })
 // 后端主界面 
-router.get("/app/main",async(ctx,next)=>{
+router.get("/app/main",isUser('main','/app/admin'))
 
-  await ctx.render("main")
+
+// 退出登录
+router.get("/app/logout",async (ctx,next)=>{
+  let isUid;
+  try {
+    let uid = JSON.parse(ctx.cookies.get("angel")).a;
+    await new Promise((resolve,reject)=>{
+      redis.del(uid);
+      resolve();
+    })
+    ctx.body = {code:200,msg:"success"}
+  } catch (error) {
+    ctx.body = {code:204,msg:"error"}
+  }
 })
-
+// 获取浏览数据
 router.get("/getData",async (ctx,next)=>{
   await new Promise((resolve,reject)=>{
     new model.db({
@@ -91,4 +103,29 @@ function hash(data){
   return md5.update(data).digest("hex");
 }
 
+// 用户权限控制
+function isUser(view,url){
+  return async(ctx,next)=>{
+          let isUid;
+          try {
+            let uid = JSON.parse(ctx.cookies.get("angel")).a;
+            await new Promise((resolve,reject)=>{
+              redis.get(uid).then((db,err)=>{
+                if(!err && db){
+                  resolve(isUid = true)
+                }else{
+                  resolve(isUid = false)
+                }
+              })
+            })
+            if(isUid){
+              await ctx.render(view)
+            }else{
+              await ctx.redirect(url)
+            }
+          } catch (error) {
+            await ctx.redirect(url)
+          }
+        }
+}
 module.exports = router

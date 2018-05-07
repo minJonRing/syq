@@ -1,0 +1,439 @@
+.hello {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+/* video */
+
+.video {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    height: calc(100% - 277px);
+}
+
+.video video {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.video .video-txt {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.video-txt-box {
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    transform: matrix(1, 0, 0, 1, 0, -30)
+}
+
+.video-txt-box h2 {
+    font-size: 100px;
+    letter-spacing: 15px;
+    line-height: 1;
+}
+
+.video-txt-box p {
+    width: 900px;
+    margin: 0 auto;
+    font-size: 16px;
+    padding: 24px 0 30px;
+    line-height: 1.6;
+}
+
+.video-txt-box a {
+    position: relative;
+    display: inline-block;
+    width: 180px;
+    line-height: 60px;
+    border: 2px #999 solid;
+    color: #fff;
+    transition-duration: 300ms;
+    transition-delay: 300ms;
+    transition-timing-function: ease-out;
+}
+
+.video-txt-box .sp1,
+.video-txt-box .sp2,
+.video-txt-box .sp3,
+.video-txt-box .sp4 {
+    position: absolute;
+    display: inline-block;
+    background-color: #fff;
+    transition-duration: 300ms;
+}
+
+.video-txt-box .sp1,
+.video-txt-box .sp3 {
+    width: 0;
+    height: 2px;
+}
+
+.video-txt-box .sp2,
+.video-txt-box .sp4 {
+    width: 2px;
+    height: 0;
+}
+
+.video-txt-box .sp1 {
+    top: -2px;
+    left: -2px;
+}
+
+.video-txt-box .sp2 {
+    top: -2px;
+    right: -2px;
+}
+
+.video-txt-box .sp3 {
+    bottom: -2px;
+    right: -2px;
+}
+
+.video-txt-box .sp4 {
+    bottom: -2px;
+    left: -2px;
+}
+
+.video-txt-box a:hover .sp1,
+.video-txt-box a:hover .sp3 {
+    width: calc(100% + 2px);
+}
+
+.video-txt-box a:hover .sp2,
+.video-txt-box a:hover .sp4 {
+    height: calc(100% + 2px);
+}
+
+.video-txt-box a:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+
+/* init  */
+
+.init {
+    padding: 30px 0 50px;
+    text-align: center;
+}
+
+.imgbox {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.init-txt {
+    padding-top: 30px;
+    line-height: 2;
+    color: #333;
+}
+
+
+/* case */
+
+.case li {
+    max-height: 465px !important;
+}
+
+.case li:hover {
+    flex-grow: 3;
+    flex-shrink: 3;
+}
+
+.case .nav {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 9;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-image: url('http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* course */
+
+.course ul {
+    display: flex;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.course ul li {
+    flex: 1;
+}
+
+.course ul li div {
+    position: relative;
+    text-align: center;
+    width: 60%;
+    padding: 20px 0 30px;
+    margin: 0 auto;
+    overflow: hidden;
+    color: rgb(43, 43, 43);
+    cursor: pointer;
+}
+
+.course ul li div::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border: 5px #ddd solid;
+    opacity: 0;
+    transition-duration: 600ms;
+    transform: matrix(.5, 0, 0, .5, 0, 0);
+    pointer-events: none;
+}
+
+.course ul li div h2 {
+    font-size: 72px;
+    line-height: 1;
+}
+
+.course ul li div span {
+    display: inline-block;
+    padding-bottom: 12px;
+}
+
+.course ul li div p {
+    transition-duration: 600ms;
+}
+
+.course ul li div a {
+    display: inline-block;
+    opacity: 1;
+    padding: 12px 18px;
+    border: 2px #000 solid;
+    color: #000;
+    opacity: 0;
+    transition-duration: 600ms;
+    transform: matrix(1, 0, 0, 1, 0, 30)
+}
+
+.course ul li div:hover::after {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0)
+}
+
+.course ul li div:hover p {
+    opacity: 0;
+}
+
+.course ul li div:hover a {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, -5)
+}
+
+.course ul li div a:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+
+/* works */
+
+.works {
+    padding: 65px;
+    text-align: center;
+}
+
+.works h2 {
+    font-size: 30px;
+    color: #000;
+    font-weight: normal;
+    padding-bottom: 30px;
+}
+
+.works a {
+    display: inline-block;
+    line-height: 40px;
+    padding: 0 25px;
+    border: 1px #000 solid;
+    margin: 0 16px;
+    color: #000;
+    background-color: #d2d2d2;
+    border-radius: 20px;
+}
+
+
+/* works-list */
+
+.works-list {
+    font-size: 0;
+}
+
+.works-list a {
+    position: relative;
+    display: inline-block;
+    width: 33.33%;
+    color: #fff;
+    text-align: left;
+    line-height: 1;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.works-list a img {
+    display: block;
+    width: 100%;
+    transition-duration: 600ms;
+}
+
+.works-list .works-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition-duration: 600ms;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.works-list .works-title {
+    position: absolute;
+    width: calc(100% - 40px);
+    left: 20px;
+    bottom: 40px;
+    font-size: 14px;
+}
+
+.works-list .works-txt {
+    position: absolute;
+    width: calc(100% - 80px);
+    left: 20px;
+    bottom: 10px;
+    font-size: 16px;
+}
+
+.works-list a:hover img {
+    transform: matrix(1.05, 0, 0, 1.05, 0, 0)
+}
+
+.works-list a:hover .works-shade {
+    opacity: 1;
+}
+
+
+/* client */
+
+.my-client {
+    padding: 40px 0 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.my-client h2 {
+    font-size: 36px;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+
+.my-client-list1,
+.my-client-list2 {
+    display: inline-block;
+    font-size: 0;
+    white-space: nowrap;
+    margin: 20px 0;
+}
+
+.my-client-list1 div,
+.my-client-list2 div {
+    display: inline-block;
+    padding: 0 12px;
+}
+
+.my-client-list2 {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+}
+
+.my-client-none {
+    opacity: 0;
+    margin: 20px 0;
+}
+
+
+/* about me */
+
+.about-me {
+    padding: 30px 0 70px;
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+.about-me h2 {
+    font-size: 36px;
+    padding-bottom: 40px;
+    line-height: 1;
+}
+
+.about-me p {
+    font-size: 16px;
+    line-break: 1.6;
+}
+
+
+/* foot */
+
+.foot {
+    background-color: #000;
+    padding: 30px 70px;
+    color: #fff;
+}
+
+.foot .foot-left,
+.foot .foot-mid,
+.foot .foot-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.foot h2 {
+    font-size: 24px;
+}
+
+.foot p {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.foot .foot-mid {
+    width: calc(100% - 700px);
+}
+
+.foot .foot-left {
+    padding-top: 95px;
+    width: 330px;
+    text-align: left;
+}
+
+.foot .foot-right {
+    padding-top: 95px;
+    width: 330px;
+    text-align: right;
+}

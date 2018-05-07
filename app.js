@@ -9,7 +9,7 @@ const fs = require('fs')
 const path = require("path")
 const ejs = require('ejs')
 const mongoose = require("mongoose")
-const session = require("koa-session2");
+const session = require("koa-session-redis");
 // const MongooseStore = require("koa-session-mongoose");
 
 
@@ -24,9 +24,13 @@ const index = require('./routes/index')
 onerror(app)
 
 // middlewares
-// app.use(session({
-//   store:new MongooseStore(),
-// },app))
+app.use(session({
+  store:{
+    host:"127.0.0.1",
+    port:6379,
+    ttl:10
+  }
+},app))
 
 
 app.use(bodyparser({

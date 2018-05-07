@@ -54,9 +54,8 @@
                     password: $("input[name='password']").val()
                 },
                 success: function(res) {
-                    console.log(res)
                     if (res.code == 200) {
-                        // window.location.href = "/app/main";
+                        window.location.href = "/app/main";
                     }
                 }
             })
