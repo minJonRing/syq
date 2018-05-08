@@ -1,0 +1,25 @@
+.init {
+    padding: calc(3% + 70px) 0 3%;
+    text-align: center;
+}
+
+.init h2 {
+    font-size: 34px;
+    font-weight: 700px;
+}
+
+
+/* info */
+
+.info {
+    padding: 3%;
+    line-height: 2;
+    color: #333;
+    font-size: 12px;
+    text-align: center;
+}
+
+.info span {
+    display: inline-block;
+    width: 100%;
+}

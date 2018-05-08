@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/icon/iconfont.css">
+    <link rel="stylesheet" href="/stylesheets/web/news-list.css">
+    <script src="/javascripts/vue.js"></script>
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header class="flex flex-mid flex-center-3">
+            <div class="logo flex-1">
+                <div class="img-box">
+                    <img class="block h100" src="/images/web/logo.png" alt="">
+                </div>
+            </div>
+            <div class="nav flex-0 h100">
+                <ul class="oneUl flex flex-mid flex-center-2 h100">
+                    <li class="oneLi relative h100 transition600" v-for="(item,index) in nav" :key="index">
+                        <span class="navBar transition600"></span>
+                        <a class="oneNav flex flex-mid wh100" :href="item.link"><span>{{item.txt}}</span></a>
+                        <ul class="towUl overflow" v-if="item.child">
+                            <li class="towLi transition600" v-for="(i,j) in item.child" :key="j">
+                                <a class="towNav flex-center-1" :href="i.link"><span>{{i.txt}}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="init">
+            <h2>公司动态</h2>
+        </div>
+        <div class="option">
+            <div class="all">
+                <a href="/">全部</a>
+            </div>
+            <div class="year">
+                <a href="javascript:">
+                    <span>年份</span>
+                    <i class="iconfont icon-jiantouxia"></i>
+                </a>
+                <input type="checkbox" class="select" title="点击选择">
+                <ul>
+                    <li v-for="(item,index) in year" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            <div class="else">
+                <a href="/">媒体</a>
+            </div>
+            <div class="else">
+                <a href="/">内部</a>
+            </div>
+            <div class="else">
+                <a href="/">专业</a>
+            </div>
+        </div>
+        <div class="news">
+            <a class="new" :href="'/app/news/'+item.link" v-for="(item,index) in list" :key="index">
+                <img class="block w100" :src="item.url" alt="">
+                <div>
+                    <h2 class="title text-hide-1">{{item.title}}</h2>
+                    <time class="time">{{item.time}}</time>
+                    <p class="txt text-hide-2">{{item.txt}}</p>
+                    <span>SHOW NEW</span>
+                </div>
+            </a>
+            <div class="text-center">
+                <a class="ajax-more" href="javascript:">加载更多</a>
+            </div>
+        </div>
+
+        <div class="about-me">
+            <h2>联系我们</h2>
+            <div>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot-left">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+            <div class="foot-mid">
+                <img src="/images/web/loop.png" alt="">
+            </div>
+            <div class="foot-right">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/javascripts/web/news-list.js"></script>
+
+</html>

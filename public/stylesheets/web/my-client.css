@@ -1,0 +1,51 @@
+.init {
+    padding: 3% 0 5%;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.init h2 {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.init p {
+    padding-top: 1%;
+    font-size: 14px;
+}
+
+.init span {
+    display: inline-block;
+    width: 100%;
+    line-height: 1.8;
+}
+
+
+/* brands 商标 */
+
+.brands {
+    font-size: 0;
+    border-left: 1px #ddd solid;
+    border-bottom: 1px #ddd solid;
+}
+
+.brand {
+    display: inline-block;
+    width: 12.5%;
+    border-top: 1px #ddd solid;
+    border-right: 1px #ddd solid;
+    box-sizing: border-box;
+}
+
+.brand p {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50% 0;
+}
+
+.brand img {
+    position: absolute;
+    width: 80%;
+}

@@ -13,8 +13,39 @@ const redis = new Redis({
 let user = [];
 
 // 前段页面
+// 首页index
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
+    title: 'Hello Koa 2!'
+  })
+})
+// 作品页 works
+router.get('/app/works', async (ctx, next) => {
+  await ctx.render('works-list', {
+    title: 'Hello Koa 2!'
+  })
+})
+// 新闻资讯 news
+router.get('/app/news', async (ctx, next) => {
+  await ctx.render('news-list', {
+    title: 'Hello Koa 2!'
+  })
+})
+//我的客户 client
+router.get('/app/client', async (ctx, next) => {
+  await ctx.render('my-client', {
+    title: 'Hello Koa 2!'
+  })
+})
+//加入我们 join we
+router.get('/app/joinwe', async (ctx, next) => {
+  await ctx.render('join-we', {
+    title: 'Hello Koa 2!'
+  })
+})
+//联系我们 contact we
+router.get('/app/contactwe', async (ctx, next) => {
+  await ctx.render('contact-we', {
     title: 'Hello Koa 2!'
   })
 })

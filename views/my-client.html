@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/icon/iconfont.css">
+    <link rel="stylesheet" href="/stylesheets/web/my-client.css">
+    <script src="/javascripts/vue.js"></script>
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header class="flex flex-mid flex-center-3">
+            <div class="logo flex-1">
+                <div class="img-box">
+                    <img class="block h100" src="/images/web/logo.png" alt="">
+                </div>
+            </div>
+            <div class="nav flex-0 h100">
+                <ul class="oneUl flex flex-mid flex-center-2 h100">
+                    <li class="oneLi relative h100 transition600" v-for="(item,index) in nav" :key="index">
+                        <span class="navBar transition600"></span>
+                        <a class="oneNav flex flex-mid wh100" :href="item.link"><span>{{item.txt}}</span></a>
+                        <ul class="towUl overflow" v-if="item.child">
+                            <li class="towLi transition600" v-for="(i,j) in item.child" :key="j">
+                                <a class="towNav flex-center-1" :href="i.link"><span>{{i.txt}}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <img class="block w100" src="http://www.bitone.com/template/1/default/_files/cn/img/customer/bannner.jpg" alt="">
+        <div class="init">
+            <h2>我的客户</h2>
+            <p>
+                <span>BITONE服务的客户遍布全球,目前已服务超过60家公司，300多款产品。</span>
+                <span>BITONE服务的客户遍布全球</span>
+            </p>
+        </div>
+        <div class="brands">
+            <div class="brand" v-for="(item,index) in brands" :key="index">
+                <p><img src="http://www.bitone.com/template/1/default/_files/cn/img/customer/icon1.png" alt=""></p>
+            </div>
+        </div>
+
+        <div class="about-me">
+            <h2>联系我们</h2>
+            <div>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot-left">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+            <div class="foot-mid">
+                <img src="/images/web/loop.png" alt="">
+            </div>
+            <div class="foot-right">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/javascripts/web/my-client.js"></script>
+
+</html>

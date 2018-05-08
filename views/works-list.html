@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>aaa</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/icon/iconfont.css">
+    <link rel="stylesheet" href="/stylesheets/web/works-list.css">
+    <script src="/javascripts/vue.js"></script>
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header class="flex flex-mid flex-center-3">
+            <div class="logo flex-1">
+                <div class="img-box">
+                    <img class="block h100" src="/images/web/logo.png" alt="">
+                </div>
+            </div>
+            <div class="nav flex-0 h100">
+                <ul class="oneUl flex flex-mid flex-center-2 h100">
+                    <li class="oneLi relative h100 transition600" v-for="(item,index) in nav" :key="index">
+                        <span class="navBar transition600"></span>
+                        <a class="oneNav flex flex-mid wh100" :href="item.link"><span>{{item.txt}}</span></a>
+                        <ul class="towUl overflow" v-if="item.child">
+                            <li class="towLi transition600" v-for="(i,j) in item.child" :key="j">
+                                <a class="towNav flex-center-1" :href="i.link"><span>{{i.txt}}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="bg">
+            <img class="block w100" src="http://www.bitone.com/template/1/default/_files/cn/img/case-open/bannner.jpg" alt="">
+        </div>
+        <div class="init">
+            <h2>案例展示</h2>
+            <p>
+                <span>BITONE从成立至今，创作了众多视觉影像和营销解决方案,</span>
+                <span>被全球汽车品牌厂商、数字产品企业广泛应用于大型车展、产品上市发布会、TVC、</span>
+                <span>产品卖点宣传、线下虚拟影像互动、移动端互动等营销渠道。</span>
+            </p>
+        </div>
+        <div class="option">
+            <div class="all">
+                <a href="/">全部</a>
+            </div>
+            <div class="year">
+                <a href="javascript:">
+                    <span>年份</span>
+                    <i class="iconfont icon-jiantouxia"></i>
+                </a>
+                <input type="checkbox" class="select" title="点击选择">
+                <ul>
+                    <li v-for="(item,index) in year" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            <div class="detail">
+                <a href="javascript:" v-for="(item,index) in options" :key="index" :data-type="item.link">
+                    <i :class="['iconfont',item.icon]"></i>
+                    <span>{{item.txt}}</span>
+                </a>
+            </div>
+        </div>
+        <div class="works">
+            <div :class="['work',item.cla]" v-for="(item,index) in works" :key="index">
+                <img :src="item.url" alt="">
+                <p>
+                    <i class="iconfont icon-dashuju"></i>
+                    <span>{{item.txt}}</span>
+                </p>
+            </div>
+            <a class="ajax-more" href="javascript:">加载更多</a>
+        </div>
+
+        <div class="about-me">
+            <h2>联系我们</h2>
+            <div>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot-left">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+            <div class="foot-mid">
+                <img src="/images/web/loop.png" alt="">
+            </div>
+            <div class="foot-right">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/javascripts/web/works-list.js"></script>
+
+</html>

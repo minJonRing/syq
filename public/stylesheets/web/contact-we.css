@@ -1,0 +1,9 @@
+.init {
+    padding: calc(3% + 70px) 0 3%;
+    text-align: center;
+}
+
+.init h2 {
+    font-size: 34px;
+    font-weight: 700px;
+}

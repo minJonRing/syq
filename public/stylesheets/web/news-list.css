@@ -1,0 +1,200 @@
+.init {
+    padding: calc(3% + 70px) 0 3%;
+    text-align: center;
+}
+
+.init h2 {
+    font-size: 34px;
+    font-weight: 700px;
+}
+
+
+/* option */
+
+.option {
+    font-size: 0;
+    text-align: center;
+}
+
+.option * {
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.option .all {
+    display: inline-block;
+    width: 25%;
+    height: 70px;
+    line-height: 70px;
+    font-size: 24px;
+}
+
+.option .all a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background-color: #000;
+    transition-duration: 600ms;
+}
+
+.option .all a:hover {
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.option .year {
+    position: relative;
+    display: inline-block;
+    width: 15%;
+    height: 70px;
+    border: 1px #ddd solid;
+    margin-left: .7%;
+    cursor: pointer;
+}
+
+.option .year .select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.option .year ul {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    border-left: 1px #ddd solid;
+    border-right: 1px #ddd solid;
+    pointer-events: none;
+    transition-duration: 600ms;
+    background-color: #fff;
+    transform: matrix(1, 0, 0, 1, 50, 0);
+    z-index: 9;
+}
+
+.option .year li {
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    line-height: 4;
+    border-bottom: 1px #ddd solid;
+    transition-duration: 600ms;
+}
+
+.option .year li:hover {
+    background-color: #ddd;
+}
+
+.option .year .select:checked+ul {
+    opacity: 1;
+    pointer-events: auto;
+    transform: matrix(1, 0, 0, 1, 0, 0)
+}
+
+.option .year a {
+    display: inline-block;
+    width: 100;
+    height: 100%;
+    color: #333;
+    font-size: 18px;
+    line-height: 70px;
+}
+
+.option .else {
+    display: inline-block;
+    width: 19%;
+    height: 70px;
+    line-height: 70px;
+    border: 1px #ddd solid;
+    margin-left: .7%;
+}
+
+.option .else a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #999;
+    font-size: 18px;
+    transition-duration: 600ms;
+}
+
+.option .else a:hover {
+    color: #000;
+    background-color: #ddd
+}
+
+
+/* news */
+
+.news {
+    font-size: 0;
+    padding-top: 1.5%;
+}
+
+.new {
+    display: inline-block;
+    width: 33%;
+    margin: 0 .16666% 2%;
+    overflow: hidden;
+    transition-duration: 600ms;
+    cursor: pointer;
+}
+
+.new img+* {
+    width: 100%;
+    padding: 12px 24px;
+    position: relative;
+}
+
+.new .title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+.new .time {
+    display: inline-block;
+    font-size: 12px;
+    color: #ddd;
+    padding: 6px 0;
+}
+
+.new .txt {
+    font-size: 14px;
+    color: #999;
+    transition-duration: 600ms;
+}
+
+.new span {
+    position: absolute;
+    bottom: 12px;
+    left: 24px;
+    width: calc(100% - 48px);
+    text-align: center;
+    line-height: 36px;
+    border: 1px #ddd solid;
+    font-size: 18px;
+    color: #666;
+    opacity: 0;
+    background-color: #fff;
+    transition-duration: 600ms;
+    transform: matrix(1, 0, 0, 1, 0, 5)
+}
+
+.new:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .6);
+}
+
+.new:hover .txt {
+    opacity: 0;
+}
+
+.new:hover span {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0)
+}

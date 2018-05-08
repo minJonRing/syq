@@ -1,0 +1,232 @@
+.init {
+    padding: 3% 0;
+    text-align: center;
+}
+
+.init h2 {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.init p {
+    padding: 2% 0 3%;
+}
+
+.init p span {
+    display: block;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+
+/* option */
+
+.option {
+    font-size: 0;
+    text-align: center;
+}
+
+.option * {
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.option .all {
+    display: inline-block;
+    width: 25%;
+    height: 140px;
+    line-height: 140px;
+    font-size: 24px;
+}
+
+.option .all a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background-color: #000;
+    transition-duration: 600ms;
+}
+
+.option .all a:hover {
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.option .year {
+    position: relative;
+    display: inline-block;
+    width: 15%;
+    height: 140px;
+    border: 1px #ddd solid;
+    margin-left: .5%;
+    cursor: pointer;
+}
+
+.option .year .select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.option .year ul {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    border-left: 1px #ddd solid;
+    border-right: 1px #ddd solid;
+    pointer-events: none;
+    background-color: #fff;
+    transition-duration: 600ms;
+    transform: matrix(1, 0, 0, 1, 50, 0);
+    z-index: 9;
+}
+
+.option .year li {
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    line-height: 4;
+    border-bottom: 1px #ddd solid;
+    transition-duration: 600ms;
+}
+
+.option .year li:hover {
+    background-color: #ddd;
+}
+
+.option .year .select:checked+ul {
+    opacity: 1;
+    pointer-events: auto;
+    transform: matrix(1, 0, 0, 1, 0, 0)
+}
+
+.option .year a {
+    display: inline-block;
+    width: 100;
+    height: 100%;
+    color: #333;
+    font-size: 18px;
+    line-height: 140px;
+}
+
+.option .detail {
+    display: inline-block;
+    width: 59%;
+    height: 140px;
+    text-align: left;
+    margin-left: .5%;
+}
+
+.option .detail a {
+    display: inline-block;
+    width: 32.7%;
+    line-height: 66px;
+    height: 66px;
+    border: 1px #ddd solid;
+    margin-right: .95%;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    transition-duration: 600ms;
+}
+
+.option .detail a:nth-child(3),
+.option .detail a:nth-child(6) {
+    margin-right: 0;
+}
+
+.option .detail a:nth-child(4),
+.option .detail a:nth-child(5),
+.option .detail a:nth-child(6) {
+    margin-top: 8px;
+}
+
+.option .detail a:hover {
+    background-color: #ddd;
+}
+
+
+/* works */
+
+.works {
+    margin-top: 1%;
+    text-align: center;
+}
+
+.works::after {
+    content: "";
+    float: none;
+    clear: both;
+    display: block;
+    height: 0;
+}
+
+.work {
+    position: relative;
+    float: left;
+    cursor: pointer;
+}
+
+.work img {
+    display: block;
+    width: 100%;
+}
+
+.work1 {
+    width: 66.66%;
+}
+
+.work2 {
+    width: 33.34%;
+}
+
+.work3 {
+    width: 33.333333%;
+}
+
+.work4 {
+    width: 33.34%;
+    margin: 18.8% 0 0 -33.34%;
+}
+
+.work p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 22px;
+    text-align: center;
+    color: transparent;
+    transition-duration: 600ms;
+}
+
+.work p span {
+    vertical-align: middle;
+}
+
+.work p::after {
+    display: inline-block;
+    content: "";
+    height: 100%;
+    vertical-align: middle;
+}
+
+.work p i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 50px;
+    padding: 12px;
+}
+
+.work:hover p {
+    background-color: rgba(0, 0, 0, .6);
+    color: #fff;
+}
