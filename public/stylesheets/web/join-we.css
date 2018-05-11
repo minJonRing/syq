@@ -23,3 +23,150 @@
     display: inline-block;
     width: 100%;
 }
+
+
+/* jobs */
+
+.jobs {
+    vertical-align: top;
+    padding: 5%;
+    background-color: #f6f6f6;
+    font-size: 0;
+}
+
+.job {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+}
+
+.job h5 {
+    font-size: 16px;
+    padding: 5% 0;
+    color: #333;
+}
+
+.job p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.job span {
+    display: inline-block;
+    width: 100%;
+}
+
+
+/* job-info */
+
+.job-info {
+    padding: 4% 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 2;
+    color: #333;
+}
+
+.job-info span {
+    display: inline-block;
+    width: 100%;
+}
+
+.job-info .scross {
+    height: 4px;
+}
+
+.job-info a {
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    transition-duration: 600ms;
+}
+
+.job-info a:hover {
+    color: deepskyblue;
+}
+
+
+/* job-table */
+
+.job-table {
+    position: relative;
+    margin: 0 15% 5%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.job-table table {
+    position: relative;
+    width: 50%;
+    z-index: 9;
+    background-color: #fff;
+}
+
+.job-table tr {
+    font-size: 14px;
+    cursor: pointer;
+    transition-duration: 600ms;
+}
+
+.job-table tr th {
+    padding: 18px 0;
+}
+
+.job-table tr td {
+    padding: 12px 0;
+}
+
+.job-table tr:nth-child(odd) {
+    background-color: #f6f6f6;
+}
+
+.job-table tr:nth-child(even) {
+    background-color: #fbfbfb;
+}
+
+.job-table tr:hover {
+    background-color: #fefefe;
+}
+
+.job-table tr:first-child:hover {
+    font-size: 16px;
+    background-color: #f6f6f6;
+    cursor: default;
+}
+
+.job-table .job-table-info {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    width: 50%;
+    height: 417px;
+    padding: 0 3%;
+    background-color: #f9f9f9;
+}
+
+.job-table .job-table-info h2 {
+    font-size: 16px;
+    color: #333;
+    padding: 3% 0;
+}
+
+.job-table .job-table-info span {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    color: #999;
+    line-height: 2.2;
+}
+
+.job-table .job-slide {
+    position: relative;
+    width: 200%;
+    transition-duration: 600ms;
+}
+
+.job-table .job-slide.active {
+    transform: translateX(-50%);
+}

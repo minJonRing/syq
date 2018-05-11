@@ -254,6 +254,10 @@ body {
 
 /* width  height */
 
+.w50 {
+    width: 50%;
+}
+
 .w100 {
     width: 100%;
 }
@@ -410,6 +414,29 @@ body {
     filter: blur(5px);
     margin: -20px;
     z-index: -1;
+}
+
+
+/* btn 按钮 */
+
+.btn1 {
+    background-color: deepskyblue;
+    color: #fff;
+}
+
+.btn2 {
+    background-color: darkorange;
+    color: #fff;
+}
+
+.btn3 {
+    background-color: forestgreen;
+    color: #fff;
+}
+
+.btn4 {
+    background-color: khaki;
+    color: #333;
 }
 
 
@@ -580,4 +607,15 @@ header .nav li.towLi:hover a.towNav {
 .ajax-more:hover {
     color: deepskyblue;
     background-color: #fdfdfd;
+}
+
+
+/* scross */
+
+.scross {
+    display: inline-block;
+    width: 50px;
+    height: 2px;
+    margin: 12px 0 6px;
+    background-color: #111;
 }

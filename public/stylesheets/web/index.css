@@ -283,6 +283,7 @@
 
 .works-list {
     font-size: 0;
+    background-color: #333;
 }
 
 .works-list a {
@@ -294,6 +295,7 @@
     line-height: 1;
     background-color: #000;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .works-list a img {

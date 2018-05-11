@@ -32,17 +32,7 @@ var app = new Vue({
                     {link:"/",txt:"影视广告TVC"},
                     {link:"/",txt:"地产创意工厂"}
                 ],
-            worksList:[
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                    {link:"/",title:"测试文本",txt:"测试文本测试文本测试文本",img:"http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg"},
-                ],
+            worksList:[],
             client:[
                     {link:"/",img:"/images/web/loop.png"},
                     {link:"/",img:"/images/web/loop.png"},
@@ -78,7 +68,7 @@ var app = new Vue({
         this._loop(".my-client-list2",_L,'right')
         }, 1);
         
-        
+        this.bindGetWorkList()
     },
     methods:{
         getMessage(){
@@ -106,6 +96,18 @@ var app = new Vue({
             }else{
                 
             }
+        },
+        /**
+         * 获取作品列表
+         */
+        bindGetWorkList(){
+            $.ajax({
+                url: "/app/getWork",
+                type: "POST",
+                success: (res) => {
+                    this.worksList = res.data.slice(0,9);
+                }
+            })
         }
     }
 })

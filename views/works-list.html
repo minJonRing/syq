@@ -68,14 +68,14 @@
             </div>
         </div>
         <div class="works">
-            <div :class="['work',item.cla]" v-for="(item,index) in works" :key="index">
-                <img :src="item.url" alt="">
+            <a :href="'/app/work/'+item._id" :class="['work',item.cla]" v-for="(item,index) in works" :key="index" target="_black">
+                <img :src="item.cover" alt="">
                 <p>
                     <i class="iconfont icon-dashuju"></i>
-                    <span>{{item.txt}}</span>
+                    <span>{{item.title}}</span>
                 </p>
-            </div>
-            <a class="ajax-more" href="javascript:">加载更多</a>
+            </a>
+            <a class="ajax-more" href="javascript:" @click="bindLodingMore">加载更多</a>
         </div>
 
         <div class="about-me">

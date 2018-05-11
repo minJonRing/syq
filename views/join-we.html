@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/stylesheets/web/join-we.css">
     <script src="/javascripts/vue.js"></script>
     <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/web.config.js"></script>
 </head>
 
 <body>
@@ -46,6 +47,88 @@
                 <span>在BITONE热衷学习的</span>
                 <span>在BITONE热衷学习，我们的终极目标</span>
             </p>
+        </div>
+        <div class="jobs">
+            <div class="job" v-for="(item,index) in jobInfo" :key="index">
+                <img :src="item.url" alt="">
+                <h5>{{item.title}}</h5>
+                <p>
+                    <span v-for="(el,i) in item.txt" :key="i">{{el}}</span>
+                </p>
+            </div>
+        </div>
+        <div class="job-info">
+            <p>
+                <span>卡卡卡卡</span>
+                <span>哇哇哇哇</span>
+            </p>
+            <p class="scross"></p>
+            <p>
+                <span>哇哇哇哇哇</span>
+                <a href="mailto:1014080407@qq.com" title="发送简历到邮箱">11@qq.com</a>
+            </p>
+        </div>
+        <div class="job-table">
+            <div class="job-slide" :class="{'active':isSwitch}">
+                <table>
+                    <tr>
+                        <th>敢为</th>
+                        <th>部门</th>
+                        <th>类型</th>
+                        <th>地点</th>
+                    </tr>
+                    <tr class="job-tr" v-for="(item,index) in jobs" :key="index" @click="bindJob($event,{intro:item.intro,skill:item.skill})">
+                        <td>{{item.name}}</td>
+                        <td>{{item.department}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.address}}</td>
+                    </tr>
+                </table>
+                <div class="job-table-info" @click="isSwitch = false">
+                    <h2>详情</h2>
+                    <p>
+                        <span v-for="(item,index) in intro" :key="index">{{index}}：{{item}}</span>
+                    </p>
+                    <h2>要求</h2>
+                    <p>
+                        <span v-for="(item,index) in skill" :key="index">{{index}}：{{item}}</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="about-me">
+            <h2>联系我们</h2>
+            <div>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+                <p>测试文本测试文本测试文本</p>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot-left">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
+            <div class="foot-mid">
+                <img src="/images/web/loop.png" alt="">
+            </div>
+            <div class="foot-right">
+                <h2>杭州</h2>
+                <div>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                    <p>测试文本测试文本测试文本</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -6,9 +6,14 @@ let user = new Schema({
     password:{type:String,required:true}
 })
 
-let db = new Schema({
-    data:{type:Number}
+let work = new Schema({
+    type:{type:String},
+    title:{type:String,required:true},
+    cover:{type:String,required:true},
+    cont:{type:String,required:true},
+    createtime:{type: Date,default: Date.now},
+    browse:{type:Number,default:0}
 })
 let userModel = mongoose.model('User', user);
-let dbModel = mongoose.model('Db', db);
-module.exports = {user:userModel,db:dbModel};
+let workModel = mongoose.model('Work', work);
+module.exports = {user:userModel,work:workModel};

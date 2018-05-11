@@ -7,3 +7,100 @@
     font-size: 34px;
     font-weight: 700px;
 }
+
+
+/* address */
+
+.address {
+    width: 60%;
+    margin: 0 auto;
+    padding: 3% 0;
+    border-bottom: 1px #ddd solid;
+}
+
+.address h2 {
+    font-size: 22px;
+}
+
+.address span {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    color: #999;
+    padding: 12px 0 24px;
+}
+
+.address span::after {
+    position: absolute;
+    content: "";
+    width: 36px;
+    border-top: 2px #ddd solid;
+    left: 0;
+    bottom: 12px;
+}
+
+.address p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* form */
+
+.form {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 3%;
+}
+
+.form h2 {
+    font-size: 18px;
+}
+
+.form span {
+    display: inline-block;
+    font-size: 14px;
+    color: #d0d0d0;
+    padding: 12px 0;
+    line-height: 1.8;
+}
+
+.form p {
+    font-size: 14px;
+}
+
+form {
+    font-size: 14px;
+    padding-bottom: 100px;
+}
+
+form input {
+    display: block;
+    width: 60%;
+    padding: 12px;
+    color: #666;
+    border: 1px #ddd solid;
+    border-radius: 5px;
+    margin: 24px 0;
+}
+
+form textarea {
+    width: 60%;
+    border-color: #ddd;
+    border-radius: 5px;
+    padding: 12px;
+    line-height: 1.6;
+    resize: none;
+    color: #666;
+}
+
+form a {
+    display: inline-block;
+    width: 60%;
+    margin-top: 24px;
+    text-align: center;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 12px 0;
+    border-radius: 5px;
+}

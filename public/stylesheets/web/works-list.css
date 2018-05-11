@@ -169,6 +169,7 @@
 
 .work {
     position: relative;
+    display: block;
     float: left;
     cursor: pointer;
 }

@@ -18,22 +18,21 @@ var app = new Vue({
             {icon:"icon-icon-",link:"1",txt:"晶振"},
         ],
         year:[2014,2015,2016,2017,2018],
-        works:[]
+        works:[],
+        list:[],
+        pages:0,
+        page:0
     },
     mounted(){
-        var img = "http://www.bitone.com/uploads/1/image/public/201805/20180507112728_47vmh2c8qv.jpg";
-        var db = [
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"},
-            {url:img,txt:"A-Z-llll"}
-        ]
-        this.filter(db)
+        $.ajax({
+            url: "/app/getWork",
+            type: "POST",
+            success: (res) => {
+                this.list = res.data;
+                this.pages = res.data.length;
+                this.filter(this.list.slice(0,9))
+            }
+        })
     },
     methods:{
         filter(db){
@@ -50,6 +49,12 @@ var app = new Vue({
                 }
                 _this.works.push(el)
             })
+        },
+        bindLodingMore(){
+            if(this.page < this.pages){
+                this.page++;
+            }
+            this.filter(this.list.slice(this.page * 9 , (this.page + 1) * 9));
         }
     }
 })

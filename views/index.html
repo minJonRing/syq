@@ -84,8 +84,8 @@
             </div>
         </div>
         <div class="works-list">
-            <a :href="item.link" v-for="(item,index) in worksList" :key="index">
-                <img :src="item.img" alt="作品">
+            <a :href="'/app/work/'+item._id" v-for="(item,index) in worksList" :key="index">
+                <img :src="item.cover" alt="作品">
                 <span class="works-shade">
                 <span class="works-title">{{item.title}}</span>
                 <span class="works-txt text-hide-1">{{item.txt}}</span>
