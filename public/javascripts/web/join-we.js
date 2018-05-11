@@ -22,6 +22,9 @@ var app = new Vue({
         skill:[]
     },
     mounted(){
+        $('body').on("click",()=>{
+            this.isSwitch = false;
+        })
     },
     methods:{
         bindJob(event,db){

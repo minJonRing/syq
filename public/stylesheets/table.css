@@ -64,12 +64,12 @@
 .table-box table tr:nth-child(odd) {
     background-color: #f6f6f6;
     color: #333;
-    transition-duration: 600ms;
+    transition-duration: 300ms;
 }
 
 .table-box table tr:nth-child(even) {
     background-color: #fefefe;
-    transition-duration: 600ms;
+    transition-duration: 300ms;
 }
 
 .table-box table tr:nth-child(1) {

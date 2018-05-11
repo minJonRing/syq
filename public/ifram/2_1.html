@@ -104,7 +104,8 @@
             title: "",
             cover: "",
             // 
-            list: [],
+            list: [], //ajax获取的所有元素数据
+            _list: [], //某一类型的所有数据
             copyList: [],
             pages: 1,
             page: 0
@@ -139,7 +140,7 @@
                 }
             },
             "page": function(val) {
-                this.copyList = this.list.slice(val * 9, (val + 1) * 9)
+                this.copyList = this._list.slice(val * 9, (val + 1) * 9)
             }
         },
         methods: {
@@ -152,7 +153,7 @@
                     url: "/app/getWork",
                     type: "POST",
                     success: (res) => {
-                        this.list = res.data;
+                        this.list = this._list = res.data;
                         this.pages = Math.ceil(this.list.length / 9);
                         this.copyList = this.list.slice(0, 9);
                     }
@@ -211,22 +212,21 @@
              */
             bindFindOneWork(event, db) {
                 this.page = 0;
+                this._list = [];
+                this.copyList = [];
                 if (!db.type) {
-                    this.bindGetList();
-                    return;
-                }
-                $.ajax({
-                    url: "/app/findOneWork",
-                    type: "POST",
-                    data: {
-                        type: db.type
-                    },
-                    success: (res) => {
-                        this.list = res.data;
-                        this.pages = Math.ceil(this.list.length / 9);
-                        this.copyList = this.list.slice(0, 9);
+                    this._list = this.list;
+                    this.copyList = this._list.slice(0, 9);
+                    this.pages = Math.ceil(this._list.length / 9);
+                } else {
+                    for (let i in this.list) {
+                        if (new RegExp(db.type).test(this.list[i].type)) {
+                            this._list.push(this.list[i])
+                        }
                     }
-                })
+                    this.copyList = this._list.slice(0, 9);
+                    this.pages = Math.ceil(this._list.length / 9);
+                }
             },
             /**
              * 跳页

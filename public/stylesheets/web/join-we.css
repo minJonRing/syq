@@ -139,6 +139,7 @@
 
 .job-table .job-table-info {
     position: absolute;
+    text-align: left;
     top: 1px;
     right: 0;
     width: 50%;
