@@ -1,1 +1,3 @@
-public/upload/**
+public/upload/*.jpg
+public/upload/*.png
+public/upload/*.gif
