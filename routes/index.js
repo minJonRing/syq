@@ -113,7 +113,7 @@ router.post("/app/admin",async (ctx,next)=>{
     model.user.findOne({username:username},(err,db)=>{
       if(!err && db &&  hash(password) === db.password){
         ctx.cookies.set("angel",JSON.stringify({a:username,b:db._id}),{
-          domain:"localhost",
+          domain:"tqr.com",
           path:"/",
           maxAge:30*24*60*60*1000,
           expires:new Date(),
@@ -255,22 +255,25 @@ router.post("/app/upload/img", async(ctx,next)=>{
       form.parse(ctx.req, async(err, fields, files) => {
         if (err) { throw err; return }
         console.log(files.imgs)
-        let _name = files.imgs.name;
-        let newpath =  '/public/upload/'+_name;
-        await new Promise((resolve,reject)=>{
-          fs.rename(files.imgs.path,config.default._rootdir+newpath,(err)=>{
-            if(!err){
-              resolve()
-            }
-          })
-        })
+        // 用于重命名文件
+        // let _name = files.imgs.name;
+        // let newpath =  '/public/upload/'+_name;
+        // await new Promise((resolve,reject)=>{
+        //   fs.rename(files.imgs.path,config.default._rootdir+newpath,(err)=>{
+        //     if(!err){
+        //       resolve()
+        //     }
+        //   })
+        // })
         // if (files.imgs.length) {
         //     for (img of files.imgs) {
         //         let url = img.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
         //         imgurl.push(url)
         //     }
         // } else {
-        let url = (config.default._rootdir+newpath).replace(/.+(public)/g,"");
+        // let url = (config.default._rootdir+newpath).replace(/.+(public)/g,"");
+        // 随机文件名
+        let url = files.imgs.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
         imgurl.push(url)
         // }
         console.log(imgurl)

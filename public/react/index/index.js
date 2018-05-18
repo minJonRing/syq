@@ -7,5 +7,5 @@ import App from "./a";
 // dom app
 ReactDOM.render(
     <App />,
-    document.querySelector("#app")
+    document.querySelector("#tqr")
 )
