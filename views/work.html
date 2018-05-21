@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/icon/iconfont.css">
+<%- include("header.html")%>
     <link rel="stylesheet" href="/stylesheets/web/work.css">
-    <script src="/javascripts/vue.js"></script>
-    <script src="/javascripts/jquery-3.3.1.min.js"></script>
-    <script src="/web.config.js"></script>
-</head>
-
-<body>
     <div id="app">
         <header class="flex flex-mid flex-center-3">
             <div class="logo flex-1">
@@ -39,33 +24,31 @@
         <h2>{{title}}</h2>
         <div class="cont"></div>
     </div>
-</body>
-<script>
-    var app = new Vue({
-        el: "#app",
-        data: {
-            nav: set_config.header,
-            title: "",
-            cover: "",
-            cont: ""
-        },
-        mounted() {
-            let url = window.location.href.replace(/.+\//g, "");
-            $.ajax({
-                url: "/app/work",
-                type: "post",
-                data: {
-                    id: url
-                },
-                success: (res) => {
-                    console.log(res)
-                    this.title = res.data.title;
-                    this.cover = res.data.cover;
-                    $(res.data.cont).appendTo($(".cont"));
-                }
-            })
-        }
-    })
-</script>
-
-</html>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                nav: set_config.header,
+                title: "",
+                cover: "",
+                cont: ""
+            },
+            mounted() {
+                let url = window.location.href.replace(/.+\//g, "");
+                $.ajax({
+                    url: "/app/work",
+                    type: "post",
+                    data: {
+                        id: url
+                    },
+                    success: (res) => {
+                        console.log(res)
+                        this.title = res.data.title;
+                        this.cover = res.data.cover;
+                        $(res.data.cont).appendTo($(".cont"));
+                    }
+                })
+            }
+        })
+    </script>
+    <%- include("footer.html")%>

@@ -1,35 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+<%- include("./header.html") %>
     <link rel="stylesheet" href="/stylesheets/web/index.css">
-    <link rel="stylesheet" href="/icon/iconfont.css">
-    <script src="/javascripts/vue.js"></script>
-    <script src="/javascripts/jquery-3.3.1.min.js"></script>
-    <script src="/web.config.js"></script>
-    <script src="/build/index.js"></script>
-
-</head>
-
-<body>
     <div id="tqr"></div>
-    <div class="loding">
-        <p>
-            <span class="loding-1"></span>
-            <span class="loding-2"></span>
-            <span class="loding-3"></span>
-            <span class="loding-4"></span>
-            <span class="loding-5"></span>
-            <span class="loding-6"></span>
-        </p>
-    </div>
     <div id="app">
         <header class="flex flex-mid flex-center-3">
             <div class="logo flex-1">
@@ -58,8 +29,8 @@
                     <h2>2018SHOWREEL</h2>
                     <p>啊鲁大师大家啊上的拉屎的了撒旦画了撒旦画实践活动拉屎了撒旦画拉屎拉屎拉屎的拉升的拉屎拉屎拉可适当拉屎的阿了撒旦画杀得好阿斯兰的萨达</p>
                     <a :href="'/'">PLAY VIDEO
-                        <span class="sp1"></span><span class="sp2"></span><span class="sp3"></span><span class="sp4"></span>
-                    </a>
+                    <span class="sp1"></span><span class="sp2"></span><span class="sp3"></span><span class="sp4"></span>
+                </a>
                 </div>
             </div>
         </div>
@@ -104,7 +75,7 @@
             <a :href="'/app/work/'+item._id" v-for="(item,index) in worksList" :key="index">
                 <img :src="item.cover" alt="作品">
                 <span class="works-shade">
-                <span class="works-title">{{item.title}}</span>
+            <span class="works-title">{{item.title}}</span>
                 <span class="works-txt text-hide-1">{{item.txt}}</span>
                 </span>
             </a>
@@ -125,150 +96,7 @@
                 <div class="my-client-none"><img :src="client[0].img" alt=""></div>
             </div>
         </div>
-        <div class="about-me">
-            <h2>联系我们</h2>
-            <div>
-                <p>测试文本测试文本测试文本</p>
-                <p>测试文本测试文本测试文本</p>
-                <p>测试文本测试文本测试文本</p>
-                <p>测试文本测试文本测试文本</p>
-                <p>测试文本测试文本测试文本</p>
-            </div>
-        </div>
-        <div class="foot">
-            <div class="foot-left">
-                <h2>杭州</h2>
-                <div>
-                    <p>测试文本测试文本测试文本</p>
-                    <p>测试文本测试文本测试文本</p>
-                    <p>测试文本测试文本测试文本</p>
-                    <p>测试文本测试文本测试文本</p>
-                </div>
-            </div>
-            <div class="foot-mid">
-                <img src="/images/web/loop.png" alt="">
-            </div>
-            <div class="foot-right">
-                <h2>杭州</h2>
-                <div>
-                    <p>测试文本测试文本测试文本</p>
-                    <p>测试文本测试文本测试文本</p>
-                    <p>测试文本测试文本测试文本</p>
-                    <p>测试文本测试文本测试文本</p>
-                </div>
-            </div>
-        </div>
     </div>
-</body>
-<script src="/javascripts/web/index.js"></script>
-<style>
-    .loding {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 999;
-        background-color: #fefefe;
-        transition-duration: 600ms;
-    }
-    
-    .loding-hide {
-        opacity: 0;
-        pointer-events: none;
-    }
-    
-    .loding p {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        margin-top: -.166666rem;
-        text-align: center;
-        line-height: 1;
-    }
-    
-    .loding span {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #ddd;
-        transform: scale(0);
-    }
-    
-    .loding .loding-1 {
-        animation: loding 1.2s linear infinite;
-    }
-    
-    .loding .loding-2 {
-        animation: loding 1.2s linear .2s infinite;
-    }
-    
-    .loding .loding-3 {
-        animation: loding 1.2s linear .4s infinite;
-    }
-    
-    .loding .loding-4 {
-        animation: loding 1.2s linear .6s infinite;
-    }
-    
-    .loding .loding-5 {
-        animation: loding 1.2s linear .8s infinite;
-    }
-    
-    .loding .loding-6 {
-        animation: loding 1.2s linear 1s infinite;
-    }
-    
-    @-webkit-keyframes loding {
-        0% {
-            transform: scale(0)
-        }
-        50% {
-            transform: scale(1)
-        }
-        100% {
-            transform: scale(0)
-        }
-    }
-    
-    @keyframes loding {
-        0% {
-            transform: scale(0)
-        }
-        50% {
-            transform: scale(1)
-        }
-        100% {
-            transform: scale(0)
-        }
-    }
-</style>
-<script>
-    function ImgLoading(objs, fn) {
-        var obj = objs.getElementsByTagName('img');
-        var len = obj.length,
-            arr = [];
-        for (var i = 0; i < len; i++) {
-            (function(i) {
-                var time = setInterval(function() {
-                    if (obj[i].complete) {
-                        arr.push(i)
-                        clearInterval(time)
-                        if (arr.length == len) {
-                            fn ? fn(len, arr) : null;
-                        }
-                    }
-                }, 50)
-            })(i)
-        }
-    }
-    setTimeout(() => {
-        ImgLoading(document.getElementsByTagName("body")[0], function(len, arr) {
-            $(".loding").addClass("loding-hide")
-        })
-    }, 1000);
-</script>
-<script src="/build/react-index.js"></script>
 
-</html>
+    <script src="/javascripts/web/index.js"></script>
+    <%- include("./footer.html") %>
