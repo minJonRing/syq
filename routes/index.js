@@ -33,7 +33,9 @@ router.get('/app/works', async (ctx, next) => {
 })
 // 作品详情页
 router.get("/app/work/:id" ,async (ctx , next) => {
-  await ctx.render("work")
+  await ctx.render("work", {
+    title: 'Hello Koa 2!'
+  })
 }).post("/app/work",async (ctx,next) => {
   let msg,data;
   await new Promise((resolve,reject) =>{
