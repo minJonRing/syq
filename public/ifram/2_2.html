@@ -24,7 +24,7 @@
     <div id="app">
         <div v-if="!isShow">
             <div class="title">
-                <p>新闻列表</p>
+                <p>产品列表</p>
                 <a class="btn1" href="javascript:" @click="bindFindOneWork($event,{type:''})">全部</a>
                 <a class="btn1" href="javascript:" v-for="(item,index) in types" :key="index" @click="bindFindOneWork($event,{type:item})">{{item}}</a>
                 <a class="btn4" href="javascript:" @click="bindNewWork">新增</a>
@@ -96,15 +96,16 @@
         el: "#app",
         data: {
             isShow: false,
-            types: set_config.news_type,
+            types: set_config.work_type,
             isShowType: false,
             // 
-            type: set_config.news_type[0],
+            type: set_config.work_type[0],
             id: 0,
             title: "",
             cover: "",
             // 
-            list: [],
+            list: [], //ajax获取的所有元素数据
+            _list: [], //某一类型的所有数据
             copyList: [],
             pages: 1,
             page: 0
@@ -139,7 +140,7 @@
                 }
             },
             "page": function(val) {
-                this.copyList = this.list.slice(val * 9, (val + 1) * 9)
+                this.copyList = this._list.slice(val * 9, (val + 1) * 9)
             }
         },
         methods: {
@@ -149,10 +150,10 @@
             bindGetList() {
                 this.page = 0;
                 $.ajax({
-                    url: "/app/getWork",
+                    url: "/app/getNews",
                     type: "POST",
                     success: (res) => {
-                        this.list = res.data;
+                        this.list = this._list = res.data;
                         this.pages = Math.ceil(this.list.length / 9);
                         this.copyList = this.list.slice(0, 9);
                     }
@@ -163,7 +164,7 @@
              */
             bindNewWork() {
                 this.isShow = true;
-                this.type = set_config.news_type[0];
+                this.type = set_config.work_type[0];
                 this.id = 0;
                 this.title = "";
                 this.cover = "";
@@ -177,7 +178,7 @@
             bindEditWork(event, db) {
                 this.isShow = true;
                 $.ajax({
-                    url: "/app/getOneWork",
+                    url: "/app/getOneNews",
                     type: "POST",
                     data: {
                         id: db.id
@@ -196,7 +197,7 @@
              */
             bindRemoveWork(event, db) {
                 $.ajax({
-                    url: "/app/removeWork",
+                    url: "/app/removeNews",
                     type: "POST",
                     data: {
                         id: db.id
@@ -211,22 +212,21 @@
              */
             bindFindOneWork(event, db) {
                 this.page = 0;
+                this._list = [];
+                this.copyList = [];
                 if (!db.type) {
-                    this.bindGetList();
-                    return;
-                }
-                $.ajax({
-                    url: "/app/findOneWork",
-                    type: "POST",
-                    data: {
-                        type: db.type
-                    },
-                    success: (res) => {
-                        this.list = res.data;
-                        this.pages = Math.ceil(this.list.length / 9);
-                        this.copyList = this.list.slice(0, 9);
+                    this._list = this.list;
+                    this.copyList = this._list.slice(0, 9);
+                    this.pages = Math.ceil(this._list.length / 9);
+                } else {
+                    for (let i in this.list) {
+                        if (new RegExp(db.type).test(this.list[i].type)) {
+                            this._list.push(this.list[i])
+                        }
                     }
-                })
+                    this.copyList = this._list.slice(0, 9);
+                    this.pages = Math.ceil(this._list.length / 9);
+                }
             },
             /**
              * 跳页
@@ -264,7 +264,7 @@
                     formData.append("cover", document.querySelector("input[type=file]").files[0])
                     formData.append("cont", editor.txt.html())
                     $.ajax({
-                        url: "/app/work/save",
+                        url: "/app/news/save",
                         type: "POST",
                         data: formData,
                         contentType: false,

@@ -1,0 +1,42 @@
+.news-box {
+    padding: 8% 0 0;
+    text-align: center;
+    color: rgb(43, 43, 43);
+}
+
+.news-box h2 {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.news-box .news-info {
+    position: relative;
+    line-height: 1;
+    padding: 2% 0;
+    font-size: 14px;
+}
+
+.news-box .news-info::after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 50px;
+    background-color: #222;
+    bottom: 0;
+    left: 50%;
+    margin-left: -25px;
+}
+
+.news-box .news-info span:nth-child(2) {
+    padding: 0 12px;
+}
+
+.news-box .news-cont {
+    padding: 2% 18%;
+    font-size: 14px;
+}
+
+.news-box p {
+    text-align: left;
+    line-height: 22px;
+}

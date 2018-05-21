@@ -155,6 +155,7 @@
     font-size: 16px;
     font-weight: 700;
     color: #333;
+    transition-duration: 600ms;
 }
 
 .new .time {
@@ -172,7 +173,7 @@
 
 .new span {
     position: absolute;
-    bottom: 12px;
+    bottom: 16px;
     left: 24px;
     width: calc(100% - 48px);
     text-align: center;
@@ -190,11 +191,18 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, .6);
 }
 
-.new:hover .txt {
+.new:hover .txt,
+.new:hover .title {
     opacity: 0;
 }
 
 .new:hover span {
     opacity: 1;
     transform: matrix(1, 0, 0, 1, 0, 0)
+}
+
+.new span:hover {
+    background-color: #222;
+    color: #fff;
+    letter-spacing: 5px;
 }

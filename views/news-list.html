@@ -49,12 +49,12 @@
             </div>
         </div>
         <div class="news">
-            <a class="new" :href="'/app/news/'+item.link" v-for="(item,index) in list" :key="index">
-                <img class="block w100" :src="item.url" alt="">
+            <a class="new" :href="'/app/news/'+item._id" v-for="(item,index) in list" :key="index" target="_blank">
+                <img class="block w100" :src="item.cover" alt="">
                 <div>
                     <h2 class="title text-hide-1">{{item.title}}</h2>
-                    <time class="time">{{item.time}}</time>
-                    <p class="txt text-hide-2">{{item.txt}}</p>
+                    <time class="time">{{item.createtime.replace(/(T).+/g,'')}}</time>
+                    <!-- <div class="txt text-hide-2" v-html="item.cont">{{item.cont}}</div> -->
                     <span>SHOW NEW</span>
                 </div>
             </a>

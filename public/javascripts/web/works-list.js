@@ -30,14 +30,18 @@ var app = new Vue({
         filter(db){
             var _this = this;
             db.map(function (el,index) {  
-                if(index == 0 || index == 8){
+                if(index == 0){
                     el.cla = "work1"
-                }else if(index == 1 || index == 2 || index == 6){
+                }else if(index == 1 || index == 2 ){
                     el.cla = "work2"
-                }else if(index == 7){
-                    el.cla = "work4"
-                }else{
+                }else if(index == 3 || index == 4 || index == 5){
                     el.cla = "work3"
+                }else if(index == 6){
+                    el.cla = "work4"
+                }else if(index == 7){
+                    el.cla = "work5"
+                }else{
+                    el.cla = "work6"
                 }
                 _this.works.push(el)
             })

@@ -1,7 +1,7 @@
 html,
 body {
     font-size: 12px;
-    font-family: "微软雅黑", "Microsoft YaHei", "Lucida Grande", Helvetica, Arial, sans-serif, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, 'helvetica neue', tahoma, 'hiragino sans gb', 'wenquanyi micro hei', "宋体";
+    font-family: Arial, "微软雅黑", "Microsoft YaHei", "Lucida Grande", Helvetica, sans-serif, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, 'helvetica neue', tahoma, 'hiragino sans gb', 'wenquanyi micro hei', "宋体";
     min-height: 100%;
 }
 

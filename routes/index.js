@@ -63,6 +63,32 @@ router.get('/app/news', async (ctx, next) => {
   await ctx.render('news-list', {
     title: 'Hello Koa 2!'
   })
+}).post("/app/news",async (ctx,next) => {
+  let msg,data;
+  await new Promise((resolve,reject) =>{
+    try {
+      model.news.findOne({_id:ctx.request.body.id},function(err,db){
+        if(!err){
+          msg="查询成功!"
+          data = db;
+          resolve()
+        }else{
+          msg="查询失败!";
+          resolve()
+        }
+      })
+    } catch (error) {
+      msg = "系统错误!"
+      resolve()
+    }
+  })
+  ctx.body = {code:200,msg:msg,data:data}
+})
+// 新闻详情页
+router.get('/app/news/:id', async (ctx, next) => {
+  await ctx.render('news', {
+    title: 'Hello Koa 2!'
+  })
 })
 //我的客户 client
 router.get('/app/client', async (ctx, next) => {
@@ -177,6 +203,32 @@ router.post("/app/getWork",async (ctx ,next)=>{
   }) 
   ctx.body = {code:code,msg:msg,data:_db}
 })
+// 获取新闻列表
+router.post("/app/getNews",async (ctx ,next)=>{
+  let msg = "" , code = 0;
+  let _db = "";
+  await new Promise((resolve,reject)=>{
+    try {
+      model.news.find({},(err,db)=>{
+        if(!err){
+          _db = db;
+          msg = "查询成功!";
+          code = 200;
+          resolve()
+        }else{
+          msg = "查询失败!";
+          code = 201;
+          resolve()
+        }
+      })
+    } catch (error) {
+      msg = "查询失败!";
+      code = 201;
+      resolve()
+    }
+  }) 
+  ctx.body = {code:code,msg:msg,data:_db}
+})
 // 按类型获取作品列表
 router.post("/app/findOneWork",async(ctx,next)=>{
   await next()
@@ -222,12 +274,56 @@ router.post("/app/getOneWork",async(ctx,next)=>{
   })
   ctx.body = {code:200,msg:msg,data:data}
 })
+// 获取单一新闻数据
+router.post("/app/getOneNews",async(ctx,next)=>{
+  let msg = "",data="";
+  await new Promise((resolve,reject)=>{
+    try {
+      model.news.findOne({_id:ctx.request.body.id},function(err,db){
+        if(!err){
+          msg = "查询成功!";
+          data = db;
+          resolve()
+        }else{
+          msg = "查询失败!"
+          resolve()
+        }
+      })
+    } catch (error) {
+      msg = "系统错误!"
+      resolve()
+    }
+  })
+  ctx.body = {code:200,msg:msg,data:data}
+})
 // 删除作品
 router.post("/app/removeWork",async(ctx,next)=>{
   let msg = ""
   await new Promise((resolve,reject)=>{
     try {
       model.work.remove({_id:ctx.request.body.id},function(err,db){
+        if(!err){
+          msg = "删除成功!"
+          resolve()
+        }else{
+          msg = "删除失败!"
+          resolve()
+        }
+      })
+    } catch (error) {
+      msg = "系统错误!"
+      resolve()
+    }
+    
+  })
+  ctx.body = {code:200,msg:msg}
+})
+// 删除新闻
+router.post("/app/removeNews",async(ctx,next)=>{
+  let msg = ""
+  await new Promise((resolve,reject)=>{
+    try {
+      model.news.remove({_id:ctx.request.body.id},function(err,db){
         if(!err){
           msg = "删除成功!"
           resolve()
@@ -317,6 +413,58 @@ router.post("/app/work/save",async (ctx,next)=>{
               })
             }else{
               model.work.create({
+                type:fields.type,
+                title:fields.title,
+                cover:url,
+                cont:fields.cont
+              },(err,db)=>{
+                if(!err){
+                  msg = "保存成功!";
+                  code = 200
+                  resolve()
+                }
+              })
+            }
+          } catch (error) {
+            msg = "保存失败!";
+            code = 201;
+            resolve()
+          }
+      })
+  })
+  ctx.body = {code:code,msg:msg}
+})
+// 上传/更新新闻数据
+router.post("/app/news/save",async (ctx,next)=>{
+  await next()
+  let msg = "" ,code = 0;
+  let form = new formidable.IncomingForm();
+  form.encoding = 'utf-8';
+  form.uploadDir = path.join(config.default._rootdir + "/public/upload");
+  form.keepExtensions = true;
+  form.multiples = true;
+  await new Promise((resolve, reject) => {
+      form.parse(ctx.req, async(err, fields, files) => {
+          if (err) { throw err; return }
+          // 封面图片路径
+          try {
+            let url = files.cover ? files.cover.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
+            let option;
+            if(Object.keys(files).length == 0){
+              option = {type:fields.type,title:fields.title,cont:fields.cont};
+            }else{
+              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont};
+            }
+            if(fields.id != 0){
+              model.news.update({_id:fields.id},option,(err,db)=>{
+                if(!err){
+                  msg = "更新成功!";
+                  code = 200;
+                  resolve()
+                }
+              })
+            }else{
+              model.news.create({
                 type:fields.type,
                 title:fields.title,
                 cover:url,

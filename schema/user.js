@@ -14,6 +14,16 @@ let work = new Schema({
     createtime:{type: Date,default: Date.now},
     browse:{type:Number,default:0}
 })
+
+let news = new Schema({
+    type:{type:String},
+    title:{type:String,required:true},
+    cover:{type:String,required:true},
+    cont:{type:String,required:true},
+    createtime:{type: Date,default: Date.now},
+    browse:{type:Number,default:0}
+})
 let userModel = mongoose.model('User', user);
 let workModel = mongoose.model('Work', work);
-module.exports = {user:userModel,work:workModel};
+let newsModel = mongoose.model('News', news);
+module.exports = {user:userModel,work:workModel,news:newsModel};
