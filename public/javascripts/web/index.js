@@ -2,7 +2,7 @@ var app = new Vue({
     el:"#app",
     data () {
         return {
-            nav:set_config.header,
+            
             loop1:0,
             loop2:0,
             loopmid:0,

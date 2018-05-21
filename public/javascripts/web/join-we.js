@@ -2,7 +2,6 @@ var app = new Vue({
     el:"#app",
     data: {
         isSwitch:false,
-        nav:set_config.header,
         jobInfo:[
             {url:"/",title:"啦啦啦",txt:['在BITONE','作品质量而倍感自豪','的作品质量而倍感自豪','质量而倍感自豪']},
             {url:"/",title:"啦啦啦",txt:['在BITONE','作品质量而倍感自豪','的作品质量而倍感自豪','质量而倍感自豪']},

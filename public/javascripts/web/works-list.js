@@ -1,7 +1,6 @@
 var app = new Vue({
     el:"#app",
     data:{
-        nav:set_config.header,
         options:[
             {icon:"icon-icon-",link:"1",txt:"VR"},
             {icon:"icon-icon-",link:"1",txt:"影像"},
