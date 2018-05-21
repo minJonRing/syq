@@ -131,8 +131,11 @@
     background-color: #fefefe;
 }
 
-.job-table tr:first-child:hover {
+.job-table tr:first-child {
     font-size: 16px;
+}
+
+.job-table tr:first-child:hover {
     background-color: #f6f6f6;
     cursor: default;
 }

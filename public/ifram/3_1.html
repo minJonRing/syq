@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/javascripts/Vue.js"></script>
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <a href="javascript:" @click="bindWrite">保存</a>
+    </div>
+</body>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        methods: {
+            /*
+             *写入数据
+             */
+            bindWrite() {
+                $.ajax({
+                    url: "/app/config",
+                    type: "POST",
+                    data: {
+                        config: "let a = {a: 1,b: 2,c:3}"
+                    },
+                    success: (res) => {
+                        console.log(res)
+                    }
+                })
+            },
+        }
+    })
+</script>
+
+</html>

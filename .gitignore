@@ -2,3 +2,4 @@ public/upload/*.jpg
 public/upload/*.png
 public/upload/*.gif
 public/upload/*.jpeg
+node_modules

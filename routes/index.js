@@ -486,7 +486,23 @@ router.post("/app/news/save",async (ctx,next)=>{
   })
   ctx.body = {code:code,msg:msg}
 })
-
+// 设置基本配置
+router.post("/app/config",async(ctx,next)=>{
+  let data  = ctx.request.body.config,msg = "";
+  console.log(config.default._rootdir+"\\public\\set.config.js")
+  await new Promise((resolve,reject)=>{
+    fs.writeFile(config.default._rootdir+"\\public\\set.config.js",data,"utf-8",(err,db)=>{
+      if(!err){
+        msg = "写入成功!";
+        resolve()
+      }else{
+        msg = "写入失败!"
+        resolve()
+      }
+    })
+  }) 
+  ctx.body = {code:200,msg:msg}
+})
 // 获取浏览数据
 router.get("/getData",async (ctx,next)=>{
   await new Promise((resolve,reject)=>{

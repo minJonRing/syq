@@ -113,6 +113,7 @@
         },
         mounted() {
             // 获取作品列表
+            console.log(set_config.news_type)
             this.bindGetList()
         },
         watch: {
@@ -164,13 +165,13 @@
              */
             bindNewWork() {
                 this.isShow = true;
-                this.type = set_config.work_type[0];
+                this.type = set_config.news_type[0];
                 this.id = 0;
                 this.title = "";
                 this.cover = "";
                 setTimeout(() => {
                     editor.txt.html("")
-                }, 1);
+                }, 2);
             },
             /**
              * 编辑 作品
