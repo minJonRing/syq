@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/table.css">
+    <script src="/javascripts/Vue.js"></script>
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/release/wangEditor.min.js"></script>
+    <style>
+        .editor-box {
+            padding: 0 48px 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <form>
+            <div class="input-box">
+                <p>name</p>
+                <input type="text" v-model="title" placeholder="*标题">
+            </div>
+            <div class="input-box">
+                <p>department：</p>
+                <input type="text" v-model="title" placeholder="*标题">
+            </div>
+            <div class="input-box">
+                <p>type</p>
+                <input type="text" v-model="title" placeholder="*标题">
+            </div>
+            <div class="input-box">
+                <p>address</p>
+                <input type="text" v-model="title" placeholder="*标题">
+            </div>
+        </form>
+        <div class="editor-box">
+            <h2>职责</h2>
+            <div id="a1"></div>
+        </div>
+    </div>
+</body>
+<script>
+    var E = window.wangEditor //使用编辑器
+    var app = new Vue({
+        el: "#app",
+        data: {
+            title: ""
+        },
+        mounted() {
+            window.editor1 = new E('#a1') //创建编辑器对象
+            editor1.create()
+        },
+        methods: {
+
+        }
+    })
+</script>
+
+</html>

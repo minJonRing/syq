@@ -489,7 +489,6 @@ router.post("/app/news/save",async (ctx,next)=>{
 // 设置基本配置
 router.post("/app/config",async(ctx,next)=>{
   let data  = ctx.request.body.config,msg = "";
-  console.log(config.default._rootdir+"\\public\\set.config.js")
   await new Promise((resolve,reject)=>{
     fs.writeFile(config.default._rootdir+"\\public\\set.config.js",data,"utf-8",(err,db)=>{
       if(!err){
