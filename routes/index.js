@@ -113,7 +113,7 @@ router.get('/app/contactwe', async (ctx, next) => {
 router.get("/app/admin",async (ctx,next) => {
   let isUid,msg="";
   try {
-    new Promise((resolve,reject)=>{
+    await new Promise((resolve,reject)=>{
       model.user.create({
         username:"admin",
         password:hash("111111")
