@@ -112,6 +112,10 @@ router.get('/app/contactwe', async (ctx, next) => {
 // 后端登录界面
 router.get("/app/admin",async (ctx,next) => {
   let isUid;
+  model.user.create({
+    username:"admin",
+    password:hash("111111")
+  })
   try {
     let uid = JSON.parse(ctx.cookies.get("angel")).a;
     await new Promise((resolve,reject)=>{
