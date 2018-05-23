@@ -114,17 +114,24 @@ router.get("/app/admin",async (ctx,next) => {
   let isUid,msg="";
   try {
     await new Promise((resolve,reject)=>{
-      model.user.create({
-        username:"admin",
-        password:hash("111111")
-      },function (err,db) {  
-        if(err){
-          msg = err;
+      model.user.find({username:"admin"},function (err,db) {  
+        if(err && !db){
+          model.user.create({
+            username:"admin",
+            password:hash("111111")
+          },function (err,db) {  
+            if(err){
+              msg = err;
+            }else{
+              msg =  db;
+            }
+            resolve()
+          })
         }else{
-          msg =  db;
+          msg = "用户名存在"
         }
-        resolve()
       })
+      
     })
   } catch (error) {
     msg = "error"
