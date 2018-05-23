@@ -111,30 +111,45 @@ router.get('/app/contactwe', async (ctx, next) => {
 // admin 后端接口
 // 后端登录界面
 router.get("/app/admin",async (ctx,next) => {
-  let isUid;
-  model.user.create({
-    username:"admin",
-    password:hash("111111")
-  })
+  let isUid,msg="";
   try {
-    let uid = JSON.parse(ctx.cookies.get("angel")).a;
-    await new Promise((resolve,reject)=>{
-      redis.get(uid).then((db,err)=>{
-        if(!err && db){
-          resolve(isUid = true)
+    new Promise((resolve,reject)=>{
+      model.user.create({
+        username:"admin",
+        password:hash("111111")
+      },function (err,db) {  
+        if(err){
+          msg = err;
         }else{
-          resolve(isUid = false)
+          msg =  db;
         }
+        resolve()
       })
     })
-    if(isUid){
-      await ctx.redirect("/app/main")
-    }else{
-      await ctx.render("admin")
-    }
   } catch (error) {
-    await ctx.render("admin")
+    msg = "error"
   }
+  
+  ctx.body = {code:200,msg:msg}
+  // try {
+  //   let uid = JSON.parse(ctx.cookies.get("angel")).a;
+  //   await new Promise((resolve,reject)=>{
+  //     redis.get(uid).then((db,err)=>{
+  //       if(!err && db){
+  //         resolve(isUid = true)
+  //       }else{
+  //         resolve(isUid = false)
+  //       }
+  //     })
+  //   })
+  //   if(isUid){
+  //     await ctx.redirect("/app/main")
+  //   }else{
+  //     await ctx.render("admin")
+  //   }
+  // } catch (error) {
+  //   await ctx.render("admin")
+  // }
 })
 // 后端登录接口
 router.post("/app/admin",async (ctx,next)=>{
