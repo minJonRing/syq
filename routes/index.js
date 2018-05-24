@@ -194,7 +194,7 @@ router.get("/app/main",async (ctx,next)=>{
 router.post("/get/user",async (ctx,next) =>{
   let data="",msg="";
   try {
-    new Promise((resolve,reject)=>{
+    await new Promise((resolve,reject)=>{
       model.user.find({},function(err,db){
         if(!err){
           msg = "no"
@@ -212,7 +212,7 @@ router.post("/get/user",async (ctx,next) =>{
 router.post("/save/user",async (ctx,next) =>{
   let data="",msg="";
   try {
-    new Promise((resolve,reject)=>{
+    await new Promise((resolve,reject)=>{
       model.user({
         username:"admin",
         password:hash("111111")
