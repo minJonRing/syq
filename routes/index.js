@@ -111,33 +111,6 @@ router.get('/app/contactwe', async (ctx, next) => {
 // admin 后端接口
 // 后端登录界面
 router.get("/app/admin",async (ctx,next) => {
-  let isUid,msg="";
-  // try {
-  //   await new Promise((resolve,reject)=>{
-  //     model.user.find({username:"admin"},function (err,db) {  
-  //       if(err && !db){
-  //         model.user.create({
-  //           username:"admin",
-  //           password:hash("111111")
-  //         },function (err,db) {  
-  //           if(err){
-  //             msg = err;
-  //           }else{
-  //             msg =  db;
-  //           }
-  //           resolve()
-  //         })
-  //       }else{
-  //         msg = "用户名存在"
-  //       }
-  //     })
-      
-  //   })
-  // } catch (error) {
-  //   msg = "error"
-  // }
-  
-  // ctx.body = {code:200,msg:msg}
   try {
     let uid = JSON.parse(ctx.cookies.get("angel")).a;
     await new Promise((resolve,reject)=>{
@@ -186,11 +159,9 @@ router.post("/app/admin",async (ctx,next)=>{
   ctx.body = body;
 })
 // 后端主界面 
-// router.get("/app/main",isUser('main','/app/admin'))
-router.get("/app/main",async (ctx,next)=>{
-  await ctx.render('main')
-})
-
+router.get("/app/main",isUser('main','/app/admin'))
+// router.get("/app/main",isUser(view,url))
+// 测试注册用户   可删除////////////////////////////////
 router.post("/get/user",async (ctx,next) =>{
   let data="",msg="";
   try {
@@ -234,6 +205,7 @@ router.post("/save/user",async (ctx,next) =>{
   }
   ctx.body = {code:200,msg:msg,data:data}
 })
+// ////////////////////////////////////////////
 // 退出登录
 router.get("/app/logout",async (ctx,next)=>{
   let isUid;
