@@ -202,6 +202,7 @@ router.post("/get/user",async (ctx,next) =>{
           msg = "have";
           data = db;
         }
+        resolve()
       })
     })
   } catch (error) {
@@ -223,6 +224,7 @@ router.post("/save/user",async (ctx,next) =>{
           msg = "have";
           data = db;
         }
+        resolve()
       })
     })
   } catch (error) {
