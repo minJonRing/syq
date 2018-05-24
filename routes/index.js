@@ -478,7 +478,6 @@ router.post("/app/work/save",async (ctx,next)=>{
 })
 // 上传/更新新闻数据
 router.post("/app/news/save",async (ctx,next)=>{
-  await next()
   let msg = "" ,code = 0;
   let form = new formidable.IncomingForm();
   form.encoding = 'utf-8';
@@ -502,8 +501,11 @@ router.post("/app/news/save",async (ctx,next)=>{
                 if(!err){
                   msg = "更新成功!";
                   code = 200;
-                  resolve()
+                }else{
+                  msg = "更新失败!";
+                  code = 204;
                 }
+                resolve()
               })
             }else{
               model.news.create({
@@ -515,8 +517,11 @@ router.post("/app/news/save",async (ctx,next)=>{
                 if(!err){
                   msg = "保存成功!";
                   code = 200
-                  resolve()
+                }else{
+                  msg = "保存失败!";
+                  code = 204;
                 }
+                resolve()
               })
             }
           } catch (error) {
