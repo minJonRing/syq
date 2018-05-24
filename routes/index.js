@@ -140,7 +140,7 @@ router.post("/app/admin",async (ctx,next)=>{
     model.user.findOne({username:username},(err,db)=>{
       if(!err && db &&  hash(password) === db.password){
         ctx.cookies.set("angel",JSON.stringify({a:username,b:db._id}),{
-          domain:"tqr.com",
+          domain:"ojoojooo.com",
           path:"/",
           maxAge:30*24*60*60*1000,
           expires:new Date(),
