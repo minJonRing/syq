@@ -138,25 +138,25 @@ router.get("/app/admin",async (ctx,next) => {
   // }
   
   // ctx.body = {code:200,msg:msg}
-  // try {
-  //   let uid = JSON.parse(ctx.cookies.get("angel")).a;
-  //   await new Promise((resolve,reject)=>{
-  //     redis.get(uid).then((db,err)=>{
-  //       if(!err && db){
-  //         resolve(isUid = true)
-  //       }else{
-  //         resolve(isUid = false)
-  //       }
-  //     })
-  //   })
-  //   if(isUid){
-  //     await ctx.redirect("/app/main")
-  //   }else{
-  //     await ctx.render("admin")
-  //   }
-  // } catch (error) {
-  //   await ctx.render("admin")
-  // }
+  try {
+    let uid = JSON.parse(ctx.cookies.get("angel")).a;
+    await new Promise((resolve,reject)=>{
+      redis.get(uid).then((db,err)=>{
+        if(!err && db){
+          resolve(isUid = true)
+        }else{
+          resolve(isUid = false)
+        }
+      })
+    })
+    if(isUid){
+      await ctx.redirect("/app/main")
+    }else{
+      await ctx.render("admin")
+    }
+  } catch (error) {
+    await ctx.render("admin")
+  }
 })
 // 后端登录接口
 router.post("/app/admin",async (ctx,next)=>{
@@ -191,7 +191,45 @@ router.get("/app/main",async (ctx,next)=>{
   await ctx.render('main')
 })
 
-
+router.post("/get/user",async (ctx,next) =>{
+  let data="",msg="";
+  try {
+    new Promise((resolve,reject)=>{
+      model.user.find({},function(err,db){
+        if(!err){
+          msg = "no"
+        }else{
+          msg = "have";
+          data = db;
+        }
+      })
+    })
+  } catch (error) {
+    msg = "error"
+  }
+  ctx.body = {code:200,msg:msg,data:data}
+})
+router.post("/save/user",async (ctx,next) =>{
+  let data="",msg="";
+  try {
+    new Promise((resolve,reject)=>{
+      model.user({
+        username:"admin",
+        password:hash("111111")
+      }).save(function(err,db){
+        if(!err){
+          msg = "no"
+        }else{
+          msg = "have";
+          data = db;
+        }
+      })
+    })
+  } catch (error) {
+    msg = "error"
+  }
+  ctx.body = {code:200,msg:msg,data:data}
+})
 // 退出登录
 router.get("/app/logout",async (ctx,next)=>{
   let isUid;
@@ -413,7 +451,6 @@ router.post("/app/upload/img", async(ctx,next)=>{
 })
 // 上传/更新作品数据
 router.post("/app/work/save",async (ctx,next)=>{
-  await next()
   let msg = "" ,code = 0;
   let form = new formidable.IncomingForm();
   form.encoding = 'utf-8';
