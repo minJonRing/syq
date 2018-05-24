@@ -197,10 +197,11 @@ router.post("/get/user",async (ctx,next) =>{
     await new Promise((resolve,reject)=>{
       model.user.find({},function(err,db){
         if(!err){
-          msg = "no"
-        }else{
           msg = "have";
           data = db;
+        }else{
+          msg = "have";
+          data = err
         }
         resolve()
       })
@@ -219,10 +220,11 @@ router.post("/save/user",async (ctx,next) =>{
         password:hash("111111")
       }).save(function(err,db){
         if(!err){
-          msg = "no"
-        }else{
-          msg = "have";
+          msg = "have"
           data = db;
+        }else{
+          msg = "no";
+          data = err;
         }
         resolve()
       })
