@@ -42,9 +42,8 @@
             <h2>职责</h2>
             <div id="a1"></div>
         </div>
-        <a href="javascript:" @click="bindGet">get user</a>
-        <a href="javascript:" @click="bindSave">save user</a>
     </div>
+
 </body>
 <script>
     var E = window.wangEditor //使用编辑器
@@ -58,26 +57,11 @@
             editor1.create()
         },
         methods: {
-            bindGet() {
-                $.ajax({
-                    url: "/get/user",
-                    type: "post",
-                    success: (res) => {
-                        console.log(res)
-                    }
-                })
-            },
-            bindSave() {
-                $.ajax({
-                    url: "/save/user",
-                    type: "post",
-                    success: (res) => {
-                        console.log(res)
-                    }
-                })
-            }
+
         }
     })
+
+    // $(".tqr-nav-item").css("width", (100 - 10) / $(".tqr-nav-item").length + "%");
 </script>
 
 </html>
