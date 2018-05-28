@@ -192,7 +192,7 @@
         position: absolute;
         top: 100%;
         left: 4rem;
-        opacity: 0;
+        /* opacity: 0; */
         pointer-events: none;
         background-color: rgba(0, 0, 0, 1);
         border-top: .04rem #fff solid;
