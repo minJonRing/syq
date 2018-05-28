@@ -196,7 +196,7 @@
         pointer-events: none;
         background-color: rgba(0, 0, 0, 1);
         border-top: .04rem #fff solid;
-        transition-duration: 600ms;
+        transition-duration: 300ms;
     }
     .tqr-nav-item {
         background-color: #000;
