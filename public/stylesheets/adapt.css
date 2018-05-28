@@ -57,6 +57,7 @@
     width: 100%;
     flex-wrap: wrap;
     color: #fff;
+    overflow: hidden;
 }
 
 .tqr-nav-list-show {
