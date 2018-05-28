@@ -45,8 +45,8 @@
             <img class="block" src="/images/web/logo.png" alt="">
         </div>
         <div class="tqr-nav-box text-center">
-            <input class="tqr-nav-phone iconfont icon-mulu" type="checkbox" />
-            <div class="tqr-nav-list">
+            <i class="tqr-nav-phone iconfont icon-mulu" @click="isShow = !isShow"></i>
+            <div :class="['tqr-nav-list',{'tqr-nav-list-show':isShow}]">
                 <div class="tqr-nav-item" v-for="(item,index) in nav" :key="index">
                     <a class="tqr-nav-item-txt" :href="item.link">{{item.txt}}</a>
                     <input type="checkbox" v-if="item.child" class="tqr-nav-item-check">
@@ -75,7 +75,8 @@
             el: "#head",
             data: {
                 nav: set_config.header,
-                isPhone: /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0
+                isPhone: /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0,
+                isShow: false
             }
         })
     </script>
