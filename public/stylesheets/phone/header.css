@@ -1,0 +1,41 @@
+.tqr-header {
+    padding: .2rem .4rem;
+    background-color: #000;
+}
+
+.tqr-logo img {
+    height: .7rem;
+}
+
+.tqr-nav-phone {
+    font-size: .6rem;
+}
+
+.tqr-nav-item-txt {
+    font-size: .34rem;
+    padding: .4rem 0;
+}
+
+.tqr-nav-child {
+    font-size: .3rem;
+    padding: .2rem 0;
+}
+
+
+/* child */
+
+.tqr-nav-item:nth-child(1) .tqr-nav-item-check:checked+.tqr-nav-item-list {
+    height: 2.42rem;
+}
+
+.tqr-nav-item:nth-child(2) .tqr-nav-item-check:checked+.tqr-nav-item-list {
+    height: .8rem;
+}
+
+.tqr-nav-item:nth-child(4) .tqr-nav-item-check:checked+.tqr-nav-item-list {
+    height: 1.61rem;
+}
+
+.tqr-nav-item:nth-child(5) .tqr-nav-item-check:checked+.tqr-nav-item-list {
+    height: .8rem;
+}

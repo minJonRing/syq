@@ -10,14 +10,16 @@
     </title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/icon/iconfont.css">
+    <link rel="stylesheet" href="/stylesheets/adapt.css">
     <script src="/javascripts/vue.js"></script>
     <script src="/javascripts/jquery-3.3.1.min.js"></script>
     <script src="/web.config.js"></script>
     <script src="/set.config.js"></script>
+    <script src="/javascripts/rem.js"></script>
 </head>
 
 <body>
-    <header id="head" class="flex flex-mid flex-center-3">
+    <!-- <header id="head" class="flex flex-mid flex-center-3">
         <div class="logo flex-1">
             <div class="img-box">
                 <img class="block h100" src="/images/web/logo.png" alt="">
@@ -36,7 +38,29 @@
                 </li>
             </ul>
         </div>
-    </header>
+    </header> -->
+    <div class="tqr-header" id="head">
+        <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/header.css">
+        <div class="tqr-logo">
+            <img class="block" src="/images/web/logo.png" alt="">
+        </div>
+        <div class="tqr-nav-box text-center">
+            <input class="tqr-nav-phone iconfont icon-mulu" type="checkbox" />
+            <div class="tqr-nav-list">
+                <div class="tqr-nav-item" v-for="(item,index) in nav" :key="index">
+                    <a class="tqr-nav-item-txt" :href="item.link">{{item.txt}}</a>
+                    <input type="checkbox" v-if="item.child" class="tqr-nav-item-check">
+                    <ul class="tqr-nav-item-list" v-if="item.child">
+                        <li v-for="(i,j) in item.child" :key="j">
+                            <a class="tqr-nav-child flex-center-1" :href="i.link">
+                                {{i.txt}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="loding">
         <p>
             <span></span>
@@ -51,6 +75,7 @@
             el: "#head",
             data: {
                 nav: set_config.header,
+                isPhone: /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0
             }
         })
     </script>
