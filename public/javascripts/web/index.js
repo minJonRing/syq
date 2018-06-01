@@ -7,9 +7,9 @@ var app = new Vue({
             loop2:0,
             loopmid:0,
             caseList:[
-                    {link:"/",img:"url(http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic1.jpg)",txt:"CG及实拍影像"},
-                    {link:"/",img:"url(http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic2.jpg)",txt:"虚拟影像互动展示"},
-                    {link:"/",img:"url(http://www.bitone.com/template/1/default/_files/cn/img/home/busineess-pic3.jpg)",txt:"数字演员"}
+                    {link:"/",img:"url(http://img2.imgtn.bdimg.com/it/u=797634051,1683868217&fm=27&gp=0.jpg)",txt:"CG及实拍影像"},
+                    {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"虚拟影像互动展示"},
+                    {link:"/",img:"url(http://img1.imgtn.bdimg.com/it/u=3024902422,764884725&fm=27&gp=0.jpg)",txt:"数字演员"}
                 ],
             caseH:0,
             courseList:[

@@ -77,3 +77,7 @@
 .about-me {
     display: none;
 }
+
+.foot {
+    padding: .4rem !important;
+}
