@@ -1,0 +1,30 @@
+.form,
+.address {
+    width: 86%;
+}
+
+.form h2,
+.address h2 {
+    font-size: .4rem;
+}
+
+.form span,
+.form p,
+.address span,
+.address p {
+    font-size: .3rem;
+}
+
+.form input,
+.form textarea,
+.form a {
+    display: block;
+    width: 100%;
+    padding: .2rem;
+    font-size: .3rem;
+    margin: .3rem 0;
+}
+
+form {
+    padding-bottom: 0;
+}

@@ -1,0 +1,29 @@
+.job-info {
+    font-size: .3rem;
+    line-height: 1.6;
+}
+
+.job-info a {
+    font-size: .28rem;
+}
+
+.job-table {
+    margin: 0 0 1rem;
+}
+
+.job-table tr {
+    font-size: .3rem;
+}
+
+.job-table tr:first-child {
+    font-size: .4rem;
+}
+
+.job-table .job-table-info h2 {
+    font-size: .4rem;
+}
+
+.job-table .job-table-info span {
+    font-size: .3rem;
+    line-height: 1.4;
+}

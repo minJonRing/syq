@@ -1,5 +1,8 @@
 <%- include("header.html")%>
     <link rel="stylesheet" href="/stylesheets/web/my-client.css">
+    <div id="scss">
+        <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/my-client.css">
+    </div>
     <div id="app">
         <img class="block w100" src="http://www.bitone.com/template/1/default/_files/cn/img/customer/bannner.jpg" alt="">
         <div class="init">

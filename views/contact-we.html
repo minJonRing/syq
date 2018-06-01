@@ -1,5 +1,8 @@
 <%- include("./header.html") %>
     <link rel="stylesheet" href="/stylesheets/web/contact-we.css?v=201805111706">
+    <div id="scss">
+        <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/contact-we.css?v=201805111706">
+    </div>
     <div id="app">
         <div class="init">
             <h2>联系我们</h2>

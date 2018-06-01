@@ -18,7 +18,8 @@ var app = new Vue({
             {name:"aa",department:"11",type:"all",address:"22",intro:["dasdsad","saasd","dsad","dweq"],skill:["dada","dasda"]}
         ],
         intro:[],
-        skill:[]
+        skill:[],
+        isPhone:/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0
     },
     mounted(){
         $('body').on("click",()=>{

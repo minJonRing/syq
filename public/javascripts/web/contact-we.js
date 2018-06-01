@@ -1,7 +1,7 @@
 var app = new Vue({
-    el:"#app",
+    el:"#scss",
     data: {
-        nav:set_config.header
+        isPhone:/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0
     },
     mounted(){
     },
