@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // document
-import App from "./a";
+import FormBox from './formBox';
 
 // dom app
 ReactDOM.render(
-    <App />,
+    <FormBox />,
     document.querySelector("#tqr")
 )

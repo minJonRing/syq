@@ -1,0 +1,71 @@
+.init {
+    padding: 1.4rem 0 .1rem;
+}
+
+.init h2 {
+    font-size: .4rem;
+}
+
+.adapt-box {
+    position: relative;
+    padding: .2rem .2rem .2rem 1.7rem;
+}
+
+.adapt-box .option {
+    position: fixed;
+    top: 2.22rem;
+    left: .2rem;
+    width: 1.333333rem;
+}
+
+.adapt-box .option>div {
+    width: 100%;
+}
+
+.adapt-box .option .all a {
+    font-size: .34rem;
+}
+
+.adapt-box .option .year a,
+.adapt-box .option .else a {
+    font-size: .28rem;
+    line-height: 1rem;
+}
+
+.adapt-box .option .all,
+.adapt-box .option .year,
+.adapt-box .option .else {
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.adapt-box .option .year li {
+    font-size: .24rem;
+}
+
+.adapt-box .news {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 0;
+}
+
+.adapt-box .news .new {
+    width: 100%;
+}
+
+.adapt-box .news .new h2 {
+    font-size: .34rem;
+}
+
+.adapt-box .news .new time {
+    font-size: .26rem;
+}
+
+.adapt-box .news .text-center {
+    width: 100%;
+}
+
+.adapt-box .news .text-center a {
+    font-size: .3rem;
+}

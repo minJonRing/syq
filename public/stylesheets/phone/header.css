@@ -9,8 +9,8 @@
 
 .tqr-nav-phone {
     display: block;
-    border: none;
     font-size: .6rem;
+    color: #fff;
 }
 
 .tqr-nav-item-txt {
@@ -31,8 +31,8 @@
 .tqr-nav-list {
     position: absolute;
     top: 100%;
-    left: 4rem;
-    /* opacity: 0; */
+    left: 2rem;
+    opacity: 0;
     pointer-events: none;
     background-color: rgba(0, 0, 0, 1);
     border-top: .04rem #fff solid;
@@ -46,7 +46,7 @@
     height: 0;
 }
 
-.tqr-nav-item-check {
+.tqr-nav-list-show .tqr-nav-item-check {
     pointer-events: auto;
 }
 
@@ -72,4 +72,8 @@
 
 .tqr-nav-item:nth-child(5) .tqr-nav-item-check:checked+.tqr-nav-item-list {
     height: .8rem;
+}
+
+.about-me {
+    display: none;
 }

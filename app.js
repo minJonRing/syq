@@ -11,13 +11,22 @@ const ejs = require('ejs')
 const mongoose = require("mongoose")
 const session = require("koa-session-redis");
 const staticCache = require('koa-static-cache')
+var WebSocketServer = require('ws').Server,
+wss = new WebSocketServer({ port: 8181 });
+wss.on('connection', function (ws) {
+    console.log('client connected');
+    ws.on('message', function (message) {
+        console.log(message);
+    });
+});
 // const MongooseStore = require("koa-session-mongoose");
 
 
 let db = mongoose.connect("mongodb://localhost:27017/syq");
 mongoose.connection.on("open",function(){
-  console.log("success")
+  console.log("mongodb connection success!")
 })
+
 
 const index = require('./routes/index')
 

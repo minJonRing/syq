@@ -1,6 +1,7 @@
 <%- include("./header.html") %>
     <link rel="stylesheet" href="/stylesheets/web/index.css">
-    <div id="tqr"></div>
+    <link rel="stylesheet" href="/stylesheets/table.css">
+    <div id="tqr" style="margin-top: 100px"></div>
     <div id="app">
         <div class="video">
             <video src="http://www.bitone.com/template/1/default/_files/cn/video/banner-1.mp4" autoplay loop></video>
@@ -80,4 +81,21 @@
 
 
     <script src="/javascripts/web/index.js"></script>
+    <script src="/build/react-index.js"></script>
+    <script>
+        var ws = new WebSocket("ws://localhost:8181");
+        ws.onopen = (evt) => {
+            console.log("connection open ...")
+            ws.send("hello websockets!")
+        }
+
+        ws.onmessage = (evt) => {
+            console.log("Message:" + evt.data)
+            ws.close()
+        }
+
+        ws.onclose = (evt) => {
+            console.log("connection closed!")
+        }
+    </script>
     <%- include("./footer.html") %>

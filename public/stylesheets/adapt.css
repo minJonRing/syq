@@ -42,9 +42,7 @@
 /* 手机端 唤出导航条按钮 */
 
 .tqr-nav-phone {
-    position: relative;
     display: none;
-    color: #fff;
 }
 
 
@@ -92,7 +90,6 @@
     width: 100%;
     padding: 12px 24px;
     color: #fff;
-    cursor: pointer;
     transition-duration: 600ms;
 }
 
@@ -129,7 +126,6 @@
 .tqr-nav-item-check:checked+.tqr-nav-item-list {
     opacity: 1;
     transform: matrix(1, 0, 0, 1, 0, 0);
-    height: auto;
     pointer-events: auto;
 }
 

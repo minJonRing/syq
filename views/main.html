@@ -114,6 +114,7 @@
         },
         methods: {
             bindNav(event, db) {
+                console.log(event)
                 localStorage.setItem("n1", db.index)
                 this.activeClass = db.index;
                 this.activeChild = 0;

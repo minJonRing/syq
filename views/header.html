@@ -39,9 +39,12 @@
             </ul>
         </div>
     </header> -->
-    <div class="tqr-header" id="head">
+    <div id="css">
         <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/header.css">
-        <div class="tqr-logo">
+    </div>
+    <div id="head">
+        <!-- <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/header.css"> -->
+        <!-- <div class="tqr-logo">
             <img class="block" src="/images/web/logo.png" alt="">
         </div>
         <div class="tqr-nav-box text-center">
@@ -59,7 +62,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="loding">
         <p>
@@ -72,7 +75,7 @@
     </div>
     <script>
         var tqr = new Vue({
-            el: "#head",
+            el: "#css",
             data: {
                 nav: set_config.header,
                 isPhone: /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0,
@@ -80,3 +83,4 @@
             }
         })
     </script>
+    <script src="/build/react-header.js"></script>
