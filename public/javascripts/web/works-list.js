@@ -46,6 +46,8 @@ var app = new Vue({
             })
         },
         bindLodingMore(){
+            console.log(this.page)
+            console.log(this.pages)
             if(this.page < this.pages){
                 this.page++;
             }

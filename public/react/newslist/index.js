@@ -6,7 +6,10 @@ class NewsList extends React.Component {
         super();
         this.state = {
             year:[2015,2016,2017,2018,2019],
-            list:[]
+            works:[],
+            list:[],
+            pages:0,
+            page:0
         }
     }
     componentDidMount (){
@@ -15,10 +18,21 @@ class NewsList extends React.Component {
             type:"POST",
             success:(res)=>{
                 this.setState({
-                    list:res.data
+                    list:res.data,
+                    pages:Math.ceil(res.data.length/9)-1,
+                    works:res.data.slice(0,9)
                 }) 
             }
         })
+    }
+    bindLodingMore(){
+        if(this.state.pages > this.state.page){
+            let nub = this.state.page + 1;
+            this.setState({
+                page:nub,
+                works:this.state.works.concat(this.state.list.slice(nub * 9 , (nub + 1) * 9))
+            })
+        }
     }
     render(){
         return (
@@ -56,7 +70,7 @@ class NewsList extends React.Component {
                         </div>
                     </div>
                     <div className="news">
-                        {this.state.list.map((item)=>{
+                        {this.state.works.map((item)=>{
                             return (
                                 <a className="new" href={`/app/news/${item._id}`} key="item._id" target="_blank">
                                     <img className="block w100" src={item.cover} alt="" />
@@ -69,7 +83,7 @@ class NewsList extends React.Component {
                             )
                         })}
                         <div className="text-center">
-                            <a className="ajax-more" href="javascript:">加载更多</a>
+                            <a className="ajax-more" href="javascript:" onClick={()=>this.bindLodingMore()}>加载更多</a>
                         </div>
                     </div>
                 </div>
