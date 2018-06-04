@@ -153,7 +153,11 @@
                     url: "/app/getWork",
                     type: "POST",
                     success: (res) => {
-                        this.list = this._list = res.data;
+                        let db = [].concat(res.data)
+                        let arr = db.sort((i, j) => {
+                            return new Date(i.createtime) < new Date(j.createtime) ? 1 : -1;
+                        })
+                        this.list = this._list = arr;
                         this.pages = Math.ceil(this.list.length / 9);
                         this.copyList = this.list.slice(0, 9);
                     }
@@ -246,11 +250,21 @@
              */
             bindCover(event) {
                 let el = event.target;
-                let render = new FileReader();
-                render.readAsDataURL(el.files[0])
-                render.onload = (e) => {
-                    this.cover = e.target.result
-                }
+                let blob = new Blob(el.files, {
+                    type: "image/jpeg"
+                });
+                this.cover = URL.createObjectURL(blob);
+                // let render = new FileReader();
+                // render.readAsDataURL(el.files[0])
+                // render.onload = (e) => {
+                //     this.cover = e.target.result
+                // }
+                setTimeout(() => {
+                    let el = document.querySelector(".cover");
+                    el.onload = function() {
+                        window.URL.revokeObjectURL(this.cover);
+                    }
+                }, 1);
             },
             /*
              *保存编辑/新建的数据

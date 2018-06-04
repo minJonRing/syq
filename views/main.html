@@ -35,14 +35,17 @@
 <body>
     <div id="app">
         <div class="head">
-            <a href="javascript:" @click="bindLogout">logout</a>
+            <div>
+                <img src="/images/web/loop.png" alt="">
+            </div>
+            <a class="btn" href="javascript:" @click="bindLogout">退出登录</a>
         </div>
         <div class="main">
             <div class="left">
                 <ul class="nav-father-ul">
                     <li class="nav-father-li" v-for="(item,index) in nav" :key="index" @click.stop="bindNav($event,{index:index})">
                         <a :class="['nav-father-a',{'nav-father-a-active':activeClass == index}]" href="javascript:">{{item.name}}</a>
-                        <ul :class="['nav-child-ul',{'nav-child-show':item.isShow}]" :style="{'height':item.isShow?item.children.length*36+'px':0}" v-if="item.children">
+                        <ul :class="['nav-child-ul',{'nav-child-show':item.isShow}]" :style="{'height':item.isShow?item.children.length*41+'px':0}" v-if="item.children">
                             <li class="nav-child-li" v-for="(i,j) in item.children" :key="j" @click.stop="bindSelectNav($event,{index:j,url:i.url})">
                                 <a :class="['nav-child-a',{'nav-child-a-active':activeClass == index && activeChild == j }]" href="javascript:">{{i.name}}</a>
                             </li>
@@ -55,7 +58,7 @@
             </div>
             <div class="message" style="opacity:0"></div>
             <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
-            <div class="hide-button">隐藏</div>
+            <!-- <div class="hide-button">隐藏</div> -->
         </div>
     </div>
 </body>

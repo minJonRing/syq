@@ -6,8 +6,40 @@ body,
 }
 
 .head {
-    height: 50px;
-    border-bottom: 1px darkseagreen solid;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    padding: 0 24px 0 0;
+    justify-content: space-between;
+    border-bottom: 5px #373d41 solid;
+    /* background-color: #182134; */
+}
+
+.head div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 100%;
+    background-color: #373d41;
+}
+
+.head img {
+    height: 70%;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: 1px #ddd solid;
+    background-color: #ea5353;
+    color: #fff;
+    transition-duration: 600ms
+}
+
+.btn:hover {
+    opacity: .7;
 }
 
 .main {
@@ -19,27 +51,29 @@ body,
 .left {
     width: 260px;
     height: 100%;
-    border-right: 1px darkseagreen solid;
+    background-color: #354052;
 }
 
 .right {
     position: relative;
     width: calc(100% - 260px);
     height: 100%;
+    background-color: #edf2f6;
 }
 
 
 /* left nav */
 
 .nav-father-li {
-    border-bottom: 1px #000 solid;
+    /* border-bottom: 1px #000 solid; */
 }
 
 .nav-father-a {
     display: inline-block;
+    font-size: 14px;
     width: 100%;
     padding: 12px 24px;
-    color: #333;
+    color: #fff;
     transition-duration: 600ms;
 }
 
@@ -47,18 +81,20 @@ body,
     overflow: hidden;
     height: 0;
     opacity: 0;
+    background-color: #313a4b;
     transition-duration: 600ms;
 }
 
 .nav-child-li {
-    border-top: 1px darkkhaki solid;
+    /* border-top: 1px darkkhaki solid; */
 }
 
 .nav-child-a {
     display: inline-block;
     width: 100%;
-    padding: 10px 0 10px 48px;
-    color: #333;
+    padding: 12px 0 12px 48px;
+    color: #bac0cc;
+    border-bottom: 1px transparent solid;
     transition-duration: 600ms;
 }
 
@@ -68,13 +104,12 @@ body,
 
 .nav-father-a:hover,
 .nav-father-a-active {
-    background-color: rgba(240, 240, 240, 1);
-    ;
-    color: deepskyblue;
+    background-color: #313a4b;
+    border-left: 5px #00b5fe solid;
 }
 
 .nav-child-a:hover,
 .nav-child-a-active {
-    color: darkorange;
-    background-color: rgba(230, 230, 230, 1);
+    color: #fff;
+    background-color: #1b2333;
 }

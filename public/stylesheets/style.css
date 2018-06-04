@@ -440,6 +440,13 @@ body {
 }
 
 
+/* #app */
+
+#app {
+    height: calc(100% - 3.653333rem);
+}
+
+
 /* header */
 
 header {

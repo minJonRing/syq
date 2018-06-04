@@ -13,13 +13,13 @@
     border-radius: 5px;
     border: 1px #ddd solid;
     margin-right: 36px;
-    background-color: #f9f9f9;
+    background-color: #fff;
     color: #333;
     transition-duration: 600ms;
 }
 
 .title a:hover {
-    background-color: #e0e0e0;
+    background-color: #f9f9f9;
 }
 
 .table-box {
@@ -50,7 +50,7 @@
 .table-box table .remove {
     display: inline-block;
     padding: 3px 6px;
-    background-color: limegreen;
+    background-color: #649264;
     color: #fff;
     border-radius: 3px;
     font-size: 12px;
@@ -58,7 +58,7 @@
 }
 
 .table-box table .remove {
-    background-color: crimson;
+    background-color: #ea6f53;
 }
 
 .table-box table tr:nth-child(odd) {
@@ -77,11 +77,11 @@
 }
 
 .table-box table tr:hover {
-    background-color: #bbbbb4;
+    background-color: #ddd;
 }
 
 .table-box table a:hover {
-    background-color: #000;
+    background-color: #8c8080;
     color: #fff;
 }
 
@@ -136,6 +136,7 @@ form {
     border: 1px #ddd solid;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #fff;
 }
 
 .input-box ul {
@@ -215,4 +216,8 @@ form .save {
 form .save:hover {
     background-color: dodgerblue;
     color: #fff;
+}
+
+#editor {
+    background-color: #fff;
 }

@@ -97,5 +97,16 @@
         ws.onclose = (evt) => {
             console.log("connection closed!")
         }
+
+        var blob = new Blob([1, 2, 3, 4, 5, 6]);
+        var render = new FileReader();
+        render.onload = function(param) {
+            console.log(render.result)
+            console.log(render.result.Int8Array)
+            for (var i in render.results) {
+                console.log(i)
+            }
+        }
+        render.readAsArrayBuffer(blob);
     </script>
     <%- include("./footer.html") %>
