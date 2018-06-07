@@ -8,20 +8,21 @@
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/admin-main.css">
-    <!-- <link rel="stylesheet" href="/live2d/css/live2d.css" /> -->
+    <link rel="stylesheet" href="/icon/iconfont.css">
+    <link rel="stylesheet" href="/live2d/css/live2d.css" />
     <style>
         #live2d {
             position: absolute;
             bottom: 20px;
-            left: 0px;
+            left: 3px;
         }
         
         .message {
             position: absolute;
-            left: 0px;
+            left: 3px;
             bottom: 270px;
             top: auto;
-            left: auto;
+            color: #fff;
         }
     </style>
     <script type="text/javascript" src="/javascripts/jquery-3.3.1.min.js"></script>
@@ -44,10 +45,16 @@
             <div class="left">
                 <ul class="nav-father-ul">
                     <li class="nav-father-li" v-for="(item,index) in nav" :key="index" @click.stop="bindNav($event,{index:index})">
-                        <a :class="['nav-father-a',{'nav-father-a-active':activeClass == index}]" href="javascript:">{{item.name}}</a>
+                        <a :class="['nav-father-a',{'nav-father-a-active':activeClass == index}]" href="javascript:">
+                            <i :class="['iconfont',item.icon]"></i>
+                            <span>{{item.name}}</span>
+                        </a>
                         <ul :class="['nav-child-ul',{'nav-child-show':item.isShow}]" :style="{'height':item.isShow?item.children.length*41+'px':0}" v-if="item.children">
                             <li class="nav-child-li" v-for="(i,j) in item.children" :key="j" @click.stop="bindSelectNav($event,{index:j,url:i.url})">
-                                <a :class="['nav-child-a',{'nav-child-a-active':activeClass == index && activeChild == j }]" href="javascript:">{{i.name}}</a>
+                                <a :class="['nav-child-a',{'nav-child-a-active':activeClass == index && activeChild == j }]" href="javascript:">
+                                    <i :class="['iconfont',i.icon]"></i>
+                                    <span>{{i.name}}</span>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -67,34 +74,44 @@
         el: "#app",
         data: {
             nav: [{
+                icon: "icon-set",
                 name: "第一个导航",
                 children: [{
+                    icon: "icon-set",
                     name: "第一个子导航1",
                     url: "1_1.html"
                 }, {
+                    icon: "icon-set",
                     name: "第一个子导航2",
                     url: "1_2.html"
                 }],
                 isShow: false
             }, {
+                icon: "icon-form",
                 name: "作品/新闻",
                 children: [{
+                    icon: "icon-form",
                     name: "作品",
                     url: "2_1.html"
                 }, {
+                    icon: "icon-compass",
                     name: "新闻",
                     url: "2_2.html"
                 }],
                 isShow: false
             }, {
+                icon: "icon-set",
                 name: "配置项设置",
                 children: [{
+                    icon: "icon-set",
                     name: "基本配置",
                     url: "3_1.html"
                 }],
             }, {
+                icon: "icon-comments",
                 name: "信息",
                 children: [{
+                    icon: "icon-comments",
                     name: "信息列表",
                     url: "4_1.html"
                 }]
@@ -170,10 +187,10 @@
         }
     })
 </script>
-<!-- <script type="text/javascript" src="/live2d/js/live2d.js"></script> -->
-<!-- <script type="text/javascript" src="/live2d/js/message.js"></script> -->
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
 <script type="text/javascript">
-    // loadlive2d("live2d", "/live2d/model/tia/model.json");
+    loadlive2d("live2d", "/live2d/model/tia/model.json");
 </script>
 
 </html>

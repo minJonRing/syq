@@ -108,5 +108,17 @@
             }
         }
         render.readAsArrayBuffer(blob);
+
+        $.ajax({
+            url: "/app/getWork",
+            beforeSend: function(request) {
+                request.setRequestHeader("auth-token", 123321);
+            },
+            type: "POST",
+            success: (res) => {
+                console.log(1)
+                console.log(res)
+            }
+        })
     </script>
     <%- include("./footer.html") %>

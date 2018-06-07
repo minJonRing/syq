@@ -19,7 +19,7 @@ body,
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 260px;
+    width: 285px;
     height: 100%;
     background-color: #373d41;
 }
@@ -49,14 +49,14 @@ body,
 }
 
 .left {
-    width: 260px;
+    width: 285px;
     height: 100%;
     background-color: #354052;
 }
 
 .right {
     position: relative;
-    width: calc(100% - 260px);
+    width: calc(100% - 285px);
     height: 100%;
     background-color: #edf2f6;
 }
@@ -72,9 +72,14 @@ body,
     display: inline-block;
     font-size: 14px;
     width: 100%;
-    padding: 12px 24px;
+    padding: 12px;
     color: #fff;
     transition-duration: 600ms;
+}
+
+.nav-father-a i {
+    font-size: 14px;
+    padding-right: 12px;
 }
 
 .nav-child-ul {
@@ -96,6 +101,11 @@ body,
     color: #bac0cc;
     border-bottom: 1px transparent solid;
     transition-duration: 600ms;
+}
+
+.nav-child-a i {
+    font-size: 12px;
+    padding-right: 12px;
 }
 
 .nav-child-show {
