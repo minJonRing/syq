@@ -101,24 +101,32 @@
         var blob = new Blob([1, 2, 3, 4, 5, 6]);
         var render = new FileReader();
         render.onload = function(param) {
-            console.log(render.result)
-            console.log(render.result.Int8Array)
-            for (var i in render.results) {
-                console.log(i)
-            }
+            for (var i in render.results) {}
         }
         render.readAsArrayBuffer(blob);
 
-        $.ajax({
-            url: "/app/getWork",
-            beforeSend: function(request) {
-                request.setRequestHeader("auth-token", 123321);
-            },
-            type: "POST",
-            success: (res) => {
-                console.log(1)
-                console.log(res)
+        class A {
+            constructor(x = 1, y = 2) {
+                this.x = x;
+                this.y = y;
             }
-        })
+            spek() {
+                console.log(this.x + this.y)
+            }
+        }
+
+        class B extends A {
+            constructor(z = 3) {
+                super()
+                this.z = this.x + this.y + z;
+            }
+            xx() {
+                console.log(this.z)
+            }
+        }
+
+        let a = new B(4, 44, 5);
+        a.spek()
+        a.xx()
     </script>
     <%- include("./footer.html") %>

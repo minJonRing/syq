@@ -7,9 +7,9 @@ var app = new Vue({
             loop2:0,
             loopmid:0,
             caseList:[
-                    {link:"/",img:"url(http://img2.imgtn.bdimg.com/it/u=797634051,1683868217&fm=27&gp=0.jpg)",txt:"CG及实拍影像"},
+                    {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"CG及实拍影像"},
                     {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"虚拟影像互动展示"},
-                    {link:"/",img:"url(http://img1.imgtn.bdimg.com/it/u=3024902422,764884725&fm=27&gp=0.jpg)",txt:"数字演员"}
+                    {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"数字演员"}
                 ],
             caseH:0,
             courseList:[
@@ -25,22 +25,8 @@ var app = new Vue({
                     {link:"/",txt:"地产创意工厂"}
                 ],
             worksList:[],
-            client:[
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                    {link:"/",img:"/images/web/loop.png"},
-                ]
+            newsList:[],
+            client:new Array(14).fill({link:"/",img:"/images/web/loop.png"})
         }
     },
     mounted(){
@@ -60,14 +46,21 @@ var app = new Vue({
         this._loop(".my-client-list2",_L,'right')
         }, 1);
         
-        this.bindGetWorkList()
+        // 第一个参数 全部请求完成后执行的事件  第二个及以后的（请求的事件）
+        this.bindAllAjAX(()=>{
+            this.bindImgSuccess((l,arr)=>{
+                if(l == arr.length){
+                    $(".loding-bar span").css("width",`100%`);
+                    $(".loding").hide()
+                    $(".loding-bar").hide()
+                }else{
+                    let __ = Math.ceil(arr.length/l*100);
+                    $(".loding-bar span").css("width",`${__}%`);
+                }
+            })
+        },this.bindGetWorkList(),this.bindGetNewsList())
     },
     methods:{
-        getMessage(){
-            this.$axios.post('/app/getMessage',{}).then((res)=>{
-                this.setI()
-            })
-        },
         _loop(db,L,type){
             if(L > $("body").width()){
                 var _x = type === "left"? -(this.loop1++):this.loop2++;
@@ -92,14 +85,70 @@ var app = new Vue({
         /**
          * 获取作品列表
          */
-        bindGetWorkList(){
-            $.ajax({
-                url: "/app/getWork",
-                type: "POST",
-                success: (res) => {
-                    this.worksList = res.data.slice(0,9);
-                }
+        async bindGetWorkList(){
+            return new Promise((resolve,reject)=>{
+                $.ajax({
+                    url: "/app/getWork",
+                    type: "POST",
+                    success: (res) => {
+                        this.worksList = res.data.slice(0,9);
+                        if(res.code != 200){
+                            reject(res)
+                        }else{
+                            resolve(res)
+                        }
+                    }
+                })
             })
+        },
+        /**
+         * 获取新闻列表
+         */
+        async bindGetNewsList(){
+            return new Promise((resolve,reject)=>{ 
+                $.ajax({
+                    url: "/app/getNews",
+                    type: "POST",
+                    success: (res) => {
+                        this.newsList = res.data.slice(0,9);
+                        if(res.code != 200){
+                            reject(res)
+                        }else{
+                            resolve(res)
+                        }
+                    }
+                })
+            })
+        },
+        /**
+         * promise 整合ajax加载
+         * fn 请求完成后执行的函数
+         * obj 需要执行ajax的集合
+         */
+        async bindAllAjAX(fn,...obj){
+            // 等待所有ajax执行完毕
+            await Promise.all(obj).then((res)=>{console.log(res)})
+            fn()
+        },
+        /**
+         * 判断图片是否加载完成
+         * fn 图片全部加载完成后执行的函数
+         * obj 图片所在的元素的位子
+         */
+        bindImgSuccess(fn,obj = document){
+            let el = obj.querySelectorAll("img"),l = el.length,arr = [];
+            for(let i of [...el]){
+                let time = setInterval(()=>{
+                    if(i.complete){
+                        arr.push(1);
+                        fn(l,arr);
+                        clearInterval(time)
+                    }
+                    if(l == arr){
+                        fn(l,arr);
+                    }
+                },100)
+            }
         }
     }
 })
