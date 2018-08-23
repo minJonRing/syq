@@ -1,17 +1,18 @@
 <%- include("./header.html") %>
     <link rel="stylesheet" href="/stylesheets/web/index.css">
     <link rel="stylesheet" href="/stylesheets/table.css">
-    <div id="tqr" style="margin-top: 100px"></div>
     <div id="app">
         <div class="video">
-            <video src="http://www.bitone.com/template/1/default/_files/cn/video/banner-1.mp4" autoplay loop></video>
+            <video autoplay loop muted>
+                <source src="/video/1.mp4" type="video/mp4"></source>
+            </video>
             <div class="video-txt">
                 <div class="video-txt-box">
                     <h2>2018SHOWREEL</h2>
-                    <p>啊鲁大师大家啊上的拉屎的了撒旦画了撒旦画实践活动拉屎了撒旦画拉屎拉屎拉屎的拉升的拉屎拉屎拉可适当拉屎的阿了撒旦画杀得好阿斯兰的萨达</p>
-                    <a :href="'/'">PLAY VIDEO
-                    <span class="sp1"></span><span class="sp2"></span><span class="sp3"></span><span class="sp4"></span>
-                </a>
+                    <p>SINQ专注于数字视屏领域的专业服务，运用cg，实拍，三维等数字技术，创造出属于您的视屏专属服务。未来我们坚持创新开发，秉持匠心精神，追求完美服务。让视屏广告舞动未来，创造无限价值</p>
+                    <a href="javascript:" @click="handleShowVideo">PLAY VIDEO
+                        <span class="sp1"></span><span class="sp2"></span><span class="sp3"></span><span class="sp4"></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -20,16 +21,19 @@
                 <img class="block w100" src="/images/web/logo1.png" alt="">
             </div>
             <div class="init-txt">
-                <p>国际化的专业汽车虚拟影像应用解决方案供应商。</p>
-                <p>拥有一支经验丰富CG创作团队，采用丰富独特的创意，结合CG、实拍、虚拟现实等技术方式，</p>
-                <p>为客户定制用于车展活动、发布会、广告等全媒体营销渠道的影像内容及互动方案。是</p>
+                <p>一站式可视化服务供应商。 </p>
+                <p> 专注于企业视屏广告服务，结合cg,实拍，三维等技术，</p>
+                <p>为客户定制企业宣传片，三维产品动画，发布会，电视广告等全媒体营销影像内容</p>
             </div>
         </div>
         <div class="case">
-            <ul class="flex">
-                <li class="flex-1 overflow transition600 " v-for="(item,index) in caseList" :key="index" :style="{'height':caseH+'px'}">
+            <ul class="flex" :style="{'height':caseH+'px'}">
+                <li class="overflow transition600 " v-for="(item,index) in caseList" :key="index">
                     <a class="nav" :href="item.link" :style="{'background-image':item.img}">
-                        <span>{{item.txt}}</span>
+                        <p>
+                            <i class="iconfont icon-icon-"></i>
+                            <span>{{item.txt}}</span>
+                        </p>
                     </a>
                 </li>
             </ul>
@@ -37,18 +41,35 @@
         <div class="course">
             <ul>
                 <li v-for="(item,index) in courseList" :key="index">
-                    <div>
+                    <div class="source-box">
                         <h2>{{item.title}}</h2>
                         <span>{{item.sub}}</span>
                         <p>{{item.txt}}</p>
                         <a :href="item.link">SHOW MORE</a>
+                        <i class="i1"></i>
+                        <i class="i2"></i>
+                        <i class="i3"></i>
+                        <i class="i4"></i>
                     </div>
                 </li>
             </ul>
         </div>
+        <div class="news">
+            <a href="" v-for="(item,index) in newsList.slice(0,3)">
+                <img class="block w100" :src="item.cover" alt="">
+                <div class="news-info">
+                    <p>{{item.title}}</p>
+                    <time>{{item.createtime.replace(/(T).*/g,'')}}</time>
+                    <span>{{item.title}}</span>
+                </div>
+                <div class="news-shade">
+                    <i class="transition600 iconfont icon-compass"></i>
+                </div>
+            </a>
+        </div>
         <div class="works">
             <h2>作品展示</h2>
-            <div>
+            <div class="flex flex-mid flex-center-1">
                 <a :href="item.link" v-for="(item,index) in works" :key="index">{{item.txt}}</a>
             </div>
         </div>
@@ -77,56 +98,12 @@
                 <div class="my-client-none"><img :src="client[0].img" alt=""></div>
             </div>
         </div>
+        <div :class="['shade',{'active':isShowShade}]" v-if="isShowShade" @click.stop="handleShowVideo">
+            <video autoplay controls>
+                <source src="/video/1.mp4" type="video/mp4"></source>
+            </video>
+        </div>
     </div>
 
-
     <script src="/javascripts/web/index.js"></script>
-    <script src="/build/react-index.js"></script>
-    <script>
-        var ws = new WebSocket("ws://localhost:8181");
-        ws.onopen = (evt) => {
-            console.log("connection open ...")
-            ws.send("hello websockets!")
-        }
-
-        ws.onmessage = (evt) => {
-            console.log("Message:" + evt.data)
-            ws.close()
-        }
-
-        ws.onclose = (evt) => {
-            console.log("connection closed!")
-        }
-
-        var blob = new Blob([1, 2, 3, 4, 5, 6]);
-        var render = new FileReader();
-        render.onload = function(param) {
-            for (var i in render.results) {}
-        }
-        render.readAsArrayBuffer(blob);
-
-        class A {
-            constructor(x = 1, y = 2) {
-                this.x = x;
-                this.y = y;
-            }
-            spek() {
-                console.log(this.x + this.y)
-            }
-        }
-
-        class B extends A {
-            constructor(z = 3) {
-                super()
-                this.z = this.x + this.y + z;
-            }
-            xx() {
-                console.log(this.z)
-            }
-        }
-
-        let a = new B(4, 44, 5);
-        a.spek()
-        a.xx()
-    </script>
     <%- include("./footer.html") %>

@@ -1,7 +1,12 @@
 <%- include("header.html")%>
     <link rel="stylesheet" href="/stylesheets/web/work.css">
     <div id="app">
+        <video :src="video" controls></video>
         <h2>{{title}}</h2>
+        <div class="info flex flex-mid flex-center-1">
+            <time>发布时间：{{time.replace(/(T).*/g,'')}}</time>
+            <span>类型：{{type}}</span>
+        </div>
         <div class="cont"></div>
     </div>
     <script>
@@ -10,8 +15,10 @@
             data: {
                 nav: set_config.header,
                 title: "",
-                cover: "",
-                cont: ""
+                time: "",
+                cont: "",
+                type: "",
+                video: ""
             },
             mounted() {
                 let url = window.location.href.replace(/.+\//g, "");
@@ -24,7 +31,9 @@
                     success: (res) => {
                         console.log(res)
                         this.title = res.data.title;
-                        this.cover = res.data.cover;
+                        this.time = res.data.createtime;
+                        this.video = res.data.video;
+                        this.type = res.data.type;
                         $(res.data.cont).appendTo($(".cont"));
                     }
                 })

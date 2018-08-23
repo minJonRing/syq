@@ -2,21 +2,20 @@ var app = new Vue({
     el:"#app",
     data () {
         return {
-            
+            isShowShade:false,
             loop1:0,
             loop2:0,
-            loopmid:0,
             caseList:[
-                    {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"CG及实拍影像"},
-                    {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"虚拟影像互动展示"},
-                    {link:"/",img:"url(http://imgstore.cdn.sogou.com/app/a/100540002/489725.jpg)",txt:"数字演员"}
+                    {link:"/",img:"url(/images/web/index/1.png)",txt:"CG及实拍影像"},
+                    {link:"/",img:"url(/images/web/index/2.png)",txt:"虚拟影像互动展示"},
+                    {link:"/",img:"url(/images/web/index/3.png)",txt:"数字演员"}
                 ],
             caseH:0,
             courseList:[
-                    {link:"/",title:"aa",sub:"dadsa",txt:"件大事就打算的撒是"},
-                    {link:"/",title:"aa",sub:"dadsa",txt:"件大事就打算的撒是"},
-                    {link:"/",title:"aa",sub:"dadsa",txt:"件大事就打算的撒是"},
-                    {link:"/",title:"aa",sub:"dadsa",txt:"件大事就打算的撒是"},
+                    {link:"/",title:"2014",sub:"dadsa",txt:"件大事就打算的撒是件大事就打算的撒是件大事就打算的撒是件大事就打算的撒是"},
+                    {link:"/",title:"60",sub:"dadsa",txt:"件大事就打算的撒是"},
+                    {link:"/",title:"300",sub:"dadsa",txt:"件大事就打大事就打算的撒算的撒是件大事就打算的撒是件大事就打算的撒是"},
+                    {link:"/",title:"∞",sub:"dadsa",txt:"件大事就打算的撒是"},
                 ],
             works:[
                     {link:"/",txt:"全部"},
@@ -31,7 +30,7 @@ var app = new Vue({
     },
     mounted(){
         let WINDOW_H = window.innerHeight;
-        let VIDEOH = WINDOW_H - 265;
+        let VIDEOH = WINDOW_H - 245;
         let VIDEOW = VIDEOH/.35
         document.querySelector("video").height = VIDEOH;
         document.querySelector("video").width = VIDEOW;
@@ -61,6 +60,10 @@ var app = new Vue({
         },this.bindGetWorkList(),this.bindGetNewsList())
     },
     methods:{
+        // 遮罩
+        handleShowVideo(){
+            this.isShowShade = this.isShowShade?false:true;
+        },
         _loop(db,L,type){
             if(L > $("body").width()){
                 var _x = type === "left"? -(this.loop1++):this.loop2++;
@@ -127,8 +130,8 @@ var app = new Vue({
          */
         async bindAllAjAX(fn,...obj){
             // 等待所有ajax执行完毕
-            await Promise.all(obj).then((res)=>{console.log(res)})
-            fn()
+            await Promise.all(obj).then((res)=>{fn?fn():'';})
+            
         },
         /**
          * 判断图片是否加载完成

@@ -78,7 +78,7 @@
     left: 0;
     height: 2px;
     width: 0;
-    background-color: #fff;
+    background-color: #dedede;
     transition-duration: 600ms;
 }
 
@@ -101,7 +101,7 @@
     width: 100%;
     top: 100%;
     left: 0;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .8);
     opacity: 0;
     pointer-events: none;
     transform: matrix(1, 0, 0, 1, 20, 0);
@@ -135,14 +135,6 @@
 .tqr-nav-item-txt {
     line-height: 60px;
     padding: 0;
-}
-
-.tqr-nav-item-list li {
-    border-bottom: 1px #ddd solid;
-}
-
-.tqr-nav-item-list li:last-child {
-    border: none;
 }
 
 .tqr-nav-child {

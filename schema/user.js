@@ -11,6 +11,7 @@ let work = new Schema({
     title:{type:String,required:true},
     cover:{type:String,required:true},
     cont:{type:String,required:true},
+    video:{type:String},
     createtime:{type: Date,default: Date.now},
     browse:{type:Number,default:0}
 })
@@ -20,6 +21,7 @@ let news = new Schema({
     title:{type:String,required:true},
     cover:{type:String,required:true},
     cont:{type:String,required:true},
+    video:{type:String},
     createtime:{type: Date,default: Date.now},
     browse:{type:Number,default:0}
 })

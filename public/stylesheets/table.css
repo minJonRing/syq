@@ -221,3 +221,20 @@ form .save:hover {
 #editor {
     background-color: #fff;
 }
+
+.bar-box {
+    height: 16px;
+    border-radius: 8px;
+    width: 200px;
+    background-color: #dedede;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.bar-item {
+    display: block;
+    width: 0;
+    height: 100%;
+    background-color: deepskyblue;
+    transition-duration: 300ms;
+}

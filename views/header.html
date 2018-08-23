@@ -41,6 +41,16 @@
     </header> -->
     <div id="css">
         <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/header.css">
+        <div class="loding" v-if="hide">
+            <p>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </p>
+        </div>
+        <div class="loding-bar" v-if="hide"><span></span></div>
     </div>
     <div id="head">
         <!-- <link v-if="isPhone" rel="stylesheet" href="/stylesheets/phone/header.css"> -->
@@ -64,24 +74,22 @@
             </div>
         </div> -->
     </div>
-    <div class="loding">
-        <p>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </p>
-    </div>
-    <div class="loding-bar"><span></span></div>
+
     <script>
         var tqr = new Vue({
             el: "#css",
             data: {
                 nav: set_config.header,
                 isPhone: /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0,
-                isShow: false
-            }
+                isShow: false,
+                hide: false
+            },
+            mounted() {
+                let url = window.location.href.replace(/.+\//g, "");
+                if (!url) {
+                    this.hide = true;
+                }
+            },
         })
     </script>
     <script src="/build/react-header.js"></script>

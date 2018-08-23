@@ -419,6 +419,17 @@ body {
 
 /* btn 按钮 */
 
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: 1px #ddd solid;
+    margin-right: 36px;
+    background-color: #fff;
+    color: #333;
+    transition-duration: 600ms;
+}
+
 .btn1 {
     background-color: deepskyblue;
     color: #fff;

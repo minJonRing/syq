@@ -441,9 +441,9 @@ router.post("/app/work/save",async (ctx,next)=>{
             let url = files.cover ? files.cover.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
             let option;
             if(Object.keys(files).length == 0){
-              option = {type:fields.type,title:fields.title,cont:fields.cont};
+              option = {type:fields.type,title:fields.title,cont:fields.cont,video:fields.video};
             }else{
-              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont};
+              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont,video:fields.video};
             }
             if(fields.id != 0){
               model.work.update({_id:fields.id},option,(err,db)=>{
@@ -458,7 +458,8 @@ router.post("/app/work/save",async (ctx,next)=>{
                 type:fields.type,
                 title:fields.title,
                 cover:url,
-                cont:fields.cont
+                cont:fields.cont,
+                video:fields.video
               },(err,db)=>{
                 if(!err){
                   msg = "保存成功!";
@@ -492,9 +493,9 @@ router.post("/app/news/save",async (ctx,next)=>{
             let url = files.cover ? files.cover.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
             let option;
             if(Object.keys(files).length == 0){
-              option = {type:fields.type,title:fields.title,cont:fields.cont};
+              option = {type:fields.type,title:fields.title,cont:fields.cont,video:fields.video};
             }else{
-              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont};
+              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont,video:fields.video};
             }
             if(fields.id != 0){
               model.news.update({_id:fields.id},option,(err,db)=>{
@@ -512,7 +513,8 @@ router.post("/app/news/save",async (ctx,next)=>{
                 type:fields.type,
                 title:fields.title,
                 cover:url,
-                cont:fields.cont
+                cont:fields.cont,
+                video:fields.video
               },(err,db)=>{
                 if(!err){
                   msg = "保存成功!";
@@ -533,6 +535,26 @@ router.post("/app/news/save",async (ctx,next)=>{
   })
   ctx.body = {code:code,msg:msg}
 })
+// 视频上传
+router.post("/app/video",async(ctx,next)=>{
+  let msg = "" ,code = 0,url;
+  let form = new formidable.IncomingForm();
+  form.encoding = 'utf-8';
+  form.uploadDir = path.join(config.default._rootdir + "/public/video");
+  form.keepExtensions = true;
+  form.multiples = true;
+  await new Promise((resolve, reject) => {
+    form.parse(ctx.req, async(err, fields, files) => {
+        if (err) { throw err; return }
+        // 封面图片路径
+        console.log(files.video)
+        url = files.video ? files.video.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
+        resolve()
+    })
+  })
+  ctx.body = {code:code,msg:msg,url:url}
+})
+
 // 设置基本配置
 router.post("/app/config",async(ctx,next)=>{
   let data  = ctx.request.body.config,msg = "";
@@ -551,12 +573,12 @@ router.post("/app/config",async(ctx,next)=>{
 })
 // 获取浏览数据
 router.get("/getData",async (ctx,next)=>{
-  await new Promise((resolve,reject)=>{
-    new model.db({
-      data:ctx.query.a
-    }).save()
-    resolve()
-  })
+  // await new Promise((resolve,reject)=>{
+  //   new model.db({
+  //     data:ctx.query.a
+  //   }).save()
+  //   resolve()
+  // })
 })
 
 // 加密密码
@@ -585,7 +607,9 @@ function isUser(view,url){
             }else{
               await ctx.redirect(url)
             }
+            
           } catch (error) {
+            // await ctx.render(view)
             await ctx.redirect(url)
           }
         }
