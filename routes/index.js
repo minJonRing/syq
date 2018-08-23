@@ -17,7 +17,12 @@ const redis = new Redis({
 })
 
 let user = [];
-
+// 首页index
+router.get('/three', async (ctx, next) => {
+  await ctx.render('three', {
+    title: 'Hello Koa 2!'
+  })
+})
 // 前段页面
 // 首页index
 router.get('/', async (ctx, next) => {

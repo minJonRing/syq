@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        height: 100%;
+    }
+    div {
+        position: fixed;
+        width: 100%;height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform: matrix()
+    }
+    </style>
+</head>
+<body>
+    <img src="/images/admin/login/1.jpg" alt="">
+    <div>1</div>
+</body>
+<script>
+    let el = document.querySelector("div");
+    let img = document.querySelector("img");
+    let sub,index = 0;
+    el.addEventListener('touchstart',function(e){
+        e.preventDefault();
+        let touch = e.changedTouches;
+        let x1 = touch[0].pageX;
+        let y1 = touch[0].pageY;
+        let x2 = touch[0].pageX;
+        let y2 = touch[0].pageY;
+
+        sub =  Math.sqrt(Math.pow( Math.abs(x1-x2),2) + Math.pow( Math.abs(y1-y2),2))
+    })
+    el.addEventListener('touchmove',function(e){
+        e.preventDefault();
+        let touch = e.changedTouches;
+        let x1 = touch[0].pageX;
+        let y1 = touch[0].pageY;
+        let x2 = touch[0].pageX;
+        let y2 = touch[0].pageY;
+
+        let sub1 =  Math.sqrt(Math.pow( Math.abs(x1-x2),2) + Math.pow( Math.abs(y1-y2),2));
+
+        if(sub1 > sub){
+            index++
+        }else{
+            index--
+        }
+        sub = sub1;
+        img.style.transform = "matrix("+(1+index * 0.05)+",0,0,"+(1+index*0.05)+",0,0)"
+        
+    })
+</script>
+</html>
