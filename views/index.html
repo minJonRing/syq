@@ -39,20 +39,12 @@
             </ul>
         </div>
         <div class="course">
-            <ul>
-                <li v-for="(item,index) in courseList" :key="index">
-                    <div class="source-box">
-                        <h2>{{item.title}}</h2>
-                        <span>{{item.sub}}</span>
-                        <p>{{item.txt}}</p>
-                        <a :href="item.link">SHOW MORE</a>
-                        <i class="i1"></i>
-                        <i class="i2"></i>
-                        <i class="i3"></i>
-                        <i class="i4"></i>
-                    </div>
-                </li>
-            </ul>
+            <div class="course-bar">
+                <div :class="['course-sign',index%2==0?'course-sign-2':'course-sign-1']" :data-text="item.text" v-for="(item,index) in course" :key="index">
+                    <span>{{item.time}}</span>
+                </div>
+                <p class="course-bar-shadow"></p>
+            </div>
         </div>
         <div class="news">
             <a href="" v-for="(item,index) in newsList.slice(0,3)">
@@ -69,12 +61,9 @@
         </div>
         <div class="works">
             <h2>作品展示</h2>
-            <div class="flex flex-mid flex-center-1">
-                <a :href="item.link" v-for="(item,index) in works" :key="index">{{item.txt}}</a>
-            </div>
         </div>
         <div class="works-list">
-            <a :href="'/app/work/'+item._id" v-for="(item,index) in worksList" :key="index">
+            <a :style="{height: index == 1 || index == 3 ? 2*workH + 'px':'auto','margin-top':index == 4?-2*workH+'px':'','margin-top':index == 5 || index == 6?-workH+'px':''}" :href="'/app/work/'+item._id" v-for="(item,index) in worksList" :key="index">
                 <img :src="item.cover" alt="作品">
                 <span class="works-shade">
             <span class="works-title">{{item.title}}</span>

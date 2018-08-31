@@ -7,7 +7,8 @@
     left: 0;
     width: 100%;
     padding: 0 12px 0 48px;
-    background-color: rgba(0, 0, 0, .8);
+    font-size: 14px;
+    background-color: rgba(17, 17, 17, 0.8);
     z-index: 999;
 }
 
@@ -133,7 +134,7 @@
 /* 自定义 */
 
 .tqr-nav-item-txt {
-    line-height: 60px;
+    line-height: 70px;
     padding: 0;
 }
 

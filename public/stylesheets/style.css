@@ -568,43 +568,100 @@ header .nav li.towLi:hover a.towNav {
 /* foot */
 
 .foot {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    background-color: #000;
-    padding: 30px 70px;
+    background-color: #212121;
+    padding: 1px 0 40px;
+    font-size: 12px;
+    color: #767676;
+    line-height: 26px;
+}
+
+.foot .foot-title {
+    font-size: 26px;
+    font-weight: bold;
     color: #fff;
-    overflow: hidden;
+    width: 90%;
+    max-width: 1200px;
+    margin: 45px auto 0;
+}
+
+.foot .foot-cont {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .foot .foot-left,
-.foot .foot-mid,
 .foot .foot-right {
-    display: inline-block;
-    vertical-align: top;
+    width: 20%;
 }
 
-.foot h2 {
-    font-size: 24px;
+.foot .foot-right {
+    text-align: right;
 }
 
-.foot p {
-    font-size: 16px;
-    line-height: 1.4;
+.foot .foot-left h3,
+.foot .foot-right h3 {
+    color: #ffffff;
+    font-size: 15px;
+    margin-bottom: 20px;
 }
 
 .foot .foot-mid {
+    flex-grow: 1;
     text-align: center;
 }
 
-.foot .foot-left {
-    padding-top: 95px;
-    text-align: left;
+.foot .foot-mid p {
+    line-height: 26px;
+    padding-top: 20px;
 }
 
-.foot .foot-right {
-    padding-top: 95px;
-    text-align: right;
+.foot .foot-mid a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #2c2c2c;
+    margin: 5px;
+}
+
+.foot .foot-mid span {
+    display: block;
+    margin: auto;
+    width: 90px;
+    height: 1px;
+    background: #2c2c2c;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.foot .foot-mid a:hover {
+    -webkit-animation: footerIcon 0.5s;
+}
+
+@-webkit-keyframes footerIcon {
+    0% {
+        -webkit-transform: skewX(0deg);
+    }
+    30% {
+        -webkit-transform: skewX(-20deg);
+    }
+    60% {
+        -webkit-transform: skewX(10deg);
+    }
+    90% {
+        -webkit-transform: skewX(-5deg);
+    }
+    100% {
+        -webkit-transform: skewX(0deg);
+    }
+}
+
+.foot .foot-right img {
+    width: 80px;
+    height: 80px;
 }
 
 

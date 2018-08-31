@@ -11,18 +11,21 @@ var app = new Vue({
                     {link:"/",img:"url(/images/web/index/3.png)",txt:"数字演员"}
                 ],
             caseH:0,
-            courseList:[
-                    {link:"/",title:"2014",sub:"dadsa",txt:"件大事就打算的撒是件大事就打算的撒是件大事就打算的撒是件大事就打算的撒是"},
-                    {link:"/",title:"60",sub:"dadsa",txt:"件大事就打算的撒是"},
-                    {link:"/",title:"300",sub:"dadsa",txt:"件大事就打大事就打算的撒算的撒是件大事就打算的撒是件大事就打算的撒是"},
-                    {link:"/",title:"∞",sub:"dadsa",txt:"件大事就打算的撒是"},
-                ],
+            course:[
+                {time:'2015',text:"虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示"},
+                {time:'2016',text:"虚拟影像互动展示"},
+                {time:'2017',text:"虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示"},
+                {time:'2018',text:"虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示"},
+                {time:'未来',text:"虚拟影像互动展示虚拟影像互动展示"}
+            ],
             works:[
                     {link:"/",txt:"全部"},
                     {link:"/",txt:"三维产品动画"},
                     {link:"/",txt:"影视广告TVC"},
                     {link:"/",txt:"地产创意工厂"}
                 ],
+            // workName:['work-item-left','work-item-right','work-item-left','work-item-right work-item-mid','work-item-left','work-item-mid','work-item-left'],
+            workH:0,
             worksList:[],
             newsList:[],
             client:new Array(14).fill({link:"/",img:"/images/web/loop.png"})
@@ -30,19 +33,20 @@ var app = new Vue({
     },
     mounted(){
         let WINDOW_H = window.innerHeight;
-        let VIDEOH = WINDOW_H - 245;
+        let VIDEOH = WINDOW_H - 277;
         let VIDEOW = VIDEOH/.35
         document.querySelector("video").height = VIDEOH;
         document.querySelector("video").width = VIDEOW;
-        this.caseH = window.innerWidth/4/.75;
+        // this.caseH = window.innerWidth/4/.75;
+        this.caseH = VIDEOH;
         window.onresize = ()=>{
-            this.caseH = window.innerWidth/4/.75;
+            this.caseH = VIDEOH;
         }
         setTimeout(() => {
-        var L = $(".my-client-list1 div").width() * $(".my-client-list1 div").length;
-        var _L = $(".my-client-list2 div").width() * $(".my-client-list2 div").length;
-        this._loop(".my-client-list1",L,'left')
-        this._loop(".my-client-list2",_L,'right')
+            var L = $(".my-client-list1 div").width() * $(".my-client-list1 div").length;
+            var _L = $(".my-client-list2 div").width() * $(".my-client-list2 div").length;
+            this._loop(".my-client-list1",L,'left')
+            this._loop(".my-client-list2",_L,'right')
         }, 1);
         
         // 第一个参数 全部请求完成后执行的事件  第二个及以后的（请求的事件）
@@ -56,6 +60,9 @@ var app = new Vue({
                     let __ = Math.ceil(arr.length/l*100);
                     $(".loding-bar span").css("width",`${__}%`);
                 }
+
+                let workH = $(".works-list a").height();
+                this.workH = workH;
             })
         },this.bindGetWorkList(),this.bindGetNewsList())
     },
@@ -94,7 +101,10 @@ var app = new Vue({
                     url: "/app/getWork",
                     type: "POST",
                     success: (res) => {
-                        this.worksList = res.data.slice(0,9);
+                        let db = res.data.sort((a,b)=>{
+                            return new Date(a.createtime) < new Date(b.createtime)?1:-1;
+                        })
+                        this.worksList = db.slice(0,7);
                         if(res.code != 200){
                             reject(res)
                         }else{

@@ -19,7 +19,7 @@ var app = new Vue({
         ],
         intro:[],
         skill:[],
-        isPhone:/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0
+        
     },
     mounted(){
         $('body').on("click",()=>{
@@ -32,5 +32,11 @@ var app = new Vue({
             this.intro = db.intro;
             this.skill = db.skill;
         }
+    }
+})
+var scss = new Vue({
+    el:"#scss",
+    data:{
+        isPhone:/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? 1 : 0
     }
 })

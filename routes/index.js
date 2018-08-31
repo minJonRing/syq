@@ -9,12 +9,12 @@ const config =  require("../config.js")
 const fn = require("./upload.js")
 
 const model  = require('../schema/user.js')
-const redis = new Redis({
-  host : '127.0.0.1',//安装好的redis服务器地址
-  port : 6379,　//端口
-  ttl : 10,//过期时间
-  db: 0
-})
+// const redis = new Redis({
+//   host : '127.0.0.1',//安装好的redis服务器地址
+//   port : 6379,　//端口
+//   ttl : 10,//过期时间
+//   db: 0
+// })
 
 let user = [];
 // 首页index
@@ -133,7 +133,8 @@ router.get("/app/admin",async (ctx,next) => {
       await ctx.render("admin")
     }
   } catch (error) {
-    await ctx.render("admin")
+    await ctx.render("main")
+    // await ctx.render("admin")
   }
 })
 // 后端登录接口
