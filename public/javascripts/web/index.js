@@ -47,7 +47,7 @@ var app = new Vue({
             var _L = $(".my-client-list2 div").width() * $(".my-client-list2 div").length;
             this._loop(".my-client-list1",L,'left')
             this._loop(".my-client-list2",_L,'right')
-        }, 1);
+        }, 500);
         
         // 第一个参数 全部请求完成后执行的事件  第二个及以后的（请求的事件）
         this.bindAllAjAX(()=>{
@@ -86,7 +86,7 @@ var app = new Vue({
                 }
                 
                 setTimeout(() => {
-                this._loop(db,L,type)
+                    this._loop(db,L,type)
                 }, 30);
             }else{
                 

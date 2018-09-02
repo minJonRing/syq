@@ -98,10 +98,12 @@ var E = window.wangEditor //使用编辑器
              */
             bindNewWork() {
                 this.isShow = true;
-                this.type = set_config.work_type[0];
+                this.type = set_config.work_type[0].id;
                 this.id = 0;
                 this.title = "";
                 this.cover = "";
+                this.sub = "";
+                this.video = "";
                 setTimeout(() => {
                     editor.txt.html("")
                 }, 10);

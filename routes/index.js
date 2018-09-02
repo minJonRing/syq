@@ -95,6 +95,12 @@ router.get('/app/news/:id', async (ctx, next) => {
     title: 'Hello Koa 2!'
   })
 })
+// 关于我们
+router.get('/app/about', async (ctx, next) => {
+  await ctx.render('about', {
+    title: 'Hello Koa 2!'
+  })
+})
 //我的客户 client
 router.get('/app/client', async (ctx, next) => {
   await ctx.render('my-client', {

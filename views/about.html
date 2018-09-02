@@ -1,0 +1,59 @@
+<%- include("./header.html")%>
+<link rel="stylesheet" href="/stylesheets/web/about.css">
+<div class="app" id="app">
+    <img class="block w100" src="http://www.bitone.com/template/1/default/_files/cn/img/about/bannner.jpg" alt="">
+    <div class="head text-center">
+        <h2>关于涂涂图帅哥</h2>
+        <p class="info">
+            比特视界(北京)科技有限公司（英文简称：BITONE），全球顶级的可视化解决方案供应商。
+            <br/>
+            自2009年成立以来，已在汽车虚拟影像领域深耕10年，成为汽车行业备受认可的虚拟影像品牌。
+        </p>
+        <div class="about-nav">
+            <a href="javascript:" :class="{active:index == navIndex}" v-for="(item ,index) in nav" :key="index" @click="handleChangeNav($event,index)">{{item.txt}}</a>
+        </div>
+    </div>
+    <div v-show="navIndex == 0">
+        <div class="about-1">
+            <h2 class="h21">公司介绍</h2>
+            <p class="p1">
+                <span v-for="(item,index) in p1" :key="index">{{item}}</span>
+            </p>
+            <p class="p2">
+                <span v-for="(item,index) in p2" :key="index">{{item}}</span>
+            </p>
+            <h2 class="h22">核心产品与服务</h2>
+            <span class="line"></span>
+            <div class="imgs">
+                <div v-for="(item,index) in imgs" :key="index">
+                    <div>
+                        <img :src="'/images/web/about-'+(index+1)+'.png'" alt="">
+                    </div>
+                    <span>{{item}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="about-2">
+            <div class="about-2-info">
+                <h2>发展历程</h2>
+                <span class="line"></span>
+            </div>
+        </div>
+        <div class="about-3">
+            <div class="person-box">
+                <div class="person" v-for="(item,index) in person" :key="index">
+                    <img src="/images/web/code.png" alt="" v-if="index != 7">
+                    <div class="text-center" v-else>
+                        <h2>我们的团队</h2>
+                        <a href="/app/joinwe">加入我们</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-show="navIndex == 1">
+        <div class="culture-1"></div>
+    </div>
+</div>
+<script src="/javascripts/web/about.js"></script>
+<%- include("./footer.html")%>

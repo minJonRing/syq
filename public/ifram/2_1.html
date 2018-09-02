@@ -65,7 +65,7 @@
                     <div class="select" @click.stop="isShowType = !isShowType">
                         <span>{{type}}</span>
                         <ul :class="{'show':isShowType}">
-                            <li v-for="(item,index) in types" :key="index" @click.stop="bindSelectType($event,item)">{{item}}</li>
+                            <li v-for="(item,index) in types" :key="index" @click.stop="bindSelectType($event,item.id)">{{item.name}}</li>
                         </ul>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <%- include("header.html")%>
     <link rel="stylesheet" href="/stylesheets/web/works-list.css">
     <div id="app">
-        <!-- <div class="bg">
+        <div class="bg">
             <img class="block w100" src="http://www.bitone.com/template/1/default/_files/cn/img/case-open/bannner.jpg" alt="">
         </div>
         <div class="init">
@@ -14,7 +14,7 @@
         </div>
         <div class="option">
             <div class="all">
-                <a href="/">全部</a>
+                <a href="javascript:" @click="handleAjaxAll">全部</a>
             </div>
             <div class="year">
                 <a href="javascript:">
@@ -27,7 +27,7 @@
                 </ul>
             </div>
             <div class="detail">
-                <a href="javascript:" v-for="(item,index) in options" :key="index" :data-type="item.link">
+                <a href="javascript:" v-for="(item,index) in options" :key="index" :data-type="item.link" @click="handleAjaxType($event,item.link)">
                     <i :class="['iconfont',item.icon]"></i>
                     <span>{{item.txt}}</span>
                 </a>
@@ -42,8 +42,8 @@
                 </p>
             </a>
             <a class="ajax-more" href="javascript:" @click="bindLodingMore">加载更多</a>
-        </div> -->
+        </div>
     </div>
     <script src="/javascripts/web/works-list.js"></script>
-    <script src="/build/react-work-list.js"></script>
+    <!-- <script src="/build/react-work-list.js"></script> -->
     <%- include("footer.html")%>

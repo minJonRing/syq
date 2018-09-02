@@ -145,8 +145,9 @@
 /* case */
 
 .case li {
+    width: 33.33%;
     flex-grow: 1;
-    flex-shrink: 8;
+    flex-shrink: 1;
     height: 100%;
     font-size: 22px;
     font-weight: bold;
@@ -183,8 +184,8 @@
 }
 
 .case li:hover {
-    flex-grow: 8;
-    flex-shrink: 1;
+    width: 70%;
+    flex-shrink: 0;
 }
 
 .case li:hover i {
@@ -472,7 +473,7 @@
     float: left;
     display: inline-block;
     position: relative;
-    width: 33%;
+    width: 33.33%;
     color: #fff;
     text-align: left;
     line-height: 1;
@@ -480,32 +481,17 @@
     overflow: hidden;
     cursor: pointer;
 }
-
-.works-list .work-item-left {
-    float: left;
-}
-
-.works-list .work-item-right {
-    float: right;
-}
-
-.works-list .work-item-mid {
-    width: 32%;
-    display: inline-block;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
+.works-list a:nth-child(7){
+    margin-left: 33.33%;
+} 
 .works-list a img {
     display: block;
     width: 100%;
     transition-duration: 600ms;
 }
 
-.works-list .work-item-mid img {
+.works-list a:nth-child(2) img ,
+.works-list a:nth-child(4) img {
     height: 100%;
     width: auto;
 }

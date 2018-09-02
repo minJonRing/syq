@@ -13,9 +13,7 @@ class WorkList extends React.Component {
             options:[
                 {icon:"icon-icon-",link:"1",txt:"VR"},
                 {icon:"icon-icon-",link:"1",txt:"影像"},
-                {icon:"icon-icon-",link:"1",txt:"互动"},
-                {icon:"icon-icon-",link:"1",txt:"数字演员"},
-                {icon:"icon-icon-",link:"1",txt:"晶振"},
+                {icon:"icon-icon-",link:"1",txt:"互动"}
             ],
         }
     }
