@@ -42,7 +42,7 @@
         "nodemon": "^1.17.4",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
-        "webpack": "^4.8.3",
+        "webpack": "^4.17.1",
         "webpack-cli": "^2.1.3"
     }
 }

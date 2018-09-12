@@ -41,9 +41,9 @@ class Header extends React.Component {
         let listShow = this.state.isPhoneShow?'tqr-nav-list-show':'';
         return (
             <div className="tqr-header">
-                <div className="tqr-logo">
+                <a href="/" className="tqr-logo">
                     <img className="block" src="/images/web/logo.png" alt="" />
-                </div>
+                </a>
                 <div className="tqr-nav-box text-center">
                     <i className="tqr-nav-phone iconfont icon-mulu" onClick={()=>this.handlePhoneShow()}></i>
                     <div className={`tqr-nav-list ${listShow}`} >

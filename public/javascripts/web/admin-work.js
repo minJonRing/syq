@@ -24,7 +24,8 @@ var E = window.wangEditor //使用编辑器
             types: set_config.work_type,
             isShowType: false,
             // 
-            type: set_config.work_type[0],
+            type: set_config.work_type[0].id,
+            typeName:set_config.work_type[0].name,
             id: 0,
             title: "",
             sub: "",
@@ -43,7 +44,8 @@ var E = window.wangEditor //使用编辑器
         },
         mounted() {
             // 获取作品列表
-            this.bindGetList()
+            this.bindGetList();
+            console.log(this.types)
         },
         watch: {
             "isShow": function(val) {
@@ -99,6 +101,7 @@ var E = window.wangEditor //使用编辑器
             bindNewWork() {
                 this.isShow = true;
                 this.type = set_config.work_type[0].id;
+                this.typeName = set_config.work_type[0].name;
                 this.id = 0;
                 this.title = "";
                 this.cover = "";
@@ -174,7 +177,8 @@ var E = window.wangEditor //使用编辑器
              *选择作品类型
              */
             bindSelectType(event, db) {
-                this.type = db;
+                this.type = this.types[db].id;
+                this.typeName = this.types[db].name;
                 this.isShowType = false;
             },
             /*

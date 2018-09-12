@@ -4,11 +4,11 @@
     <div id="app">
         <div class="video">
             <video autoplay loop muted>
-                <source src="/video/1.mp4" type="video/mp4"></source>
+                <source src="/video/1.mp4" type="video/mp4" />
             </video>
             <div class="video-txt">
                 <div class="video-txt-box">
-                    <h2>2018SHOWREEL</h2>
+                    <h2>2018 SHOWREEL</h2>
                     <p>SINQ专注于数字视屏领域的专业服务，运用cg，实拍，三维等数字技术，创造出属于您的视屏专属服务。未来我们坚持创新开发，秉持匠心精神，追求完美服务。让视屏广告舞动未来，创造无限价值</p>
                     <a href="javascript:" @click="handleShowVideo">PLAY VIDEO
                         <span class="sp1"></span><span class="sp2"></span><span class="sp3"></span><span class="sp4"></span>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="case">
-            <ul class="flex" :style="{'height':caseH+'px'}">
+            <ul class="flex" :style="{'height':(caseH-277)+'px'}">
                 <li class="overflow transition600 " v-for="(item,index) in caseList" :key="index">
                     <a class="nav" :href="item.link" :style="{'background-image':item.img}">
                         <p>
@@ -39,20 +39,23 @@
             </ul>
         </div>
         <div class="course">
+            <div class="course-logo">
+                <img src="/images/web/logo.png" alt="">
+            </div>
             <div class="course-bar">
-                <div :class="['course-sign',index%2==0?'course-sign-2':'course-sign-1']" :data-text="item.text" v-for="(item,index) in course" :key="index">
-                    <span>{{item.time}}</span>
+                <div :class="['course-item', index%2==0?'course-item-1':'course-item-2']" v-for="(item,index) in course" :key="index">
+                    <h2>{{item.time}}</h2>
+                    <p>{{item.text}}</p>
                 </div>
-                <p class="course-bar-shadow"></p>
             </div>
         </div>
+        <h2 class="news-title">实时资讯</h2>
         <div class="news">
             <a href="" v-for="(item,index) in newsList.slice(0,3)">
                 <img class="block w100" :src="item.cover" alt="">
                 <div class="news-info">
                     <p>{{item.title}}</p>
                     <time>{{item.createtime.replace(/(T).*/g,'')}}</time>
-                    <span>{{item.title}}</span>
                 </div>
                 <div class="news-shade">
                     <i class="transition600 iconfont icon-compass"></i>

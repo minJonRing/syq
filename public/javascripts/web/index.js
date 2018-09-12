@@ -2,13 +2,15 @@ var app = new Vue({
     el:"#app",
     data () {
         return {
+            isSafiri:false,
             isShowShade:false,
             loop1:0,
             loop2:0,
             caseList:[
-                    {link:"/",img:"url(/images/web/index/1.png)",txt:"CG及实拍影像"},
-                    {link:"/",img:"url(/images/web/index/2.png)",txt:"虚拟影像互动展示"},
-                    {link:"/",img:"url(/images/web/index/3.png)",txt:"数字演员"}
+                    {link:"/",img:"url(/images/web/index/1.png)",txt:"三维产品动画"},
+                    {link:"/",img:"url(/images/web/index/2.png)",txt:"影视广告TV"},
+                    {link:"/",img:"url(/images/web/index/3.png)",txt:"创意工厂"},
+                    {link:"/",img:"url(/images/web/index/4.png)",txt:"ABOUT ME"}
                 ],
             caseH:0,
             course:[
@@ -32,6 +34,10 @@ var app = new Vue({
         }
     },
     mounted(){
+        // 判断浏览器
+        this.isSafiri = /^(?=.Safari)(?!.Chrome)/.test(navigator.userAgent);
+        console.log(this.isSafiri);
+        // 
         let WINDOW_H = window.innerHeight;
         let VIDEOH = WINDOW_H - 277;
         let VIDEOW = VIDEOH/.35

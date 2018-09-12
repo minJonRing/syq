@@ -2,10 +2,10 @@ const webpack = require("webpack")
 
 console.log(__dirname)
 module.exports = {
-    entry:__dirname + "/public/react/newslist/index.js",
+    entry:__dirname + "/public/react/header/index.js",
     output:{
         path:__dirname+"/public/build",
-        filename:"react-news-list.js"
+        filename:"react-header.js"
     },
     module:{
         rules:[{

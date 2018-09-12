@@ -26,7 +26,7 @@
             <div class="title">
                 <p>产品列表</p>
                 <a class="btn1" href="javascript:" @click="bindFindOneWork($event,{type:''})">全部</a>
-                <a class="btn1" href="javascript:" v-for="(item,index) in types" :key="index" @click="bindFindOneWork($event,{type:item})">{{item}}</a>
+                <a class="btn1" href="javascript:" v-for="(item,index) in types" :key="index" @click="bindFindOneWork($event,{type:item.id})">{{item.name}}</a>
                 <a class="btn4" href="javascript:" @click="bindNewWork">新增</a>
             </div>
             <div class="table-box" border="0">
@@ -63,9 +63,9 @@
                 <div class="input-box">
                     <p>类型：</p>
                     <div class="select" @click.stop="isShowType = !isShowType">
-                        <span>{{type}}</span>
+                        <span>{{typeName}}</span>
                         <ul :class="{'show':isShowType}">
-                            <li v-for="(item,index) in types" :key="index" @click.stop="bindSelectType($event,item.id)">{{item.name}}</li>
+                            <li v-for="(item,index) in types" :key="index" @click.stop="bindSelectType($event,index)">{{item.name}}</li>
                         </ul>
                     </div>
                 </div>
