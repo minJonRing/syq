@@ -3,5 +3,5 @@ public/upload/*.png
 public/upload/*.gif
 public/upload/*.jpeg
 public/video/*.mp4
-node_modules/*
+node_modules
 public/react
