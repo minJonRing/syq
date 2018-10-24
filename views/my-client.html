@@ -14,7 +14,7 @@
         </div>
         <div class="brands">
             <div class="brand" v-for="(item,index) in brands" :key="index">
-                <p><img src="http://www.bitone.com/template/1/default/_files/cn/img/customer/icon1.png" alt=""></p>
+                <p><img :src="'/images/web/logo/'+(index+1)+'.png'" alt=""></p>
             </div>
         </div>
     </div>
