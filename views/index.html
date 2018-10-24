@@ -76,7 +76,7 @@
         </div>
         <div class="my-client">
             <h2>我们的客户</h2>
-            <div class="my-client-box">
+            <div class="my-client-box" v-if="client">
                 <div class="my-client-list1">
                     <div v-for="(item,index) in client" :key="index">
                         <img :src="item.img" alt="">

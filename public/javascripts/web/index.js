@@ -30,10 +30,15 @@ var app = new Vue({
             workH:0,
             worksList:[],
             newsList:[],
-            client:new Array(14).fill({link:"/",img:"/images/web/loop.png"})
+            client:new Array(18).fill({link:"/",img:"/images/web/loop.png"})
         }
     },
     mounted(){
+        let _arr  = [];
+        for(let i in new Array(18).fill(1)){
+            _arr.push({img:"/images/web/logo/"+(i-0+1)+".png"})
+        }
+        this.client = _arr;
         // 判断浏览器
         this.isSafiri = /^(?=.Safari)(?!.Chrome)/.test(navigator.userAgent);
         console.log(this.isSafiri);
