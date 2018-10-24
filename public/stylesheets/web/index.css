@@ -579,3 +579,11 @@
 .shade video {
     width: 65%;
 }
+
+.index-a {
+    transition-duration: 600ms;
+}
+
+.index-a:hover {
+    color: deepskyblue;
+}

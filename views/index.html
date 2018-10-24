@@ -66,7 +66,8 @@
             <h2>作品展示</h2>
         </div>
         <div class="works-list">
-            <a :style="{height: index == 1 || index == 3 ? 2*workH + 'px':'auto','margin-top':index == 4 ? -2*workH + 'px':index == 5 || index == 6?-workH+'px':''}" :href="'/app/work/'+item._id" v-for="(item,index) in worksList" :key="index">
+            <a :style="{height: index == 1 || index == 3 ? 2*workH + 'px':'auto','margin-top':index == 4 ? -2*workH + 'px':index == 5 || index == 6?-workH+'px':'','margin-left':index == 6?'33.33%':''}" :href="'/app/work/'+item._id" v-for="(item,index) in worksList"
+                :key="index">
                 <img :src="item.cover" alt="作品">
                 <p class="works-shade">
                     <span class="works-title">{{item.title}}</span>
@@ -75,7 +76,7 @@
             </a>
         </div>
         <div class="my-client">
-            <h2>我们的客户</h2>
+            <h2><a href="app/client" class="color-333 index-a">我们的客户</a></h2>
             <div class="my-client-box" v-if="client">
                 <div class="my-client-list1">
                     <div v-for="(item,index) in client" :key="index">

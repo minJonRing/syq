@@ -90,7 +90,7 @@
 
 .pages {
     padding: 12px 48px;
-    text-align: right;
+    text-align: center;
 }
 
 .pages a {
@@ -99,6 +99,7 @@
     margin: 0 6px;
     border: 1px #ddd solid;
     border-radius: 3px;
+    color: #333;
     transition-duration: 600ms;
 }
 

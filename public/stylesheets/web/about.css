@@ -1,14 +1,13 @@
-.head  {
+.head {
     padding-top: 3%;
     border-bottom: 3px solid #000;
 }
+
 .head h2 {
     font-size: 30px;
     line-height: 1;
-    color:#2b2b2b;
+    color: #2b2b2b;
 }
-
-
 
 .head p.info {
     width: 90%;
@@ -19,6 +18,7 @@
     line-height: 24px;
     padding-bottom: 3%;
 }
+
 .head .about-nav {
     display: flex;
     width: 80%;
@@ -27,6 +27,7 @@
     border: 1px #bebebe solid;
     border-bottom: none;
 }
+
 .head .about-nav a {
     width: 50%;
     font-size: 16px;
@@ -34,41 +35,47 @@
     color: #4c4c4c;
     transition-duration: 600ms;
 }
+
 .head .about-nav a:hover,
 .head .about-nav a.active {
     background: #000;
     color: #fff;
 }
 
-.about-1  {
-    padding: 4% 0 ;
+.about-1 {
+    padding: 4% 0;
     text-align: center;
 }
-.about-2 h2 ,
+
+.about-2 h2,
 .about-1 h2 {
     font-size: 30px;
-    color:#2b2b2b;
+    color: #2b2b2b;
 }
-.about-1  p {
+
+.about-1 p {
     width: 80%;
     max-width: 1200px;
     margin: 0 auto;
     font-size: 14px;
     line-height: 1.6;
-    
 }
-.about-1  .p1 {
+
+.about-1 .p1 {
     padding: 2% 0 1%;
 }
-.about-1  .p2 {
+
+.about-1 .p2 {
     padding: 1% 0 3%;
 }
-.about-1  p span {
+
+.about-1 p span {
     display: block;
     color: #2b2b2b;
 }
+
 .about-1 .line,
-.about-2 .line  {
+.about-2 .line {
     width: 110px;
     height: 2px;
     background: #2b2b2b;
@@ -82,6 +89,7 @@
     justify-content: space-around;
     padding-top: 3%;
 }
+
 .about-1 .imgs span {
     display: inline-block;
     padding-top: 10px;
@@ -93,17 +101,19 @@
     background-color: #dedede;
     padding: 10% 0;
 }
+
 .about-2 .about-2-info {
     position: absolute;
     top: 70px;
     width: 100%;
 }
+
 .about-2 h2 {
     line-height: 1;
 }
 
 .about-3 {
-    padding: 6% 0 ;
+    padding: 6% 0;
 }
 
 .about-3 .person-box {
@@ -112,6 +122,7 @@
     margin: 0 auto;
     width: 800px;
 }
+
 .about-3 .person {
     display: flex;
     align-items: center;
@@ -119,9 +130,11 @@
     flex-direction: column;
     width: 160px;
 }
+
 .about-3 .person h2 {
     font-size: 24px;
 }
+
 .about-3 .person a {
     display: inline-block;
     padding: 6px 12px;
@@ -131,7 +144,124 @@
     margin-top: 10px;
     transition-duration: 600ms;
 }
+
 .about-3 .person a:hover {
     background-color: deepskyblue;
     color: #fff;
+}
+
+
+/* culture */
+
+.culture-1 {
+    padding: 4% 0;
+    text-align: center;
+}
+
+.culture-2 h2,
+.culture-1 h2 {
+    font-size: 30px;
+    color: #2b2b2b;
+}
+
+.culture-1 p {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.culture-1 .p1 {
+    padding: 2% 0 1%;
+}
+
+.culture-1 .p2 {
+    padding: 1% 0 3%;
+}
+
+.culture-1 p span {
+    display: block;
+    color: #2b2b2b;
+}
+
+.culture-1 p i.active {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.culture-1-img {
+    width: 1200px;
+    margin: 2% auto;
+}
+
+.culture-1-img-top {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.culture-1-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.culture-1-img img {
+    display: block;
+    height: 100%;
+}
+
+.culture-1-img-top-0 {
+    width: 792px;
+    height: 445px;
+}
+
+.culture-1-img-top-1 {
+    width: 396px;
+    height: 445px;
+    margin-left: 12px;
+}
+
+.culture-1-img-bottom {
+    display: flex;
+    align-items: center;
+    padding-top: 12px;
+}
+
+.culture-1-img-bottom .culture-1-img-box {
+    width: 392px;
+    margin-right: 12px;
+}
+
+.culture-1-img-bottom .culture-1-img-box img {
+    width: 100%;
+    height: auto;
+}
+
+.culture-1-img-bottom .culture-1-img-box:last-child {
+    flex-shrink: 0;
+    width: 396px;
+    margin: 0;
+}
+
+.culture-2 {
+    position: relative;
+    text-align: center;
+    background-color: #dedede;
+    padding: 10% 0;
+}
+
+.culture-2 .about-2-info {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+}
+
+.culture-2 h2 {
+    line-height: 1;
+}
+
+.banner-img {
+    margin: 2% 0 1%;
 }
