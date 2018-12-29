@@ -8,14 +8,17 @@ p.style.height = h +"px";
 can.width = video.clientWidth;
 can.height = video.clientHeight;
 video.oncanplay = function(){
-    p.style.display = "none";
-    video.play();
-    video.addEventListener('play', function(){
-    //画布上画视频，需要动态地获取它，一帧一帧地画出来
-        setInterval(function(){
-            handleDrew()
-            }, 20);
-    });
+    p.innerText = "点击播放";
+    p.addEventListener("click",function(){
+        p.style.display = "none";
+        video.play();
+        video.addEventListener('play', function(){
+        //画布上画视频，需要动态地获取它，一帧一帧地画出来
+            setInterval(function(){
+                handleDrew()
+                }, 20);
+        });
+    })
 }
 
 function handleDrew(){
