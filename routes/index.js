@@ -119,6 +119,12 @@ router.get('/app/contactwe', async (ctx, next) => {
     title: 'Hello Koa 2!'
   })
 })
+//测试接口
+router.get('/app/link', async (ctx, next) => {
+  await ctx.render('ifram', {
+    title: 'Hello Koa 2!'
+  })
+})
 // admin 后端接口
 // 后端登录界面
 router.get("/app/admin",async (ctx,next) => {
