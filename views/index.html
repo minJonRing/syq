@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/stylesheets/web/index.css">
     <link rel="stylesheet" href="/stylesheets/table.css">
     <div id="app">
-        <div class="video">
+        <div class="video" :style="{height:windowH+'px'}">
             <video autoplay loop muted>
                 <source src="/video/1.mp4" type="video/mp4" />
             </video>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="case">
-            <ul class="flex" :style="{'height':(caseH-277)+'px'}">
+            <ul class="flex">
                 <li class="overflow transition600 " v-for="(item,index) in caseList" :key="index">
                     <a class="nav" :href="item.link" :style="{'background-image':item.img}">
                         <p>

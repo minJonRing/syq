@@ -12,7 +12,6 @@ var app = new Vue({
                     {link:"/",img:"url(/images/web/index/3.png)",txt:"创意工厂"},
                     {link:"/",img:"url(/images/web/index/4.png)",txt:"ABOUT ME"}
                 ],
-            caseH:0,
             course:[
                 {time:'2015',text:"虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示虚拟影像互动展示"},
                 {time:'2016',text:"虚拟影像互动展示"},
@@ -26,11 +25,12 @@ var app = new Vue({
                     {link:"/",txt:"影视广告TVC"},
                     {link:"/",txt:"地产创意工厂"}
                 ],
-            // workName:['work-item-left','work-item-right','work-item-left','work-item-right work-item-mid','work-item-left','work-item-mid','work-item-left'],
             workH:0,
             worksList:[],
             newsList:[],
-            client:new Array(18).fill({link:"/",img:"/images/web/loop.png"})
+            client:new Array(18).fill({link:"/",img:"/images/web/loop.png"}),
+            // window H
+            windowH:0
         }
     },
     mounted(){
@@ -41,18 +41,9 @@ var app = new Vue({
         this.client = _arr;
         // 判断浏览器
         this.isSafiri = /^(?=.Safari)(?!.Chrome)/.test(navigator.userAgent);
-        console.log(this.isSafiri);
         // 
-        let WINDOW_H = window.innerHeight;
-        let VIDEOH = WINDOW_H - 277;
-        let VIDEOW = VIDEOH/.35
-        document.querySelector("video").height = VIDEOH;
-        document.querySelector("video").width = VIDEOW;
-        // this.caseH = window.innerWidth/4/.75;
-        this.caseH = VIDEOH;
-        window.onresize = ()=>{
-            this.caseH = VIDEOH;
-        }
+        this.windowH = window.innerHeight;
+
         setTimeout(() => {
             var L = $(".my-client-list1 div").width() * $(".my-client-list1 div").length;
             var _L = $(".my-client-list2 div").width() * $(".my-client-list2 div").length;
