@@ -148,8 +148,16 @@
 
 /* case */
 
+.case {
+    height: 33vh;
+}
+
+.case ul {
+    height: 100%;
+}
+
 .case li {
-    width: 33.33%;
+    width: 25%;
     flex-grow: 1;
     flex-shrink: 1;
     height: 100%;
@@ -188,7 +196,7 @@
 }
 
 .case li:hover {
-    width: 70%;
+    width: 50%;
     flex-shrink: 0;
 }
 
@@ -410,43 +418,31 @@
     font-weight: normal;
 }
 
-.works a {
-    line-height: 40px;
-    padding: 0 25px;
-    margin: 16px;
-    font-size: 14px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, .9);
-    border-radius: 20px;
-    transition-duration: 600ms;
-}
-
-.works a:hover {
-    background-color: rgba(0, 0, 0, .1);
-    color: #333;
-}
-
 
 /* works-list */
 
 .works-list {
+    width: 62.5%;
     font-size: 0;
-    background-color: #333;
+    background-color: #fff;
+    margin: 0 auto;
 }
 
+
+/* 
 .works-list::after {
     content: "";
     float: none;
     clear: both;
     display: block;
     height: 0;
-}
+} */
 
 .works-list a {
-    float: left;
     display: inline-block;
     position: relative;
-    width: 33.33%;
+    width: 50%;
+    vertical-align: middle;
     color: #fff;
     text-align: left;
     line-height: 1;
@@ -455,8 +451,8 @@
     cursor: pointer;
 }
 
-.works-list a:nth-child(7) {
-    /* margin-left: 33.33%; */
+.works-list a.active {
+    width: 100%;
 }
 
 .works-list a img {
@@ -465,45 +461,44 @@
     transition-duration: 600ms;
 }
 
-.works-list a:nth-child(2) img,
-.works-list a:nth-child(4) img {
-    height: 100%;
-    width: auto;
-}
-
 .works-list .works-shade {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 50px;
     opacity: 0;
-    transition-duration: 600ms;
-    background-color: rgba(0, 0, 0, .5);
-}
-
-.works-list .works-title {
-    position: absolute;
-    width: calc(100% - 40px);
-    left: 20px;
-    bottom: 40px;
-    font-size: 14px;
-}
-
-.works-list .works-txt {
-    position: absolute;
-    width: calc(100% - 80px);
-    left: 20px;
-    bottom: 10px;
     font-size: 16px;
+    padding: 0 12px;
+    line-height: 50px;
+    background-color: rgba(0, 0, 0, .7);
+    color: #fff;
+    transform: matrix(1, 0, 0, 1, 0, 30);
+    overflow: hidden;
+    transition-duration: 600ms;
+}
+
+.works-list .works-shade span {
+    display: inline-block;
+    width: 100%;
+    opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, -10);
+    transition-delay: 200ms;
+    transition-duration: 600ms;
 }
 
 .works-list a:hover img {
-    transform: matrix(1.05, 0, 0, 1.05, 0, 0)
+    transform: matrix(1.02, 0, 0, 1.02, 0, 0)
 }
 
 .works-list a:hover .works-shade {
     opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.works-list a:hover .works-shade span {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 

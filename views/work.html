@@ -1,13 +1,15 @@
 <%- include("header.html")%>
     <link rel="stylesheet" href="/stylesheets/web/work.css">
     <div id="app">
-        <video :src="video" controls></video>
-        <h2>{{title}}</h2>
-        <div class="info flex flex-mid flex-center-1">
-            <time>发布时间：{{time.replace(/(T).*/g,'')}}</time>
-            <span>类型：{{type}}</span>
+        <video :src="item" controls v-for="(item,index) in video" :key="index"></video>
+        <div class="edit-box">
+            <h2>{{title}}</h2>
+            <div class="info flex flex-mid flex-center-1">
+                <time>发布时间：{{time.replace(/(T).*/g,'')}}</time>
+                <span v-if="type">类型：{{typeArr[type-1].text}}</span>
+            </div>
+            <div class="cont"></div>
         </div>
-        <div class="cont"></div>
     </div>
     <script>
         var app = new Vue({
@@ -18,20 +20,22 @@
                 time: "",
                 cont: "",
                 type: "",
+                typeArr: "",
                 video: ""
             },
             mounted() {
+                this.typeArr = set_config.work_type;
                 let url = window.location.href.replace(/.+\//g, "");
                 $.ajax({
-                    url: "/app/work",
-                    type: "post",
+                    url: "/app/project/edit",
+                    type: "GET",
                     data: {
                         id: url
                     },
                     success: (res) => {
                         this.title = res.data.title;
                         this.time = res.data.createtime;
-                        this.video = res.data.video;
+                        this.video = [...res.data.video.split(","), ...res.data.video.split(",")];
                         this.type = res.data.type;
                         $(res.data.cont).appendTo($(".cont"));
                     }

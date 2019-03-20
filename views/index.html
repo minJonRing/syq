@@ -49,7 +49,6 @@
                 </div>
             </div>
         </div>
-        <h2 class="news-title">实时资讯</h2>
         <div class="news">
             <a href="" v-for="(item,index) in newsList.slice(0,3)">
                 <img class="block w100" :src="item.cover" alt="">
@@ -66,12 +65,10 @@
             <h2>作品展示</h2>
         </div>
         <div class="works-list">
-            <a :style="{height: index == 1 || index == 3 ? 2*workH + 'px':'auto','margin-top':index == 4 ? -2*workH + 'px':index == 5 || index == 6?-workH+'px':'','margin-left':index == 6?'33.33%':''}" :href="'/app/work/'+item._id" v-for="(item,index) in worksList"
-                :key="index">
+            <a :href="'/app/work/'+item._id" :class="{active:(index+1)%5 == 0}" v-for="(item,index) in worksList" :key="index">
                 <img :src="item.cover" alt="作品">
                 <p class="works-shade">
-                    <span class="works-title">{{item.title}}</span>
-                    <span class="works-txt text-hide-1">{{item.txt}}</span>
+                    <span class="text-hide-1">{{item.title}}</span>
                 </p>
             </a>
         </div>

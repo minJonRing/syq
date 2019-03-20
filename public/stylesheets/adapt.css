@@ -8,8 +8,17 @@
     width: 100%;
     padding: 0 12px 0 48px;
     font-size: 14px;
+    opacity: 1;
     background-color: rgba(17, 17, 17, 0.8);
     z-index: 999;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    transition-duration: 600ms;
+    box-shadow: 0 3px 18px rgba(0, 0, 0, .3);
+}
+
+.tqr-header.active {
+    opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, -40);
 }
 
 

@@ -6,3 +6,4 @@ public/upload/cover
 # public/video/*.mp4
 node_modules
 public/react
+public/video

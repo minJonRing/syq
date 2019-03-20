@@ -100,8 +100,8 @@ var app = new Vue({
         async bindGetWorkList(){
             return new Promise((resolve,reject)=>{
                 $.ajax({
-                    url: "/app/getWork",
-                    type: "POST",
+                    url: "/app/project/list",
+                    type: "GET",
                     success: (res) => {
                         let db = res.data.sort((a,b)=>{
                             return new Date(a.createtime) < new Date(b.createtime)?1:-1;
@@ -122,8 +122,8 @@ var app = new Vue({
         async bindGetNewsList(){
             return new Promise((resolve,reject)=>{ 
                 $.ajax({
-                    url: "/app/getNews",
-                    type: "POST",
+                    url: "/app/informa/list",
+                    type: "GET",
                     success: (res) => {
                         this.newsList = res.data.slice(0,9);
                         if(res.code != 200){
