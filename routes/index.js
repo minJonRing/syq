@@ -178,6 +178,11 @@ router.post("/app/admin",async (ctx,next)=>{
 })
 // 后端主界面 
 router.get("/app/main",isUser('main','/app/admin'))
+router.get("/app/admin/home",async (ctx , next) => {
+  await ctx.render("admin/index", {
+    title: 'Hello Koa 2!'
+  })
+})
 // router.get("/app/main",isUser(view,url))
 // 测试注册用户   可删除////////////////////////////////
 router.post("/get/user",async (ctx,next) =>{
@@ -401,18 +406,42 @@ router.post("/app/removeNews",async(ctx,next)=>{
   })
   ctx.body = {code:200,msg:msg}
 })
+// 上传封面
+router.post("/app/upload/cover", async(ctx,next)=>{
+  await next()
+  let imgurl = [];
+  let form = new formidable.IncomingForm();
+  form.encoding = 'utf-8';
+  form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
+  form.keepExtensions = true;
+  form.multiples = true;
+  await new Promise((resolve, reject) => {
+      form.parse(ctx.req, async(err, fields, files) => {
+        if (err) { throw err; resolve(imgurl) ;return; }
+        let url = files.file.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
+        imgurl.push(url)
+        resolve(imgurl)
+      })
+  })
+  let code = 0,msg = "";
+  if(imgurl.length){
+    code = 200;
+    msg = "上传成功";
+  }
+  ctx.body = {code:code,msg:msg,data:imgurl}
+})
 // 上传图片
 router.post("/app/upload/img", async(ctx,next)=>{
   await next()
   let imgurl = [];
   let form = new formidable.IncomingForm();
   form.encoding = 'utf-8';
-  form.uploadDir = path.join(config.default._rootdir + "/public/upload");
+  form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
   form.keepExtensions = true;
   form.multiples = true;
   await new Promise((resolve, reject) => {
       form.parse(ctx.req, async(err, fields, files) => {
-        if (err) { throw err; return }
+        if (err) { throw err; resolve(imgurl);return }
         console.log(files.imgs)
         // 用于重命名文件
         // let _name = files.imgs.name;
@@ -432,15 +461,27 @@ router.post("/app/upload/img", async(ctx,next)=>{
         // } else {
         // let url = (config.default._rootdir+newpath).replace(/.+(public)/g,"");
         // 随机文件名
-        let url = files.imgs.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
-        imgurl.push(url)
+        if(Array.isArray(files.imgs)){
+          for(let i in files.imgs){
+            let url = files.imgs[i].path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
+            imgurl.push(url)
+          }
+        }else{
+          let url = files.imgs.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
+          imgurl.push(url)
+        }
+        
         // }
-        console.log(imgurl)
         resolve(imgurl)
       })
   })
-  console.log(imgurl)
-  ctx.body = {code:200,errno:0,data:imgurl}
+  let code = 0,msg = "",errno = 1;
+  if(imgurl.length){
+    code = 200;
+    msg = "上传成功";
+    errno = 0;
+  }
+  ctx.body = {code:code,msg:msg,errno:errno,data:imgurl}
 
 })
 // 上传/更新作品数据
@@ -448,7 +489,6 @@ router.post("/app/work/save",async (ctx,next)=>{
   let msg = "" ,code = 0;
   let form = new formidable.IncomingForm();
   form.encoding = 'utf-8';
-  form.uploadDir = path.join(config.default._rootdir + "/public/upload");
   form.keepExtensions = true;
   form.multiples = true;
   await new Promise((resolve, reject) => {
@@ -456,14 +496,8 @@ router.post("/app/work/save",async (ctx,next)=>{
           if (err) { throw err; return }
           // 封面图片路径
           try {
-            let url = files.cover ? files.cover.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
-            let option;
-            if(Object.keys(files).length == 0){
-              option = {type:fields.type,title:fields.title,cont:fields.cont,video:fields.video};
-            }else{
-              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont,video:fields.video};
-            }
-            if(fields.id != 0){
+            let option = {type:fields.type,title:fields.title,desc:fields.desc,cover:fields.cover,cont:fields.cont,video:fields.video};
+            if(fields.id){
               model.work.update({_id:fields.id},option,(err,db)=>{
                 if(!err){
                   msg = "更新成功!";
@@ -472,13 +506,7 @@ router.post("/app/work/save",async (ctx,next)=>{
                 }
               })
             }else{
-              model.work.create({
-                type:fields.type,
-                title:fields.title,
-                cover:url,
-                cont:fields.cont,
-                video:fields.video
-              },(err,db)=>{
+              model.work.create(option,(err,db)=>{
                 if(!err){
                   msg = "保存成功!";
                   code = 200
@@ -508,14 +536,8 @@ router.post("/app/news/save",async (ctx,next)=>{
           if (err) { throw err; return }
           // 封面图片路径
           try {
-            let url = files.cover ? files.cover.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
-            let option;
-            if(Object.keys(files).length == 0){
-              option = {type:fields.type,title:fields.title,cont:fields.cont,video:fields.video};
-            }else{
-              option = {type:fields.type,title:fields.title,cover:url,cont:fields.cont,video:fields.video};
-            }
-            if(fields.id != 0){
+            let option = {type:fields.type,title:fields.title,cover:fields.cover,cont:fields.cont,video:fields.video};
+            if(fields.id){
               model.news.update({_id:fields.id},option,(err,db)=>{
                 if(!err){
                   msg = "更新成功!";
@@ -527,13 +549,7 @@ router.post("/app/news/save",async (ctx,next)=>{
                 resolve()
               })
             }else{
-              model.news.create({
-                type:fields.type,
-                title:fields.title,
-                cover:url,
-                cont:fields.cont,
-                video:fields.video
-              },(err,db)=>{
+              model.news.create(option,(err,db)=>{
                 if(!err){
                   msg = "保存成功!";
                   code = 200
@@ -570,6 +586,10 @@ router.post("/app/video",async(ctx,next)=>{
         resolve()
     })
   })
+  if(url){
+    code = 200;
+    msg = "上传成功";
+  }
   ctx.body = {code:code,msg:msg,url:url}
 })
 
@@ -620,6 +640,7 @@ function isUser(view,url){
                 }
               })
             })
+            console.log(isUid,view,url);
             if(isUid){
               await ctx.render(view)
             }else{
