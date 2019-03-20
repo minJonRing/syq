@@ -9,12 +9,12 @@ const config =  require("../config.js")
 const fn = require("./upload.js")
 
 const model  = require('../schema/user.js')
-// const redis = new Redis({
-//   host : '127.0.0.1',//安装好的redis服务器地址
-//   port : 6379,　//端口
-//   ttl : 10,//过期时间
-//   db: 0
-// })
+const redis = new Redis({
+  host : '127.0.0.1',//安装好的redis服务器地址
+  port : 6379,　//端口
+  ttl : 60 * 60 * 72,//过期时间
+  db: 0
+})
 
 let user = [];
 // 首页index
@@ -130,23 +130,22 @@ router.get('/app/link', async (ctx, next) => {
 router.get("/app/admin",async (ctx,next) => {
   try {
     let uid = JSON.parse(ctx.cookies.get("angel")).a;
-    await new Promise((resolve,reject)=>{
+    const isUid = await new Promise((resolve,reject)=>{
       redis.get(uid).then((db,err)=>{
         if(!err && db){
-          resolve(isUid = true)
+          resolve(true)
         }else{
-          resolve(isUid = false)
+          resolve(false)
         }
       })
     })
     if(isUid){
-      await ctx.redirect("/app/main")
+      await ctx.redirect("/app/admin/home")
     }else{
-      await ctx.render("admin")
+      await ctx.render("admin/login")
     }
   } catch (error) {
-    await ctx.render("main")
-    // await ctx.render("admin")
+    await ctx.render("admin/login")
   }
 })
 // 后端登录接口
@@ -158,9 +157,10 @@ router.post("/app/admin",async (ctx,next)=>{
     model.user.findOne({username:username},(err,db)=>{
       if(!err && db &&  hash(password) === db.password){
         ctx.cookies.set("angel",JSON.stringify({a:username,b:db._id}),{
-          domain:"ojoojooo.com",
+          // domain:"ojoojooo.com",
+          domain:"localhost",
           path:"/",
-          maxAge:30*24*60*60*1000,
+          maxAge:72*60*60*1000,
           expires:new Date(),
           httpOnly:false,
           overwrite:false
@@ -178,11 +178,7 @@ router.post("/app/admin",async (ctx,next)=>{
 })
 // 后端主界面 
 router.get("/app/main",isUser('main','/app/admin'))
-router.get("/app/admin/home",async (ctx , next) => {
-  await ctx.render("admin/index", {
-    title: 'Hello Koa 2!'
-  })
-})
+router.get("/app/admin/home",isUser('admin/index','/app/admin'))
 // router.get("/app/main",isUser(view,url))
 // 测试注册用户   可删除////////////////////////////////
 router.post("/get/user",async (ctx,next) =>{
@@ -628,29 +624,29 @@ function hash(data){
 // 用户权限控制
 function isUser(view,url){
   return async(ctx,next)=>{
-          let isUid;
-          try {
-            let uid = JSON.parse(ctx.cookies.get("angel")).a;
-            await new Promise((resolve,reject)=>{
-              redis.get(uid).then((db,err)=>{
-                if(!err && db){
-                  resolve(isUid = true)
-                }else{
-                  resolve(isUid = false)
-                }
-              })
-            })
-            console.log(isUid,view,url);
-            if(isUid){
-              await ctx.render(view)
+      let isUid;
+      try {
+        let uid = JSON.parse(ctx.cookies.get("angel")).a;
+        await new Promise((resolve,reject)=>{
+          redis.get(uid).then((db,err)=>{
+            if(!err && db){
+              resolve(isUid = true)
             }else{
-              await ctx.redirect(url)
+              resolve(isUid = false)
             }
-            
-          } catch (error) {
-            // await ctx.render(view)
-            await ctx.redirect(url)
-          }
+          })
+        })
+        console.log(isUid,view,url);
+        if(isUid){
+          await ctx.render(view)
+        }else{
+          await ctx.redirect(url)
         }
+        
+      } catch (error) {
+        // await ctx.render(view)
+        await ctx.redirect(url)
+      }
+    }
 }
 module.exports = router

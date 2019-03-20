@@ -29,6 +29,8 @@ mongoose.connection.on("open",function(){
 
 
 const index = require('./routes/index')
+const work = require('./routes/work')
+const news = require('./routes/news')
 
 // error handler
 onerror(app)
@@ -70,6 +72,8 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
+app.use(work.routes(), index.allowedMethods())
+app.use(news.routes(), index.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

@@ -46,27 +46,20 @@
 
     // 登录
     $(".submit-box a").on("click", function() {
-            $.ajax({
-                url: "/app/admin",
-                type: "POST",
-                data: {
-                    username: $("input[name='username']").val(),
-                    password: $("input[name='password']").val()
-                },
-                success: function(res) {
-                    if (res.code == 200) {
-                        window.location.href = "/app/main";
-                    }
+        $.ajax({
+            url: "/app/admin",
+            type: "POST",
+            data: {
+                username: $("input[name='username']").val(),
+                password: $("input[name='password']").val()
+            },
+            success: function(res) {
+                if (res.code == 200) {
+                    window.location.href = "/app/admin/home";
                 }
-            })
+            }
         })
-        // 浏览 传输数据
-        // window.onbeforeunload = function() {
-        //     let time = (Date.now() - tqr) / 1000;
-        //     $.get('/getData', {
-        //         a: time
-        //     });
-        // }
+    })
 </script>
 
 </html>
