@@ -1,73 +1,73 @@
 var app = new Vue({
     el:"#app",
     data:{
-        options:[
-            {icon:"icon-icon-",link:"1",txt:"VR"},
-            {icon:"icon-icon-",link:"2",txt:"影像"},
-            {icon:"icon-icon-",link:"3",txt:"互动"}
-        ],
-        year:[2014,2015,2016,2017,2018],
-        works:[],
+        options:[],
+        init:[],
         list:[],
-        pages:0,
-        page:0
+        nowList:[],
+        // 
+        type:0,
+        total:1,
+        page:1
     },
     mounted(){
+        this.options = set_config.work_type;
         $.ajax({
-            url: "/app/getWork",
-            type: "POST",
+            url: "/app/project/list",
+            type: "GET",
             success: (res) => {
-                this.list = res.data;
-                this.pages = Math.ceil(res.data.length/9);
-                this.filter(this.list.slice(0,9));
-                let search = window.location.search;
-                search.replace(/[0-9]/g,($1)=>{
-                    this.handleAjaxType(1,$1)
-                })
+                this.init = res.data;
+                this.list = [...this.init];
+                this.handleFilter();
             }
         })
         
     },
     methods:{
-        filter(db){
-            var _this = this;
-            db.map(function (el,index) {  
-                if(index == 0){
-                    el.cla = "work1"
-                }else if(index == 1 || index == 2 ){
-                    el.cla = "work2"
-                }else if(index == 3 || index == 4 || index == 5){
-                    el.cla = "work3"
-                }else if(index == 6){
-                    el.cla = "work4"
-                }else if(index == 7){
-                    el.cla = "work5"
-                }else{
-                    el.cla = "work6"
+        handleFilter(){
+            let arr = [],h = [], l = [],db = [],ind = 0;
+            if(this.type == 0){
+                arr = this.init;
+            }else{
+                for(let i in this.init){
+                    if(this.init[i].type == this.type){
+                        arr.push(this.init[i])
+                    }
                 }
-                _this.works.push(el)
-            })
+            }
+            for(let i in arr){
+                if(arr[i].isLong){
+                    l.push(arr[i])
+                }else{
+                    h.push(arr[i])
+                }
+            }
+            for(let i in arr){
+                let el = h[i-ind];
+                if( (i-0+1)%5 == 0 ){
+                    if(l[ind]){
+                        el = l[ind];
+                        ind++;
+                    }
+                }
+                db.push(el);
+            }
+            this.list = db;
+            this.total = Math.ceil(arr.length/5);
+            this.nowList = this.list.slice(0,this.page*5);
             this.page++;
         },
         bindLodingMore(){
-            if(this.page < this.pages){
-                this.filter(this.list.slice(this.page * 9 , (this.page + 1) * 9));
-            }
-        },
-        // 全部
-        handleAjaxAll(){
-            this.works = [];
-            for(let i = 0; i < this.pages; i++){
-                this.filter(this.list.slice(i * 9 , (i + 1) * 9));
+            if(this.page <= this.total){
+                this.nowList = this.list.slice(0,this.page*5);
+                this.page++;
             }
         },
         //按类型查找
         handleAjaxType(e,type){
-            let _list = this.list.filter((a)=>{
-                return a.type == type;
-            })
-            this.works = [];
-            this.filter(_list.slice(0,9));
+            this.type = type;
+            this.page = 1;
+            this.handleFilter()
         }
     }
 })

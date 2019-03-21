@@ -669,7 +669,7 @@ header .nav li.towLi:hover a.towNav {
 
 .ajax-more {
     display: inline-block;
-    min-width: 80%;
+    min-width: 100%;
     margin: 22px auto;
     border: 1px #ddd solid;
     border-radius: 5px;

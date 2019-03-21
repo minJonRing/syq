@@ -14,31 +14,20 @@
         </div>
         <div class="option">
             <div class="all">
-                <a href="javascript:" @click="handleAjaxAll">全部</a>
-            </div>
-            <div class="year">
-                <a href="javascript:">
-                    <span>年份</span>
-                    <i class="iconfont icon-jiantouxia"></i>
-                </a>
-                <input type="checkbox" class="select" title="点击选择">
-                <ul>
-                    <li v-for="(item,index) in year" :key="index">{{item}}</li>
-                </ul>
+                <a href="javascript:" :class="{active:type == 0}" @click="handleAjaxType($event,0)">全部</a>
             </div>
             <div class="detail">
-                <a href="javascript:" v-for="(item,index) in options" :key="index" :data-type="item.link" @click="handleAjaxType($event,item.link)">
+                <a href="javascript:" :class="{active:type == item.value}" :style="{width: Math.floor(100/options.length)-0.6+'%'}" v-for="(item,index) in options" :key="index" :data-type="item.link" @click="handleAjaxType($event,item.value)">
                     <i :class="['iconfont',item.icon]"></i>
-                    <span>{{item.txt}}</span>
+                    <span>{{item.text}}</span>
                 </a>
             </div>
         </div>
         <div class="works">
-            <a :href="'/app/work/'+item._id" :class="['work',item.cla]" v-for="(item,index) in works" :key="index" target="_blank">
+            <a :href="'/app/work/'+item._id" :class="['work',{active:(index-0+1)%5 == 0}]" v-for="(item,index) in nowList" :key="index" target="_blank">
                 <img :src="item.cover" alt="">
                 <p>
-                    <i class="iconfont icon-dashuju"></i>
-                    <span>{{item.title}}</span>
+                    <span class="text-hide-1">{{item.title}}</span>
                 </p>
             </a>
             <a class="ajax-more" href="javascript:" @click="bindLodingMore">加载更多</a>

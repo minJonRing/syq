@@ -36,8 +36,8 @@
 
 .option .all {
     width: 25%;
-    height: 140px;
-    line-height: 140px;
+    height: 70px;
+    line-height: 70px;
     font-size: 24px;
 }
 
@@ -50,91 +50,36 @@
     transition-duration: 600ms;
 }
 
+.option .all a.active {
+    color: dodgerblue;
+}
+
 .option .all a:hover {
     background-color: rgba(0, 0, 0, .8);
-}
-
-.option .year {
-    position: relative;
-    width: 15%;
-    height: 140px;
-    border: 1px #ddd solid;
-    cursor: pointer;
-}
-
-.option .year .select {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.option .year ul {
-    position: absolute;
-    width: 100%;
-    top: 100%;
-    left: 0;
-    opacity: 0;
-    border-left: 1px #ddd solid;
-    border-right: 1px #ddd solid;
-    pointer-events: none;
-    background-color: #fff;
-    transition-duration: 600ms;
-    transform: matrix(1, 0, 0, 1, 50, 0);
-    z-index: 9;
-}
-
-.option .year li {
-    width: 100%;
-    font-size: 16px;
-    color: #333;
-    line-height: 4;
-    border-bottom: 1px #ddd solid;
-    transition-duration: 600ms;
-}
-
-.option .year li:hover {
-    background-color: #ddd;
-}
-
-.option .year .select:checked+ul {
-    opacity: 1;
-    pointer-events: auto;
-    transform: matrix(1, 0, 0, 1, 0, 0)
-}
-
-.option .year a {
-    display: inline-block;
-    width: 100;
-    height: 100%;
-    color: #333;
-    font-size: 18px;
-    line-height: 140px;
 }
 
 .option .detail {
     display: flex;
     justify-content: space-between;
-    width: 59%;
-    height: 140px;
+    width: 74.3%;
+    height: 70px;
     text-align: left;
 }
 
 .option .detail a {
     display: inline-block;
-    width: 32.7%;
-    line-height: 138px;
-    height: 140px;
+    line-height: 68px;
+    height: 70px;
     border: 1px #ddd solid;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
     transition-duration: 600ms;
 }
 
+.option .detail a.active {
+    color: dodgerblue;
+}
 
 .option .detail a:hover {
     background-color: #ddd;
@@ -144,23 +89,20 @@
 /* works */
 
 .works {
-    margin-top: 1%;
-    text-align: center;
-}
-
-.works::after {
-    content: "";
-    float: none;
-    clear: both;
-    display: block;
-    height: 0;
+    width: 62.5%;
+    margin: 2% auto 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .work {
     position: relative;
-    display: block;
-    float: left;
-    cursor: pointer;
+    width: 50%;
+    overflow: hidden;
+}
+
+.work.active {
+    width: 100%;
 }
 
 .work img {
@@ -168,63 +110,38 @@
     width: 100%;
 }
 
-.work1 {
-    width: 66.66%;
-}
-
-.work2 {
-    width: 33.34%;
-}
-
-.work3 {
-    width: 33.33%;
-}
-
-.work4 {
-    width: 33.34%;
-}
-
-.work5 {
-    width: 33.34%;
-    margin: 18.74% 0 0 -33.35%;
-}
-
-.work6 {
-    width: 66.66%;
-}
-
 .work p {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    font-size: 22px;
-    text-align: center;
-    color: transparent;
+    height: 50px;
+    opacity: 0;
+    font-size: 16px;
+    padding: 0 12px;
+    line-height: 50px;
+    background-color: rgba(0, 0, 0, .7);
+    color: #fff;
+    transform: matrix(1, 0, 0, 1, 0, 30);
+    overflow: hidden;
     transition-duration: 600ms;
 }
 
 .work p span {
-    vertical-align: middle;
-}
-
-.work p::after {
     display: inline-block;
-    content: "";
-    height: 100%;
-    vertical-align: middle;
-}
-
-.work p i {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 50px;
-    padding: 12px;
+    width: 100%;
+    opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, -10);
+    transition-delay: 200ms;
+    transition-duration: 600ms;
 }
 
 .work:hover p {
-    background-color: rgba(0, 0, 0, .6);
-    color: #fff;
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.work:hover span {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
 }

@@ -12,6 +12,8 @@ let work = new Schema({
     cover:{type:String,required:true},
     cont:{type:String,required:true},
     video:{type:String},
+    isLong:{type:Boolean,default: false},
+    isSwitch:{type:Boolean,default: false},
     createtime:{type: Date,default: Date.now},
     browse:{type:Number,default:0}
 })

@@ -5,7 +5,16 @@ router.post("/app/project/create",async (ctx,next)=>{
     let msg = "" , code = 0, req = ctx.request.body;
     await new Promise((resolve, reject) => {
         try {
-            let option = {type:req.type,title:req.title,desc:req.desc,cover:req.cover,cont:req.cont,video:req.video};
+            let option = {
+                type:req.type,
+                title:req.title,
+                desc:req.desc,
+                isLong:req.isLong,
+                isSwitch:req.isSwitch,
+                cover:req.cover,
+                cont:req.cont,
+                video:req.video
+            };
             if(req.id){
                 model.work.update({_id:req.id},option,(err,db)=>{
                     if(!err){

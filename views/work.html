@@ -35,7 +35,7 @@
                     success: (res) => {
                         this.title = res.data.title;
                         this.time = res.data.createtime;
-                        this.video = [...res.data.video.split(","), ...res.data.video.split(",")];
+                        this.video = res.data.video ? [...res.data.video.split(",")] : [];
                         this.type = res.data.type;
                         $(res.data.cont).appendTo($(".cont"));
                     }
