@@ -64,6 +64,10 @@
                         let margin = this.outVideo.length == 1 ? 0 : (this.outVideo.length - 1) * 12;
                         let w = 1200 / this.outVideo.length - margin;
                         let h = w / 3 * 2;
+                        $(".out-video-item").css({
+                            'width': w + 'px',
+                            'height': h + 'px'
+                        })
                         $(".video-boxs embed").css({
                             'width': w + 'px',
                             'height': h + 'px'
