@@ -128,25 +128,26 @@ router.get('/app/link', async (ctx, next) => {
 // admin 后端接口
 // 后端登录界面
 router.get("/app/admin",async (ctx,next) => {
-  try {
-    let uid = JSON.parse(ctx.cookies.get("angel")).a;
-    const isUid = await new Promise((resolve,reject)=>{
-      redis.get(uid).then((db,err)=>{
-        if(!err && db){
-          resolve(true)
-        }else{
-          resolve(false)
-        }
-      })
-    })
-    if(isUid){
-      await ctx.redirect("/app/admin/home")
-    }else{
-      await ctx.render("admin/login")
-    }
-  } catch (error) {
-    await ctx.render("admin/login")
-  }
+  await ctx.render("admin/login")
+  // try {
+  //   let uid = JSON.parse(ctx.cookies.get("angel")).a;
+  //   const isUid = await new Promise((resolve,reject)=>{
+  //     redis.get(uid).then((db,err)=>{
+  //       if(!err && db){
+  //         resolve(true)
+  //       }else{
+  //         resolve(false)
+  //       }
+  //     })
+  //   })
+  //   if(isUid){
+  //     await ctx.redirect("/app/admin/home")
+  //   }else{
+  //     await ctx.render("admin/login")
+  //   }
+  // } catch (error) {
+  //   await ctx.render("admin/login")
+  // }
 })
 // 后端登录接口
 router.post("/app/admin",async (ctx,next)=>{
