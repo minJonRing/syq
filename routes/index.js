@@ -568,24 +568,30 @@ router.post("/app/news/save",async (ctx,next)=>{
 })
 // 视频上传
 router.post("/app/video",async(ctx,next)=>{
-  let msg = "" ,code = 0,url;
+  let msg = "" ,code = 0,url = "";
   let form = new formidable.IncomingForm();
   form.encoding = 'utf-8';
   form.uploadDir = path.join(config.default._rootdir + "/public/video");
   form.keepExtensions = true;
   form.multiples = true;
-  await new Promise((resolve, reject) => {
-    form.parse(ctx.req, async(err, fields, files) => {
-        if (err) { throw err; return }
-        // 封面图片路径
-        console.log(files.video)
-        url = files.video ? files.video.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
-        resolve()
+  form.maxFieldsSize = 600 * 1024 * 1024;
+  try {
+    await new Promise((resolve, reject) => {
+      form.parse(ctx.req, async(err, fields, files) => {
+          if (err) { throw err; return }
+          // 封面图片路径
+          console.log(files.video)
+          url = files.video ? files.video.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/'):"";
+          resolve()
+      })
     })
-  })
-  if(url){
+    if(url){
+      code = 200;
+      msg = "上传成功";
+    }
+  } catch (error) {
     code = 200;
-    msg = "上传成功";
+    msg = "上传失败";
   }
   ctx.body = {code:code,msg:msg,url:url}
 })
