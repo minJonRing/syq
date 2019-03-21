@@ -106,7 +106,25 @@ var app = new Vue({
                         let db = res.data.sort((a,b)=>{
                             return new Date(a.createtime) < new Date(b.createtime)?1:-1;
                         })
-                        this.worksList = db.slice(0,7);
+                        let arr = [], h = [], l = []; ind = 0;
+                        for(let i in db){
+                            if(db[i].isLong){
+                                l.push(db[i])
+                            }else{
+                                h.push(db[i])
+                            }
+                        }
+                        for(let i in db){
+                            let el = h[i - ind];
+                            if((i-0+1)%5 == 0){
+                                if(l[ind]){
+                                    el = l[ind];
+                                    ind++;
+                                }
+                            }
+                            arr.push(el);
+                        }
+                        this.worksList = arr.slice(0,10);
                         if(res.code != 200){
                             reject(res)
                         }else{

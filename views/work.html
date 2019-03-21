@@ -1,7 +1,14 @@
 <%- include("header.html")%>
     <link rel="stylesheet" href="/stylesheets/web/work.css">
     <div id="app">
-        <video :src="item" controls v-for="(item,index) in video" :key="index"></video>
+        <div class="video-boxs">
+            <div class="in-video" v-if="!isSwitch">
+                <video :src="item" controls v-for="(item,index) in video" :key="index"></video>
+            </div>
+            <div class="out-video" v-if="isSwitch">
+                <div class="out-video-item" v-for="(item,index) in outVideo" :key="index" v-html="item"></div>
+            </div>
+        </div>
         <div class="edit-box">
             <h2>{{title}}</h2>
             <div class="info flex flex-mid flex-center-1">
@@ -21,7 +28,9 @@
                 cont: "",
                 type: "",
                 typeArr: "",
-                video: ""
+                video: "",
+                outVideo: "",
+                isSwitch: false
             },
             mounted() {
                 this.typeArr = set_config.work_type;
@@ -33,14 +42,41 @@
                         id: url
                     },
                     success: (res) => {
-                        this.title = res.data.title;
-                        this.time = res.data.createtime;
-                        this.video = res.data.video ? [...res.data.video.split(",")] : [];
-                        this.type = res.data.type;
-                        $(res.data.cont).appendTo($(".cont"));
+                        let db = res.data;
+                        this.title = db.title;
+                        this.time = db.createtime;
+                        this.isSwitch = db.isSwitch;
+                        this.video = db.video ? [...db.video.split(",")] : [];
+                        this.outVideo = db.outVideo ? [...db.outVideo.split(",")] : [];
+                        this.type = db.type;
+                        $(db.cont).appendTo($(".cont"));
+                        this.handleSetContStyle();
+                        setTimeout(() => {
+                            this.handleSetHeadStyle();
+                        }, 300);
                     }
                 })
-            }
+
+            },
+            methods: {
+                handleSetHeadStyle() {
+                    if (this.isSwitch) {
+                        let margin = this.outVideo.length == 1 ? 0 : (this.outVideo.length - 1) * 12;
+                        let w = 1200 / this.outVideo.length - margin;
+                        let h = w / 3 * 2;
+                        $(".video-boxs embed").css({
+                            'width': w + 'px',
+                            'height': h + 'px'
+                        })
+                    }
+                },
+                handleSetContStyle() {
+                    $(".cont embed").css({
+                        'width': '1200px',
+                        'height': '600px'
+                    })
+                }
+            },
         })
     </script>
     <%- include("footer.html")%>

@@ -13,7 +13,8 @@ router.post("/app/project/create",async (ctx,next)=>{
                 isSwitch:req.isSwitch,
                 cover:req.cover,
                 cont:req.cont,
-                video:req.video
+                video:req.video,
+                outVideo:req.outVideo
             };
             if(req.id){
                 model.work.update({_id:req.id},option,(err,db)=>{

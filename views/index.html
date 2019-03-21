@@ -2,7 +2,8 @@
     <link rel="stylesheet" href="/stylesheets/web/index.css">
     <link rel="stylesheet" href="/stylesheets/table.css">
     <div id="app">
-        <div class="video" :style="{height:windowH+'px'}">
+        <!-- <div class="video" :style="{height:windowH+'px'}"> -->
+        <div class="video">
             <video autoplay loop muted>
                 <source src="/video/1.mp4" type="video/mp4" />
             </video>
@@ -65,7 +66,7 @@
             <h2>作品展示</h2>
         </div>
         <div class="works-list">
-            <a :href="'/app/work/'+item._id" :class="{active:(index+1)%5 == 0}" v-for="(item,index) in worksList" :key="index">
+            <a :href="'/app/work/'+item._id" :class="{active:item.isLong}" v-for="(item,index) in worksList" :key="index">
                 <img :src="item.cover" alt="作品">
                 <p class="works-shade">
                     <span class="text-hide-1">{{item.title}}</span>
