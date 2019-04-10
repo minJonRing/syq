@@ -119,6 +119,12 @@ router.get('/app/contactwe', async (ctx, next) => {
     title: 'Hello Koa 2!'
   })
 })
+// 手机测试
+router.get('/app/isa', async (ctx, next) => {
+  await ctx.render('vue-index', {
+    title: 'Hello Koa 2!'
+  })
+})
 //测试接口
 router.get('/app/link', async (ctx, next) => {
   await ctx.render('ifram', {
