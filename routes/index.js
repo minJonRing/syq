@@ -163,9 +163,9 @@ router.post("/app/admin",async (ctx,next)=>{
     model.user.findOne({username:username},(err,db)=>{
       if(!err && db &&  hash(password) === db.password){
         ctx.cookies.set("angel",JSON.stringify({a:username,b:db._id}),{
-          // domain:"hzsinq.com",
+          domain:"hzsinq.com",
           // domain:"ojoojooo.com",
-          domain:"localhost",
+          // domain:"localhost",
           path:"/",
           maxAge:72*60*60*1000,
           expires:new Date(),
