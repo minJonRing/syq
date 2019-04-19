@@ -4,27 +4,31 @@ const path  = require("path")
 const config =  require("../config.js")
 // 上传封面
 router.post("/app/upload/cover", async(ctx,next)=>{
-  await next()
-  let imgurl = [];
-  let form = new formidable.IncomingForm();
-  form.encoding = 'utf-8';
-  form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
-  form.keepExtensions = true;
-  form.multiples = true;
-  await new Promise((resolve, reject) => {
-      form.parse(ctx.req, async(err, fields, files) => {
-        if (err) { throw err; resolve(imgurl) ;return; }
-        let url = files.file.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
-        imgurl.push(url)
-        resolve(imgurl)
-      })
-  })
-  let code = 0,msg = "";
-  if(imgurl.length){
-    code = 200;
-    msg = "上传成功";
-  }
-  ctx.body = {code:code,msg:msg,data:imgurl}
+    await next()
+    let imgurl = [];
+    let form = new formidable.IncomingForm();
+    form.encoding = 'utf-8';
+    form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
+    form.keepExtensions = true;
+    form.multiples = true;
+    await new Promise((resolve, reject) => {
+        try {
+            form.parse(ctx.req, async(err, fields, files) => {
+                if (err) { throw err; resolve(imgurl) ;return; }
+                let url = files.file.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
+                imgurl.push(url)
+                resolve(imgurl)
+              })
+        } catch (error) {
+        
+        }
+    })
+    let code = 0,msg = "";
+    if(imgurl.length){
+        code = 200;
+        msg = "上传成功";
+    }
+    ctx.body = {code:code,msg:msg,data:imgurl}
 })
 // 上传图片
 router.post("/app/upload/img", async(ctx,next)=>{
