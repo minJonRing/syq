@@ -51,6 +51,7 @@ h2 {
 }
 
 .cont {
+    width: 600px;
     margin: 0 auto;
     padding: 5% 0;
     font-size: 15px;
