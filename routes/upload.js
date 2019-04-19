@@ -10,11 +10,12 @@ router.post("/app/upload/cover", async(ctx,next)=>{
     form.encoding = 'utf-8';
     form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
+    form.maxFileSize = 20 * 1024 * 1024;//上传文件的最大大小
     form.keepExtensions = true;
     form.multiples = true;
     await new Promise((resolve, reject) => {
         try {
-            form.parse(ctx.req, async(err, fields, files) => {
+            form.parse(ctx.req, (err, fields, files) => {
                 if (err) { throw err; resolve(imgurl) ;return; }
                 let url = files.file.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
                 imgurl.push(url)
