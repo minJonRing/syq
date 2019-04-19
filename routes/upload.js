@@ -9,6 +9,7 @@ router.post("/app/upload/cover", async(ctx,next)=>{
     let form = new formidable.IncomingForm();
     form.encoding = 'utf-8';
     form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
+    form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
     form.keepExtensions = true;
     form.multiples = true;
     await new Promise((resolve, reject) => {
@@ -18,7 +19,7 @@ router.post("/app/upload/cover", async(ctx,next)=>{
                 let url = files.file.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
                 imgurl.push(url)
                 resolve(imgurl)
-              })
+            })
         } catch (error) {
         
         }
