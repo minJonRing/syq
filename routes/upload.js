@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const formidable = require('formidable')
 const path  = require("path")
+const config =  require("../config.js")
 // 上传封面
 router.post("/app/upload/cover", async(ctx,next)=>{
   await next()
