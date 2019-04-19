@@ -21,61 +21,61 @@ const redis = new Redis({
 // 首页index
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
-    title: 'Hello Koa 2!'
+    title: '杭州思漫奇'
   })
 })
 // 作品页 works
 router.get('/app/works', async (ctx, next) => {
   await ctx.render('works-list', {
-    title: 'Hello Koa 2!'
+    title: '思漫奇作品'
   })
 })
 // 作品详情页
 router.get("/app/work/:id" ,async (ctx , next) => {
   await ctx.render("work", {
-    title: 'Hello Koa 2!'
+    title: '思漫奇作品'
   })
 })
 // 新闻资讯 news
 router.get('/app/news', async (ctx, next) => {
   await ctx.render('news-list', {
-    title: 'Hello Koa 2!'
+    title: '思漫奇资讯'
   })
 })
 // 新闻详情页
 router.get('/app/news/:id', async (ctx, next) => {
   await ctx.render('news', {
-    title: 'Hello Koa 2!'
+    title: '思漫奇资讯'
   })
 })
 // 关于我们
 router.get('/app/about', async (ctx, next) => {
   await ctx.render('about', {
-    title: 'Hello Koa 2!'
+    title: '关于我们'
   })
 })
 //我的客户 client
 router.get('/app/client', async (ctx, next) => {
   await ctx.render('my-client', {
-    title: 'Hello Koa 2!'
+    title: '我的客户'
   })
 })
 //加入我们 join we
 router.get('/app/joinwe', async (ctx, next) => {
   await ctx.render('join-we', {
-    title: 'Hello Koa 2!'
+    title: '加入我们'
   })
 })
 //联系我们 contact we
 router.get('/app/contactwe', async (ctx, next) => {
   await ctx.render('contact-we', {
-    title: 'Hello Koa 2!'
+    title: '联系我们'
   })
 })
 // 手机测试
 router.get('/app/isa', async (ctx, next) => {
   await ctx.render('vue-index', {
-    title: 'Hello Koa 2!'
+    title: 'app'
   })
 })
 // admin 后端接口
