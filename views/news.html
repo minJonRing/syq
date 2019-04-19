@@ -26,13 +26,12 @@
             mounted() {
                 let url = window.location.href.replace(/.+\//g, "");
                 $.ajax({
-                    url: "/app/news",
-                    type: "post",
+                    url: "/app/informa/edit",
+                    type: "get",
                     data: {
                         id: url
                     },
                     success: (res) => {
-                        console.log(res)
                         this.title = res.data.title;
                         this.cover = res.data.cover;
                         this.time = res.data.createtime.replace(/(T).+/g, "");

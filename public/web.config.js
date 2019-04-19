@@ -10,16 +10,16 @@ let set_config = {
         {link:"/app/contactwe",txt:"联系我们"}
     ],
     work_type:[{
-        text:"类型1",
+        text:"创意短视频",
         value:1,
     },{
-        text:"类型2",
+        text:"企业产品",
         value:2,
     },{
-        text:"类型3",
+        text:"影视广告",
         value:3,
     },{
-        text:"类型4",
+        text:"暂定",
         value:4,
     }],
     news_type:[{

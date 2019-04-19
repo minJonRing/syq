@@ -14,7 +14,7 @@ class NewsList extends React.Component {
     }
     componentDidMount (){
         $.ajax({
-            url:"/app/getNews",
+            url:"/app/informa/list",
             type:"POST",
             success:(res)=>{
                 this.setState({

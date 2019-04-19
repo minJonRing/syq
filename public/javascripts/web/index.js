@@ -2,6 +2,7 @@ var app = new Vue({
     el:"#app",
     data () {
         return {
+            year:"",
             isSafiri:false,
             isShowShade:false,
             loop1:0,
@@ -28,14 +29,14 @@ var app = new Vue({
             workH:0,
             worksList:[],
             newsList:[],
-            client:new Array(18).fill({link:"/",img:"/images/web/loop.png"}),
+            client:[{img:""}],
             // window H
             windowH:0
         }
     },
     mounted(){
         let _arr  = [];
-        for(let i in new Array(18).fill(1)){
+        for(let i in new Array(27).fill(1)){
             _arr.push({img:"/images/web/logo/"+(i-0+1)+".png"})
         }
         this.client = _arr;
@@ -50,7 +51,9 @@ var app = new Vue({
             this._loop(".my-client-list1",L,'left')
             this._loop(".my-client-list2",_L,'right')
         }, 500);
-        
+        // 设置年份
+        let time = new Date();
+        this.year = time.getFullYear();
         // 第一个参数 全部请求完成后执行的事件  第二个及以后的（请求的事件）
         this.bindAllAjAX(()=>{
             this.bindImgSuccess((l,arr)=>{

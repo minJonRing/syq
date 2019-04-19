@@ -11,14 +11,7 @@ const ejs = require('ejs')
 const mongoose = require("mongoose")
 const session = require("koa-session-redis");
 const staticCache = require('koa-static-cache')
-// var WebSocketServer = require('ws').Server,
-// wss = new WebSocketServer({ port: 8181 });
-// wss.on('connection', function (ws) {
-//     console.log('client connected');
-//     ws.on('message', function (message) {
-//         console.log(message);
-//     });
-// });
+
 // const MongooseStore = require("koa-session-mongoose");
 
 
@@ -31,6 +24,7 @@ mongoose.connection.on("open",function(){
 const index = require('./routes/index')
 const work = require('./routes/work')
 const news = require('./routes/news')
+const upload = require('./routes/upload')
 
 // error handler
 onerror(app)
@@ -58,9 +52,6 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
   map : {html:'ejs'}
 }))
-// app.use(views(__dirname + '/views', {
-//   extension: 'ejs'
-// }))
 
 // logger
 app.use(async (ctx, next) => {
@@ -74,6 +65,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(work.routes(), index.allowedMethods())
 app.use(news.routes(), index.allowedMethods())
+app.use(upload.routes(), index.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

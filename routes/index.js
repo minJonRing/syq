@@ -16,14 +16,8 @@ const redis = new Redis({
   db: 0
 })
 
-let user = [];
-// 首页index
-router.get('/three', async (ctx, next) => {
-  await ctx.render('three', {
-    title: 'Hello Koa 2!'
-  })
-})
 // 前段页面
+
 // 首页index
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
@@ -41,53 +35,12 @@ router.get("/app/work/:id" ,async (ctx , next) => {
   await ctx.render("work", {
     title: 'Hello Koa 2!'
   })
-}).post("/app/work",async (ctx,next) => {
-  let msg,data;
-  await new Promise((resolve,reject) =>{
-    try {
-      model.work.findOne({_id:ctx.request.body.id},function(err,db){
-        if(!err){
-          msg="查询成功!"
-          data = db;
-          resolve()
-        }else{
-          msg="查询失败!";
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "系统错误!"
-      resolve()
-    }
-  })
-  ctx.body = {code:200,msg:msg,data:data}
 })
-
 // 新闻资讯 news
 router.get('/app/news', async (ctx, next) => {
   await ctx.render('news-list', {
     title: 'Hello Koa 2!'
   })
-}).post("/app/news",async (ctx,next) => {
-  let msg,data;
-  await new Promise((resolve,reject) =>{
-    try {
-      model.news.findOne({_id:ctx.request.body.id},function(err,db){
-        if(!err){
-          msg="查询成功!"
-          data = db;
-          resolve()
-        }else{
-          msg="查询失败!";
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "系统错误!"
-      resolve()
-    }
-  })
-  ctx.body = {code:200,msg:msg,data:data}
 })
 // 新闻详情页
 router.get('/app/news/:id', async (ctx, next) => {
@@ -122,12 +75,6 @@ router.get('/app/contactwe', async (ctx, next) => {
 // 手机测试
 router.get('/app/isa', async (ctx, next) => {
   await ctx.render('vue-index', {
-    title: 'Hello Koa 2!'
-  })
-})
-//测试接口
-router.get('/app/link', async (ctx, next) => {
-  await ctx.render('ifram', {
     title: 'Hello Koa 2!'
   })
 })
@@ -246,32 +193,6 @@ router.get("/app/logout",async (ctx,next)=>{
     ctx.body = {code:204,msg:"error"}
   }
 })
-// 获取作品列表
-router.post("/app/getWork",async (ctx ,next)=>{
-  let msg = "" , code = 0;
-  let _db = "";
-  await new Promise((resolve,reject)=>{
-    try {
-      model.work.find({},(err,db)=>{
-        if(!err){
-          _db = db;
-          msg = "查询成功!";
-          code = 200;
-          resolve()
-        }else{
-          msg = "查询失败!";
-          code = 201;
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "查询失败!";
-      code = 201;
-      resolve()
-    }
-  }) 
-  ctx.body = {code:code,msg:msg,data:_db}
-})
 // 获取新闻列表
 router.post("/app/getNews",async (ctx ,next)=>{
   let msg = "" , code = 0;
@@ -298,51 +219,6 @@ router.post("/app/getNews",async (ctx ,next)=>{
   }) 
   ctx.body = {code:code,msg:msg,data:_db}
 })
-// 按类型获取作品列表
-router.post("/app/findOneWork",async(ctx,next)=>{
-  await next()
-  let msg = "",data = "";
-  await new Promise((resolve,reject)=>{
-    try {
-      model.work.find({type:ctx.request.body.type},function(err,db){
-        if(!err){
-          msg = "查询成功!";
-          data = db;
-          resolve()
-        }else{
-          msg = "查询失败!";
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "系统错误";
-      resolve()
-    }
-  })
-  ctx.body = {code:200,msg:msg,data:data}
-})
-// 获取单一作品数据
-router.post("/app/getOneWork",async(ctx,next)=>{
-  let msg = "",data="";
-  await new Promise((resolve,reject)=>{
-    try {
-      model.work.findOne({_id:ctx.request.body.id},function(err,db){
-        if(!err){
-          msg = "查询成功!";
-          data = db;
-          resolve()
-        }else{
-          msg = "查询失败!"
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "系统错误!"
-      resolve()
-    }
-  })
-  ctx.body = {code:200,msg:msg,data:data}
-})
 // 获取单一新闻数据
 router.post("/app/getOneNews",async(ctx,next)=>{
   let msg = "",data="";
@@ -364,213 +240,6 @@ router.post("/app/getOneNews",async(ctx,next)=>{
     }
   })
   ctx.body = {code:200,msg:msg,data:data}
-})
-// 删除作品
-router.post("/app/removeWork",async(ctx,next)=>{
-  let msg = ""
-  await new Promise((resolve,reject)=>{
-    try {
-      model.work.remove({_id:ctx.request.body.id},function(err,db){
-        if(!err){
-          msg = "删除成功!"
-          resolve()
-        }else{
-          msg = "删除失败!"
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "系统错误!"
-      resolve()
-    }
-    
-  })
-  ctx.body = {code:200,msg:msg}
-})
-// 删除新闻
-router.post("/app/removeNews",async(ctx,next)=>{
-  let msg = ""
-  await new Promise((resolve,reject)=>{
-    try {
-      model.news.remove({_id:ctx.request.body.id},function(err,db){
-        if(!err){
-          msg = "删除成功!"
-          resolve()
-        }else{
-          msg = "删除失败!"
-          resolve()
-        }
-      })
-    } catch (error) {
-      msg = "系统错误!"
-      resolve()
-    }
-    
-  })
-  ctx.body = {code:200,msg:msg}
-})
-// 上传封面
-router.post("/app/upload/cover", async(ctx,next)=>{
-  await next()
-  let imgurl = [];
-  let form = new formidable.IncomingForm();
-  form.encoding = 'utf-8';
-  form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
-  form.keepExtensions = true;
-  form.multiples = true;
-  await new Promise((resolve, reject) => {
-      form.parse(ctx.req, async(err, fields, files) => {
-        if (err) { throw err; resolve(imgurl) ;return; }
-        let url = files.file.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
-        imgurl.push(url)
-        resolve(imgurl)
-      })
-  })
-  let code = 0,msg = "";
-  if(imgurl.length){
-    code = 200;
-    msg = "上传成功";
-  }
-  ctx.body = {code:code,msg:msg,data:imgurl}
-})
-// 上传图片
-router.post("/app/upload/img", async(ctx,next)=>{
-  await next()
-  let imgurl = [];
-  let form = new formidable.IncomingForm();
-  form.encoding = 'utf-8';
-  form.uploadDir = path.join(config.default._rootdir + "/public/upload/cover");
-  form.keepExtensions = true;
-  form.multiples = true;
-  await new Promise((resolve, reject) => {
-      form.parse(ctx.req, async(err, fields, files) => {
-        if (err) { throw err; resolve(imgurl);return }
-        console.log(files.imgs)
-        // 用于重命名文件
-        // let _name = files.imgs.name;
-        // let newpath =  '/public/upload/'+_name;
-        // await new Promise((resolve,reject)=>{
-        //   fs.rename(files.imgs.path,config.default._rootdir+newpath,(err)=>{
-        //     if(!err){
-        //       resolve()
-        //     }
-        //   })
-        // })
-        // if (files.imgs.length) {
-        //     for (img of files.imgs) {
-        //         let url = img.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
-        //         imgurl.push(url)
-        //     }
-        // } else {
-        // let url = (config.default._rootdir+newpath).replace(/.+(public)/g,"");
-        // 随机文件名
-        if(Array.isArray(files.imgs)){
-          for(let i in files.imgs){
-            let url = files.imgs[i].path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
-            imgurl.push(url)
-          }
-        }else{
-          let url = files.imgs.path.replace(/.+(public)/g,"").replace(/(\\)/g, '/');
-          imgurl.push(url)
-        }
-        
-        // }
-        resolve(imgurl)
-      })
-  })
-  let code = 0,msg = "",errno = 1;
-  if(imgurl.length){
-    code = 200;
-    msg = "上传成功";
-    errno = 0;
-  }
-  ctx.body = {code:code,msg:msg,errno:errno,data:imgurl}
-
-})
-// 上传/更新作品数据
-router.post("/app/work/save",async (ctx,next)=>{
-  let msg = "" ,code = 0;
-  let form = new formidable.IncomingForm();
-  form.encoding = 'utf-8';
-  form.keepExtensions = true;
-  form.multiples = true;
-  await new Promise((resolve, reject) => {
-      form.parse(ctx.req, async(err, fields, files) => {
-          if (err) { throw err; return }
-          // 封面图片路径
-          try {
-            let option = {type:fields.type,title:fields.title,desc:fields.desc,cover:fields.cover,cont:fields.cont,video:fields.video};
-            if(fields.id){
-              model.work.update({_id:fields.id},option,(err,db)=>{
-                if(!err){
-                  msg = "更新成功!";
-                  code = 200;
-                  resolve()
-                }
-              })
-            }else{
-              model.work.create(option,(err,db)=>{
-                if(!err){
-                  msg = "保存成功!";
-                  code = 200
-                  resolve()
-                }
-              })
-            }
-          } catch (error) {
-            msg = "保存失败!";
-            code = 201;
-            resolve()
-          }
-      })
-  })
-  ctx.body = {code:code,msg:msg}
-})
-// 上传/更新新闻数据
-router.post("/app/news/save",async (ctx,next)=>{
-  let msg = "" ,code = 0;
-  let form = new formidable.IncomingForm();
-  form.encoding = 'utf-8';
-  form.uploadDir = path.join(config.default._rootdir + "/public/upload");
-  form.keepExtensions = true;
-  form.multiples = true;
-  await new Promise((resolve, reject) => {
-      form.parse(ctx.req, async(err, fields, files) => {
-          if (err) { throw err; return }
-          // 封面图片路径
-          try {
-            let option = {type:fields.type,title:fields.title,cover:fields.cover,cont:fields.cont,video:fields.video};
-            if(fields.id){
-              model.news.update({_id:fields.id},option,(err,db)=>{
-                if(!err){
-                  msg = "更新成功!";
-                  code = 200;
-                }else{
-                  msg = "更新失败!";
-                  code = 204;
-                }
-                resolve()
-              })
-            }else{
-              model.news.create(option,(err,db)=>{
-                if(!err){
-                  msg = "保存成功!";
-                  code = 200
-                }else{
-                  msg = "保存失败!";
-                  code = 204;
-                }
-                resolve()
-              })
-            }
-          } catch (error) {
-            msg = "保存失败!";
-            code = 201;
-            resolve()
-          }
-      })
-  })
-  ctx.body = {code:code,msg:msg}
 })
 // 视频上传
 router.post("/app/video",async(ctx,next)=>{
@@ -602,32 +271,6 @@ router.post("/app/video",async(ctx,next)=>{
   ctx.body = {code:code,msg:msg,url:url}
 })
 
-// 设置基本配置
-router.post("/app/config",async(ctx,next)=>{
-  let data  = ctx.request.body.config,msg = "";
-  await new Promise((resolve,reject)=>{
-    fs.writeFile(config.default._rootdir+"\\public\\set.config.js",data,"utf-8",(err,db)=>{
-      if(!err){
-        msg = "写入成功!";
-        resolve()
-      }else{
-        msg = "写入失败!"
-        resolve()
-      }
-    })
-  }) 
-  ctx.body = {code:200,msg:msg}
-})
-// 获取浏览数据
-router.get("/getData",async (ctx,next)=>{
-  // await new Promise((resolve,reject)=>{
-  //   new model.db({
-  //     data:ctx.query.a
-  //   }).save()
-  //   resolve()
-  // })
-})
-
 // 加密密码
 function hash(data){
   let md5 = crypto.createHash("md5");
@@ -649,7 +292,6 @@ function isUser(view,url){
             }
           })
         })
-        console.log(isUid,view,url);
         if(isUid){
           await ctx.render(view)
         }else{
