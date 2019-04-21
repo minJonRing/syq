@@ -13,6 +13,7 @@ let work = new Schema({
     cont:{type:String,required:true},
     video:{type:String},
     outVideo:{type:String},
+    sort:{type:Number,default:99},
     isLong:{type:Boolean,default: false},
     isSwitch:{type:Boolean,default: false},
     createtime:{type: Date,default: Date.now},

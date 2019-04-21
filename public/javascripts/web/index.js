@@ -110,7 +110,7 @@ var app = new Vue({
                             return new Date(a.createtime) < new Date(b.createtime)?1:-1;
                         })
                         let H = document.querySelector(".works").clientWidth / 3 * .5625 * 2;
-                        let arr = [];
+                        let _filter = [],filter = [], sort = [], arr = [];
                         // let arr = [], h = [], l = []; ind = 0;
                         // for(let i in db){
                         //     if(db[i].isLong){
@@ -129,13 +129,27 @@ var app = new Vue({
                         //     }
                         //     arr.push(el);
                         // }
-                        let list = db.slice(0,21);
-                        for(let i in list){
+                        for(let i in db){
+                            if(db[i].type == 1){
+                                _filter.push(db[i])
+                            }
+                        }
+                        filter = _filter.slice(0,21);
+                        sort = filter.sort((x,y)=>{
+                            if(x.sort > y.sort){
+                                return 1;
+                            }else if(x.sort < y.sort){
+                                return -1;
+                            }else{
+                                return 0;
+                            }
+                        })
+                        for(let i in sort){
                             let ind = Math.floor(i / 7);
                             if(!arr[ind]){
                                 arr[ind] = []
                             }
-                            arr[ind].push(list[i])
+                            arr[ind].push(sort[i])
                         }
                         for(let i in arr){
                             let _arr = arr[i];

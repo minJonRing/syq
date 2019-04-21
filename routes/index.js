@@ -133,11 +133,6 @@ router.post("/app/admin",async (ctx,next)=>{
 // 后端主界面 
 router.get("/app/main",isUser('main','/app/admin'))
 router.get("/app/admin/home",isUser('admin/index','/app/admin'))
-router.get("/app/admin/tqr", async (ctx, next) => {
-  await ctx.render('admin/index', {
-    title: 'app'
-  })
-})
 // router.get("/app/main",isUser(view,url))
 // 测试注册用户   可删除////////////////////////////////
 router.post("/get/user",async (ctx,next) =>{
