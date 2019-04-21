@@ -109,25 +109,51 @@ var app = new Vue({
                         let db = res.data.sort((a,b)=>{
                             return new Date(a.createtime) < new Date(b.createtime)?1:-1;
                         })
-                        let arr = [], h = [], l = []; ind = 0;
-                        for(let i in db){
-                            if(db[i].isLong){
-                                l.push(db[i])
-                            }else{
-                                h.push(db[i])
+                        let H = document.querySelector(".works").clientWidth / 3 * .5625 * 2;
+                        let arr = [];
+                        // let arr = [], h = [], l = []; ind = 0;
+                        // for(let i in db){
+                        //     if(db[i].isLong){
+                        //         l.push(db[i])
+                        //     }else{
+                        //         h.push(db[i])
+                        //     }
+                        // }
+                        // for(let i in db){
+                        //     let el = h[i - ind];
+                        //     if((i-0+1)%5 == 0){
+                        //         if(l[ind]){
+                        //             el = l[ind];
+                        //             ind++;
+                        //         }
+                        //     }
+                        //     arr.push(el);
+                        // }
+                        let list = db.slice(0,21);
+                        for(let i in list){
+                            let ind = Math.floor(i / 7);
+                            if(!arr[ind]){
+                                arr[ind] = []
                             }
+                            arr[ind].push(list[i])
                         }
-                        for(let i in db){
-                            let el = h[i - ind];
-                            if((i-0+1)%5 == 0){
-                                if(l[ind]){
-                                    el = l[ind];
-                                    ind++;
+                        for(let i in arr){
+                            let _arr = arr[i];
+                            for(let j in _arr){
+                                let num = j % 7;
+                                let cla = "";
+                                if(num == 0 || num == 2 || num == 4){
+                                    cla = "active1";
+                                }else if(num == 1 || num == 3){
+                                    cla = "active2";
                                 }
+                                if(num == 3 || num == 5){
+                                    _arr[j].h = H + 'px';
+                                }
+                                _arr[j].cla = cla;
                             }
-                            arr.push(el);
                         }
-                        this.worksList = arr.slice(0,10);
+                        this.worksList = arr;
                         if(res.code != 200){
                             reject(res)
                         }else{

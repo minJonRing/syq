@@ -65,11 +65,11 @@
         <div class="works">
             <h2>作品展示</h2>
         </div>
-        <div class="works-list">
-            <a :href="'/app/work/'+item._id" :class="{active:item.isLong}" v-for="(item,index) in worksList" :key="index">
-                <img :src="item.cover" alt="作品">
+        <div class="works-list" v-for="(item,index) in worksList" :key="index">
+            <a :href="'/app/work/'+i._id" :class="[{active:i.isLong},i.cla || '']" :style="{height:i.h?i.h:''}" v-for="(i,j) in item" :key="j">
+                <img :src="i.cover" alt="作品">
                 <p class="works-shade">
-                    <span class="text-hide-1">{{item.title}}</span>
+                    <span class="text-hide-1">{{i.title}}</span>
                 </p>
             </a>
         </div>
