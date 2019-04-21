@@ -1,0 +1,17 @@
+{
+    "apps": [
+      {
+        "name": "syq",
+        "script": "./bin/www",
+        "cwd": "./",
+        "watch": [
+          "bin",
+          "routes",
+          "views"
+        ],
+        "error_file": "./logs/syq-err.log",
+        "out_file": "./logs/syq-out.log",
+        "log_date_format": "YYYY-MM-DD HH:mm Z"
+      }
+    ]
+  }
