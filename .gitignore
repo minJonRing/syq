@@ -6,4 +6,5 @@ public/upload
 # public/video/*.mp4
 node_modules
 public/react
-public/video
+public/videos
+./.DS_Store
