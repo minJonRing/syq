@@ -67,7 +67,7 @@
         </div>
         <div class="works-list" v-for="(item,index) in worksList" :key="index">
             <a :href="'/app/work/'+i._id" :class="[{active:i.isLong},i.cla || '']" :style="{height:i.h?i.h:''}" v-for="(i,j) in item" :key="j">
-                <img :src="i.cover" alt="作品">
+                <div class="works-item-img"><img :src="i.cover" alt="作品"></div>
                 <p class="works-shade">
                     <span class="text-hide-1">{{i.title}}</span>
                 </p>
