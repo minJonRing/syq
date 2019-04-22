@@ -163,6 +163,8 @@ var app = new Vue({
                                 }
                                 if(num == 3 || num == 5){
                                     _arr[j].h = H + 'px';
+                                }else{
+                                    _arr[j].h = H/2 + 'px';
                                 }
                                 _arr[j].cla = cla;
                             }
