@@ -19,6 +19,7 @@ html,body {
     align-items: center;
     justify-content: center;
     opacity: 1;
+    overflow: hidden;
     transition-duration: 600ms;
 }
 .app .btn.active {
