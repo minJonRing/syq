@@ -26,7 +26,8 @@ html,body {
     pointer-events: none;
 }
 .app .btn .bg {
-    width: 100%;
+    /* width: 100%; */
+    height: 100%;
 }
 .app .btn .a {
     position: absolute;
@@ -36,7 +37,7 @@ html,body {
 }
 .app .btn .a .bt {
     display: block;
-    height: 100%;
+    width: 100%;
 }
 .app .video-box {
     position: absolute;
