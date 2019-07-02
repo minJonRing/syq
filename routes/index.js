@@ -17,7 +17,12 @@ const redis = new Redis({
 })
 
 // 前段页面
-
+// 手机测试
+router.get('/app/h5', async (ctx, next) => {
+  await ctx.render('h5/smq1', {
+    title: 'app'
+  })
+})
 // 首页index
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>D</title>
+    <link rel="stylesheet" href="/h5/smq1/index.css">
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script>
+    function setRem() {
+        var dpr, rem, scale;
+        var docEl = document.documentElement;
+        var fontEl = document.createElement('style');
+        var metaEl = document.querySelector('meta[name="viewport"]');
+        dpr = window.devicePixelRatio || 1;
+        scale = 1 / dpr;
+        let _win = window.screen.width || docEl.clientWidth;
+        rem = _win * dpr / 10;;
+        // 设置viewport，进行缩放，达到高清效果
+        metaEl.setAttribute('content', 'width=' + dpr * _win + ', ' +
+            'initial-scale = ' + scale + ', maximum-scale = ' + scale + ',' +
+            'minimum-scale = ' + scale + ', user-scalable = no ');
+        // 设置data-dpr属性，留作的css hack之用
+        docEl.setAttribute('data-dpr', dpr);
+        // 动态写入样式
+        docEl.style.fontSize = rem + 'px';
+        // 给js调用的，某一dpr下rem和px之间的转换函数
+        window.rem2px = function(v) {
+            v = parseFloat(v);
+            return v * rem;
+        };
+        window.px2rem = function(v) {
+            v = parseFloat(v);
+            return v / rem;
+        };
+        window.dpr = dpr;
+        window.rem = rem;
+    };
+    setRem();
+
+    </script>
+</head>
+<body>
+    <div class="app">
+        <div class="btn">
+            <img class="bg" src="/h5/smq1/bg.png" alt="">
+            <p class="a">
+                <img class="bt" src="/h5/smq1/btn.png" alt="">
+            </p>
+        </div>
+        <div class="video-box">
+            <video class="video" src="/h5/1.mp4"></video>
+        </div>
+        
+    </div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script>
+    //wx2df0a9fe18f3cb02 fb964c9eeaa0895370ddeef2e59fb9d7
+// wx.config({
+//     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+//     appId: 'gh_43d5ed2f1082', // 必填，公众号的唯一标识
+//     timestamp: , // 必填，生成签名的时间戳
+//     nonceStr: '', // 必填，生成签名的随机串
+//     signature: '',// 必填，签名
+//     jsApiList: [] // 必填，需要使用的JS接口列表
+// });
+// $.ajax({
+//     url:"/app/wx/token",
+//     type:"GET",
+//     success:(res)=>{
+//         console.log(res)
+//     }
+// })
+$(function(){
+    videoAuto()
+    function videoAuto(){
+        var video = document.querySelector(".video");
+        $(".a").on("click",function(){
+            $(".btn").addClass("active");
+            $(".video-box").addClass("active");
+            video.play();
+        })
+        $(".video").on("click",function(){
+            if (video.paused == true) {
+                video.play();
+                // this.classList.add("icon-pause");
+                // this.classList.remove("icon-play");
+            } else {
+                video.pause();
+                // this.classList.remove("icon-pause");
+                // this.classList.add("icon-play");
+            }
+        })
+        
+    }
+})
+</script>
+</html>
